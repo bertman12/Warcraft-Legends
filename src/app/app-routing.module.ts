@@ -8,12 +8,13 @@ import { MediaFeatureComponent } from './media-feature/media-feature.component';
 
 const routes: Routes = [ 
   {path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: '/', pathMatch: 'full'},
+  {path: '**', redirectTo: '/', pathMatch: 'full'},
   {path:"", component: HomeComponent}, //home-landing-page  
   {path:"login", component: AppComponent}, //login
   //{path:"game-review", component: GameReviewComponent}, //review
   {path:"media", component: MediaFeatureComponent}, //media-feature-component
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

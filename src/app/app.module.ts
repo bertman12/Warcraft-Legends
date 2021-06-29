@@ -3,18 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GameReviewComponent } from './game-review/game-review.component';
 import { HomeComponent } from './home/home.component';
 import { MediaFeatureComponent } from './media-feature/media-feature.component';
-// import { GameReviewComponent } from './game-review/game-review.component';
+import { GameReviewComponent } from './game-review/game-review.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GameReviewComponent
     HomeComponent,
     MediaFeatureComponent,
-    // GameReviewComponent
+    GameReviewComponent
   ],
   imports: [
     BrowserModule,

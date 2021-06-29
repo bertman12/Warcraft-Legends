@@ -7,7 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { MediaFeatureComponent } from './media-feature/media-feature.component';
-// import { GameReviewComponent } from './game-review/game-review.component';
+import { GameReviewComponent } from './game-review/game-review.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { MediaFeatureComponent } from './media-feature/media-feature.component';
     NavbarComponent,
     HomeComponent,
     MediaFeatureComponent,
-    // GameReviewComponent
+    GameReviewComponent
   ],
   imports: [
     BrowserModule,

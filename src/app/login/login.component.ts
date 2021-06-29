@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'; 
 
 @Component({
   selector: 'app-login',
@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
+  authError : boolean = false; 
+
+
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  authErorr(){
+    console.log('Missing password'); 
+    this.authError = true; 
   }
 
 }
+
+

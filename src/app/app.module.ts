@@ -8,6 +8,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { MediaFeatureComponent } from './media-feature/media-feature.component';
 import { GameReviewComponent } from './game-review/game-review.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxAudioPlayerModule } from 'ngx-audio-player';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -16,11 +19,14 @@ import { GameReviewComponent } from './game-review/game-review.component';
     NavbarComponent,
     HomeComponent,
     MediaFeatureComponent,
-    GameReviewComponent
+    GameReviewComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NoopAnimationsModule,
+    NgxAudioPlayerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,17 +1,75 @@
 <!-- navbar Component -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Home
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/game-review" routerLinkActive="active">Game Reviews</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Separated link</a>
+            </div>
+          </li>
+        </ul>
+        <form class="d-flex" data-np-checked="1">
+          <input class="form-control me-sm-2" type="text" placeholder="Search" data-np-checked="1">
+          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col welcome-column">
-            <h1>Warcraft 3 Custom Games Reviews</h1>
-            <p>Welcome to a review site of community made custom games.</p>            
+    <div class="row header-row">
+        <div class="col-8 header-column">     
+          <h1 class = "custom-font2 font-effect-fire">Warcraft 3 Reviews</h1>   
+          <img class = "logo-img" src="" alt="site logo" height = 250px width = 250px>
+          <h4>Welcome to a website all about showcasing and reviewing some of the popular warcraft 3 custom games made by the community. If you have any custom games you'd like to see reviewed on here, send me an email.</h4>
         </div>
-        <div class="col-6" *ngFor = "let game of gamesArr">
-            <!-- media feature component -->
+        <div class="col d-flex justify-content-center">
+          <div class="card h-75">
+            <div class="card-body">
+              <h4 class="card-title custom-font2">FEATURED CONTENT</h4>
+            </div>
+          </div>
         </div>
     </div>
+    <div class="row featured-content-row">
+      <div class="col-6 feature-container">
+        <app-media-feature></app-media-feature>
+      </div>
+      <div class="col-6 feature-container">
+        <app-media-feature></app-media-feature>
+      </div>
+      <div class="col-6 feature-container">
+        <app-media-feature></app-media-feature>
+      </div>
+      <div class="col-6 feature-container">
+        <app-media-feature></app-media-feature>
+      </div>
+    </div>
 </div>
-
-
 
 

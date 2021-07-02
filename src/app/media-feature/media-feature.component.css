@@ -1,10 +1,14 @@
 /* I might need to use a background with an alpha channel and then use that lay on top of the video player itself to create the gradient effect */
 
 .media-feature-container{
-    background-color: rgba(255, 255, 255, 0.1);
-    background-image: radial-gradient(red, yellow, green);
+    /* background-color: rgba(255, 255, 255, 0.1);
+    background-image: radial-gradient(red, yellow, green); */
 }
 
 .gameplay-video{
-
+        /* video border */
+        border: 10px ridge #ccc;
+        padding: 0px;
+        margin: 20px;
+        
 }

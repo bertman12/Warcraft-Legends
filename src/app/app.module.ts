@@ -12,6 +12,7 @@ import { PlayVideoDirective } from './custom-directives/play-video.directive';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './register/register.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

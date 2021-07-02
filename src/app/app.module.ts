@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { MediaFeatureComponent } from './media-feature/media-feature.component';
 import { GameReviewComponent } from './game-review/game-review.component';
+import { PlayVideoDirective } from './custom-directives/play-video.directive';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { GameReviewComponent } from './game-review/game-review.component';
     NavbarComponent,
     HomeComponent,
     MediaFeatureComponent,
-    GameReviewComponent
+    GameReviewComponent,
+    PlayVideoDirective
   ],
   imports: [
     BrowserModule,

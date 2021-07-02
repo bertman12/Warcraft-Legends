@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core'; 
+import { Component, OnInit, NgModule } from '@angular/core'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,18 +8,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  authError : boolean = false; 
+  userUsername = '';
+  userPassword = '';
 
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {}
 
   authErorr(){
     console.log('Missing password'); 
-    this.authError = true; 
   }
 
+  onLogin(){
+    this.playAudio();
+    this.router.navigate(['']),{relativeTo: this.router};
+  }
+
+  onSignUp(){
+    this.router.navigate(['register']),{relativeTo: this.router}; 
+  }
+ 
+  playAudio(){
+    console.log('playing audio');
+    let audio = new Audio();
+    audio.src = '../../assets/TheHornOfCenarius.mp3' ;
+    audio.load();
+    audio.play();
+  } 
 }
 
 

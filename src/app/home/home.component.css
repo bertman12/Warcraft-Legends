@@ -31,10 +31,4 @@
     display: flex;
     justify-content: center;
 }
-.feature-container{
-    position: relative;
-    padding: 0px;
-    margin: 15px;
-    /* border: 5px white ridge; */
-}
 

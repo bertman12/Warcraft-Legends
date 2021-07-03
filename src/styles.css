@@ -4,3 +4,13 @@ html, body {
     background: rgb(0, 0, 0)!important;
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Adds the modified warcraft 3 border to the element */
+.warcraft-border{
+    border: 19px solid transparent;
+    border-image-source: url(./assets/modified-metal-border.png);
+    border-image-slice: 38;
+    border-image-repeat: repeat;
+    border-image-width: 1;
+    border-image-outset: 0; 
+}

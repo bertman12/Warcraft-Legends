@@ -1,5 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Renderer2 } from '@angular/core';
+import {  Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-media-feature',
@@ -8,7 +7,7 @@ import { Renderer2 } from '@angular/core';
 })
 export class MediaFeatureComponent implements OnInit {
 
-  constructor(private renderer: Renderer2) {}
+  constructor() {}
 
   ngOnInit(): void {}
 

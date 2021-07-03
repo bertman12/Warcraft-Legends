@@ -10,6 +10,13 @@
         margin: 0px;
         width: 100%;
 }
+.game-title-overlay{
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        font-size: 50px;
+        /* color: white; */
+}
 /*applys the box shadow on top of the video element*/
 .bottom-fade{
         position: absolute;

@@ -8,7 +8,7 @@ import {  Component, OnInit } from '@angular/core';
 export class MediaFeatureComponent implements OnInit {
 
   constructor() {}
-
+  gameTitle:string = "Game Name";
   ngOnInit(): void {}
 
 }

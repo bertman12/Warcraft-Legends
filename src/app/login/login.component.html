@@ -2,6 +2,11 @@
  <div class="container">
     <div class="row justify-content-center mt-5">
       <div class="col-md-8 col-sm-6">
+          <div *ngIf='displayError' class="alert alert-dismissible alert-warning text-center">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="clearAlert()"></button>
+            <h4 class="alert-heading">Login Failed</h4>
+            <p class="mb-0">Your email or password is incorrect. Please try again.</p>
+          </div>
         <div class="card text-white text-center bg-primary mb-3" style="width: 100%;">
           <div class="card-header justify-content-center align-content-center">
             <h5>Login</h5>
@@ -13,12 +18,12 @@
                 </div>
                 <form>
                 <div class="mb-4">
-                    <label for="username" class="form-label" >Username </label>
-                    <input type="text" class="form-control" id="username">
+                    <label for="username" class="form-label" >Email </label>
+                    <input type="text" class="form-control" id="username" [(ngModel)]="userEmail" name="email">
                 </div>
                 <div class="mb-4">
                     <label for="password" class="form-label" >Password</label>
-                    <input type="password" class="form-control" id="password">
+                    <input type="password" class="form-control" id="password" [(ngModel)]="userPassword" name="password">
                 </div>
                 <div class="mb-4">
                     <a><label for="remember" class="form-label">Forgot Password?</label></a>

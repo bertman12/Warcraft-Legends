@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { MediaFeatureComponent } from './media-feature/media-feature.component';
 import { GameReviewComponent } from './game-review/game-review.component';
+import { PlayVideoDirective } from './custom-directives/play-video.directive';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './register/register.component';
 import { AuthService } from './_services/auth.service';
@@ -15,6 +16,7 @@ import { AuthService } from './_services/auth.service';
 //HttpClientModule in the appmodule then inject in component where it will be used 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     MediaFeatureComponent,
     GameReviewComponent,
+    PlayVideoDirective,
     RegisterComponent
   ],
   imports: [

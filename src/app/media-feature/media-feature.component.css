@@ -1,0 +1,38 @@
+/* I might need to use a background with an alpha channel and then use that lay on top of the video player itself to create the gradient effect */
+.media-feature-container{
+        color: red;
+        position: relative;
+        margin: 0px;
+        padding: 0px;
+}
+.gameplay-video{
+        padding: 0px;
+        margin: 0px;
+        width: 100%;
+}
+.game-title-overlay{
+        position: absolute;
+        top: 20px;
+        left: 50px;
+        font-size: 50px;
+}
+/*applys the box shadow on top of the video element*/
+.bottom-fade{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        box-shadow: inset 0px 0px 20px 30px rgba(0,0,0,1);
+        top: 0px;
+        left: .5px;
+        transform: scale(1.01);
+}
+.feature-container{
+        position: relative;
+        padding: 0px;
+        margin: 10px;
+        transition: transform 0.3s;
+}
+.feature-container:hover{
+        transform: scale(1.05);
+}
+

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {  Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-media-feature',
@@ -7,9 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MediaFeatureComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  constructor() {}
+  gameTitle:string = "Game Name";
+  ngOnInit(): void {}
 
 }

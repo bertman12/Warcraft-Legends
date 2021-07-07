@@ -8,9 +8,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { MediaFeatureComponent } from './media-feature/media-feature.component';
 import { GameReviewComponent } from './game-review/game-review.component';
+import { PlayVideoDirective } from './custom-directives/play-video.directive';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxAudioPlayerModule } from 'ngx-audio-player';
+// import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { RegisterComponent } from './register/register.component';
+
 
 @NgModule({
   declarations: [
@@ -20,13 +22,14 @@ import { RegisterComponent } from './register/register.component';
     HomeComponent,
     MediaFeatureComponent,
     GameReviewComponent,
+    PlayVideoDirective,
     RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    NgxAudioPlayerModule
+    // NgxAudioPlayerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

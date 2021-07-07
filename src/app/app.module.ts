@@ -10,6 +10,7 @@ import { MediaFeatureComponent } from './media-feature/media-feature.component';
 import { GameReviewComponent } from './game-review/game-review.component';
 import { PlayVideoDirective } from './custom-directives/play-video.directive';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+// import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { RegisterComponent } from './register/register.component';
 
 
@@ -27,7 +28,8 @@ import { RegisterComponent } from './register/register.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    // NgxAudioPlayerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

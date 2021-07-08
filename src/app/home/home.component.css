@@ -9,20 +9,23 @@
     margin-top: 10px;
     height: 100%;
     min-height: 600px;
-
-    background-image: url("../../assets/orc-hr.jpg"), url("../../assets/arthas-evil-hr-flipped.jpg");
-    /* background-position: center; */
+    position: relative;
+    
+    background-image: linear-gradient(to right ,rgba(0,0,0,0.1),rgb(0,0,0) 40%, rgb(0,0,0) 60%, rgba(0,0,0,0.1)), url("../../assets/orc-hr.jpg"),url("../../assets/arthas-evil-hr-flipped.jpg") ;
     background-repeat: no-repeat;
+    box-shadow: inset 0px 0px 20px 30px rgba(0,0,0,1);
     background-size:contain;
-    background-position: center left, center right;
+    background-position: center, center left, center right;
 }
 .header-background-wrapper{
     position:absolute;
-    display:flex;
-    width:50%;
+    width:100%;
 }
+
 .header-background{
     width:50%; 
+    box-shadow: inset 0px 0px 20px 30px rgba(0,0,0,1);
+
 }
 .header-column{
     display: flex;

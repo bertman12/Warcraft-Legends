@@ -1,17 +1,31 @@
-<!-- navbar Component -->
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col welcome-column">
-            <h1>Warcraft 3 Custom Games Reviews</h1>
-            <p>Welcome to a review site of community made custom games.</p>            
+<!-- insert navbar component -->
+<div class="container-fluid home-component">
+    <div class="row header-row">
+        <div class="col-8 header-column">     
+          <h1 class = "custom-font2 font-effect-fire">Warcraft 3 Reviews</h1>
+          <img class = "warcraft-border" src="../../assets/WARCRAFT 3 - Copy.png" alt="site logo" height = 250px width = 250px>
+          <h4>Welcome to a website all about showcasing and reviewing some of the popular warcraft 3 custom games made by the community. If you have any custom games you'd like to see reviewed on here, send me an email.</h4>
         </div>
-        <div class="col-6" *ngFor = "let game of gamesArr">
-            <!-- media feature component -->
+        <div class="col d-flex justify-content-center ">
+          <div class="card h-75 ">
+            <div class="card-body warcraft-border">
+              <h4 class="card-title custom-font2 ">FEATURED CONTENT</h4>
+            </div>
+          </div>
         </div>
     </div>
+    <div class="row featured-content-row">
+      <div class="col-8">
+        <app-media-feature></app-media-feature>
+      </div>
+      <div class="col-8">
+        <app-media-feature></app-media-feature>
+      </div>
+      <div class="col-8">
+        <app-media-feature></app-media-feature>
+      </div>
+      <div class="col-8">
+        <app-media-feature></app-media-feature>
+      </div>
+    </div>
 </div>
-
-
-
-

@@ -1,4 +1,3 @@
-<!-- insert navbar component -->
 <div class="container-fluid home-component">
     <div class="row header-row">
         <div class="col-5 header-column">     
@@ -14,21 +13,20 @@
           </div>
         </div>
     </div>
+
+    <!-- FEATURED CONTENT add class based on iteration of games array to allow staggering of video -->
     <div class="row featured-content-row">
-      <div class="col-5">
-        <div class = "d-flex justify-content-around">
-          <app-media-feature></app-media-feature>
-          <p>TESTING</p>
+      <div *ngFor="let game of localGameArr; let index = index" 
+      class="col-12 review-feature-container-left"
+      [ngClass]="{'review-feature-container-left': index%2 === 0 }"
+      [ngClass]="{'review-feature-container-right': index%2 === 1 }"
+      >
+        <div class="video-wrapper">
+          <app-media-feature [game]="game"></app-media-feature>
+        </div>
+        <div class="game-description">
+          <strong>{{ game.title }}</strong>
+          <p>{{ game.description }}</p>
         </div>
       </div>
-      <div class="col-5">
-        <app-media-feature></app-media-feature>
-      </div>
-      <div class="col-5">
-        <app-media-feature></app-media-feature>
-      </div>
-      <div class="col-5">
-        <app-media-feature></app-media-feature>
-      </div>
-    </div>
 </div>

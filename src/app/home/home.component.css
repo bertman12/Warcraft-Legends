@@ -25,5 +25,24 @@
 .featured-content-row{
     display: flex;
     justify-content: center;
+    margin-top: 30px;
 }
 
+.video-wrapper{
+    width: 40%;
+    /* max-height: 300px; */
+}
+.review-feature-container-left{
+    display:flex;
+    justify-content: space-between;
+}
+.review-feature-container-right{
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+.game-description{
+    width: 50%;
+    margin-left: 30px;
+}

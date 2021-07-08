@@ -1,3 +1,6 @@
+/* .home-component{
+   
+} */
 .header-row{
     display: flex;
     flex-direction: column;
@@ -22,27 +25,51 @@
 .custom-font2{
     font-family: 'Suez One', serif;
 }
+.feature-text-box{
+    background: #E50E0E;
+}
 .featured-content-row{
     display: flex;
     justify-content: center;
     margin-top: 30px;
+    margin-left: 1px;
+    margin-right: 1px;
+}
+.feature-wrapper{
+    overflow: hidden;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .video-wrapper{
     width: 40%;
+    min-width: 40%;
     /* max-height: 300px; */
 }
 .review-feature-container-left{
     display:flex;
-    justify-content: space-between;
 }
 .review-feature-container-right{
     display:flex;
     flex-direction: row-reverse;
-    justify-content: center;
+    justify-content: space-between;
 }
-
+.featured-background-image{
+    background-position: center;
+    background-size: 100% 93%;
+    width:100%;
+    background-image: url("../../assets/Warcraft-III-generic-image-3-1-ratio.png");
+    background-repeat: no-repeat;
+    box-shadow: inset 0px 0px 20px 30px rgba(0,0,0,1);
+    transform: scale(1.02);
+}
 .game-description{
+    position:relative;
+    top:15px;
     width: 50%;
     margin-left: 30px;
+    padding: 15px;
+    color:goldenrod;
+    background-color: rgba(0, 0, 0, 0.75);
+    border: 3px rgb(95, 95, 95) ridge;
 }

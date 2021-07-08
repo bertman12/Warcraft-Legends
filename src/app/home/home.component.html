@@ -7,7 +7,7 @@
         </div>
         <div class="col d-flex justify-content-center ">
           <div class="card h-75 ">
-            <div class="card-body warcraft-border">
+            <div class="card-body warcraft-border feature-text-box">
               <h4 class="card-title custom-font2 ">FEATURED CONTENT</h4>
             </div>
           </div>
@@ -19,15 +19,18 @@
     <div class="row featured-content-row">
       <div 
       *ngFor="let game of localGameArr; let index = index" 
-      class="col-12"
-      [ngClass]="staggerMedia(index)" 
-      >
+      class="col-12 feature-wrapper warcraft-border"
+      [ngClass]="staggerMedia(index)">
         <div class="video-wrapper">
           <app-media-feature [game]="game"></app-media-feature>
         </div>
-        <div class="game-description">
-          <strong>{{ game.title }}</strong>
-          <p>{{ game.description }}</p>
+        <div class="featured-background-image">
+          <div class="game-description">
+            <strong>{{ game.title }}</strong>
+            <p style ="color:white">{{ game.description }}</p>
+          </div>
         </div>
       </div>
+  </div>
 </div>
+

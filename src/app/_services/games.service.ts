@@ -13,19 +13,19 @@ export class GamesService {
     publishDate: {month: "January", day: 1, year: 2005},
     videoSrc: "../../assets/Action 7-3-2021 3-09-01 PM.mp4",
     imgSrc: "../../assets/WARCRAFT 3 - Copy.png" },
-    {title: "Uther Party", 
+    {title: "Legion Tower Defense", 
     author: "guy",
     description: "classic warcraft 3 game",
     publishDate: {month: "January", day: 1, year: 2005},
     videoSrc: "../../assets/Action 7-3-2021 3-09-01 PM.mp4",
     imgSrc: "../../assets/WARCRAFT 3 - Copy.png" },
-    {title: "Uther Party", 
+    {title: "Castle Fight", 
     author: "guy",
     description: "classic warcraft 3 game",
     publishDate: {month: "January", day: 1, year: 2005},
     videoSrc: "../../assets/Action 7-3-2021 3-09-01 PM.mp4",
     imgSrc: "../../assets/WARCRAFT 3 - Copy.png" },
-    {title: "Uther Party", 
+    {title: "Dota All-stars", 
     author: "guy",
     description: "classic warcraft 3 game",
     publishDate: {month: "January", day: 1, year: 2005},
@@ -33,7 +33,13 @@ export class GamesService {
     imgSrc: "../../assets/WARCRAFT 3 - Copy.png" },
   ];  
 
+
   constructor() { }
+
+  getGames():Game[]{
+    return this.gameList.slice();
+  }
+
 
 
 }

@@ -14,12 +14,13 @@
         </div>
     </div>
 
-    <!-- FEATURED CONTENT add class based on iteration of games array to allow staggering of video -->
+    <!-- FEATURED CONTENT We use [ngClass] to call staggerMedia() which appends a class
+    to right align the video if index is even and left align when even  -->
     <div class="row featured-content-row">
-      <div *ngFor="let game of localGameArr; let index = index" 
-      class="col-12 review-feature-container-left"
-      [ngClass]="{'review-feature-container-left': index%2 === 0 }"
-      [ngClass]="{'review-feature-container-right': index%2 === 1 }"
+      <div 
+      *ngFor="let game of localGameArr; let index = index" 
+      class="col-12"
+      [ngClass]="staggerMedia(index)" 
       >
         <div class="video-wrapper">
           <app-media-feature [game]="game"></app-media-feature>

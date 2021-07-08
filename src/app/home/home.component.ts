@@ -10,7 +10,17 @@ import { GamesService } from '../_services/games.service';
 export class HomeComponent implements OnInit {
   constructor(private gameService: GamesService) { }
   localGameArr: Game[] = this.gameService.gameList;
+
   ngOnInit(): void {
   }
 
+  staggerMedia(index: number):string {
+    console.log(`Index is ${index}`);
+    if(index % 2 ===0){
+      return "review-feature-container-right"
+    }
+    else{
+      return "review-feature-container-left"
+    }
+  }
 }

@@ -1,5 +1,5 @@
 /* .home-component{
-   
+  
 } */
 .header-row{
     display: flex;
@@ -9,6 +9,20 @@
     margin-top: 10px;
     height: 100%;
     min-height: 600px;
+
+    background-image: url("../../assets/orc-hr.jpg"), url("../../assets/arthas-evil-hr-flipped.jpg");
+    /* background-position: center; */
+    background-repeat: no-repeat;
+    background-size:contain;
+    background-position: center left, center right;
+}
+.header-background-wrapper{
+    position:absolute;
+    display:flex;
+    width:50%;
+}
+.header-background{
+    width:50%; 
 }
 .header-column{
     display: flex;
@@ -26,17 +40,13 @@
 .custom-font1{
     font-family: "Sofia", sans-serif;
 }
-
 .custom-font2{
     font-family: 'Suez One', serif;
 }
-/* .feature-text-box{
-    
-} */
 .featured-content-row{
     display: flex;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 10px;
     margin-left: 1px;
     margin-right: 1px;
 }
@@ -45,16 +55,15 @@
     margin-top: 25px;
     margin-bottom: 25px;
 }
-
+/*Scales the video size*/
 .video-wrapper{
     width: 40%;
     min-width: 40%;
-    /* max-height: 300px; */
 }
-.review-feature-container-left{
+.feature-container-left{
     display:flex;
 }
-.review-feature-container-right{
+.feature-container-right{
     display:flex;
     flex-direction: row-reverse;
     justify-content: space-between;
@@ -68,7 +77,7 @@
     box-shadow: inset 0px 0px 20px 30px rgba(0,0,0,1);
     transform: scale(1.02);
 }
-.game-description{
+.featured-game-description{
     position:relative;
     top:15px;
     width: 50%;

@@ -17,10 +17,10 @@ export class HomeComponent implements OnInit {
   staggerMedia(index: number):string {
     console.log(`Index is ${index}`);
     if(index % 2 ===0){
-      return "review-feature-container-right"
+      return "feature-container-right"
     }
     else{
-      return "review-feature-container-left"
+      return "feature-container-left"
     }
   }
 }

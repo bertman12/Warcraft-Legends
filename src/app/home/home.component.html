@@ -1,19 +1,25 @@
 <div class="container-fluid home-component">
     <div class="row header-row">
+      <!-- <div class ="header-background-wrapper">
+        <img src="../../assets/orc-hr.jpg" alt="orc" class="header-background">
+        <img src="../../assets/arthas-evil-hr.jpg" alt="arthas" class="header-background">
+      </div> -->
         <div class="col-8 header-column">     
           <h1 class = "custom-font2 font-effect-fire">Warcraft 3 Reviews</h1>
           <img class = "header-logo" src="../../assets/WARCRAFT 3 - Copy.png" alt="site logo" height = 250px width = 250px>
-          <h4>Welcome to a website all about showcasing and reviewing some of the popular warcraft 3 custom games made by the community. If you have any custom games you'd like to see reviewed on here, send me an email.</h4>
+          <h4 class = "custom-font2">Welcome to a website all about showcasing and reviewing some of the popular warcraft 3 custom games made by the community. If you have any custom games you'd like to see reviewed on here, send me an email.</h4>
         </div>
-        <div class="col d-flex justify-content-center ">
-          <div class="card h-75 ">
-            <div class="card-body warcraft-border feature-text-box">
-              <h4 class="card-title custom-font2 ">FEATURED CONTENT</h4>
-            </div>
-          </div>
-        </div>
+       
     </div>
 
+    <div class="col d-flex justify-content-center ">
+      <div class="card h-75 ">
+        <div class="card-body warcraft-border feature-text-box">
+          <h4 class="card-title custom-font2 ">FEATURED CONTENT</h4>
+        </div>
+      </div>
+    </div>
+    
     <!-- FEATURED CONTENT We use [ngClass] to call staggerMedia() which appends a class
     to right align the video if index is even and left align when even  -->
     <div class="row featured-content-row">
@@ -25,7 +31,7 @@
           <app-media-feature [game]="game"></app-media-feature>
         </div>
         <div class="featured-background-image">
-          <div class="game-description">
+          <div class="featured-game-description">
             <strong>{{ game.title }}</strong>
             <p style ="color:white">{{ game.description }}</p>
           </div>

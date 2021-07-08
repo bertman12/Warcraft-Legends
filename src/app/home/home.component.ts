@@ -9,7 +9,7 @@ import { GamesService } from '../_services/games.service';
 })
 export class HomeComponent implements OnInit {
   constructor(private gameService: GamesService) { }
-  localGameArr: Game[] = this.gameService.gameList;
+  localGameArr: Game[] = this.gameService.getGames();
 
   ngOnInit(): void {
   }

@@ -1,5 +1,4 @@
 /* .home-component{
-  
 } */
 .header-row{
     display: flex;
@@ -21,18 +20,15 @@
     position:absolute;
     width:100%;
 }
-
 .header-background{
     width:50%; 
     box-shadow: inset 0px 0px 20px 30px rgba(0,0,0,1);
-
 }
 .header-column{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-
     padding: 10px;
 }
 .header-logo{

@@ -40,6 +40,15 @@ export class GamesService {
     return this.gameList.slice();
   }
 
+  addGame(game:Game){
 
+  }
 
+  removeGame(game:Game){
+
+  }
+  
+  editGame(game:Game){
+
+  }
 }

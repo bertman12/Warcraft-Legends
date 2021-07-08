@@ -12,6 +12,7 @@ import { PlayVideoDirective } from './custom-directives/play-video.directive';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './register/register.component';
 import { GamesService } from './_services/games.service';
+import { GameReviewsListComponent } from './game-reviews-list/game-reviews-list.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { GamesService } from './_services/games.service';
     MediaFeatureComponent,
     GameReviewComponent,
     PlayVideoDirective,
-    RegisterComponent
+    RegisterComponent,
+    GameReviewsListComponent
   ],
   imports: [
     BrowserModule,

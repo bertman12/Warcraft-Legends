@@ -3,7 +3,11 @@ html, body {
     height: 100%;
     background: rgb(0, 0, 0)!important;
 }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+    margin: 0; 
+    /* font-family: Roboto, "Helvetica Neue", sans-serif; */
+    font-family: 'Suez One', serif!important; 
+}
 
 /* Adds the modified warcraft 3 border to the element */
 .warcraft-border{

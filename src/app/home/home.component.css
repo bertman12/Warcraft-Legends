@@ -18,6 +18,11 @@
 
     padding: 10px;
 }
+.header-logo{
+    border: 5px solid #8F1414;
+    border-radius: 100%;
+    margin: 20px;
+}
 .custom-font1{
     font-family: "Sofia", sans-serif;
 }
@@ -25,9 +30,9 @@
 .custom-font2{
     font-family: 'Suez One', serif;
 }
-.feature-text-box{
-    background: #E50E0E;
-}
+/* .feature-text-box{
+    
+} */
 .featured-content-row{
     display: flex;
     justify-content: center;
@@ -72,4 +77,5 @@
     color:goldenrod;
     background-color: rgba(0, 0, 0, 0.75);
     border: 3px rgb(95, 95, 95) ridge;
+    border-radius: 10px;
 }

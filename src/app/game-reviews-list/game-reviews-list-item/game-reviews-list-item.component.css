@@ -1,0 +1,9 @@
+.item-wrapper{
+    /* width: 20%; */
+    display:flex;
+    flex-direction: column;
+}
+.rating{
+    display: flex;
+    justify-content: end;
+}

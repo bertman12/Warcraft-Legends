@@ -1,0 +1,18 @@
+.header{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    background-image: url("../../assets/Warcraft-III-generic-image-3-1-ratio.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.review-items-group{
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-evenly;
+}
+
+.review-item{
+    margin: 10px;
+}

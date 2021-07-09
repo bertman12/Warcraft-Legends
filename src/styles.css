@@ -18,3 +18,6 @@ body {
     border-image-width: 1;
     border-image-outset: 0; 
 }
+.suez-font{
+    font-family: 'Suez One', serif;
+}

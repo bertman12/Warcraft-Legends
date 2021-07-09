@@ -13,6 +13,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './register/register.component';
 import { GamesService } from './_services/games.service';
 import { GameReviewsListComponent } from './game-reviews-list/game-reviews-list.component';
+import { GameReviewsListItemComponent } from './game-reviews-list/game-reviews-list-item/game-reviews-list-item.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { GameReviewsListComponent } from './game-reviews-list/game-reviews-list.
     GameReviewComponent,
     PlayVideoDirective,
     RegisterComponent,
-    GameReviewsListComponent
+    GameReviewsListComponent,
+    GameReviewsListItemComponent
   ],
   imports: [
     BrowserModule,

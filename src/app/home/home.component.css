@@ -10,7 +10,7 @@
     min-height: 600px;
     position: relative;
     
-    background-image: linear-gradient(to right ,rgba(0,0,0,0.1),rgb(0,0,0) 40%, rgb(0,0,0) 60%, rgba(0,0,0,0.1)), url("../../assets/orc-hr.jpg"),url("../../assets/arthas-evil-hr-flipped.jpg") ;
+    background-image: linear-gradient(to right ,rgba(0,0,0,0.1),rgb(0,0,0) 40%, rgb(0,0,0) 70%, rgba(0,0,0,0.1)), url("../../assets/orc-hr.jpg"),url("../../assets/arthas-evil-hr-flipped.jpg") ;
     background-repeat: no-repeat;
     box-shadow: inset 0px 0px 20px 30px rgba(0,0,0,1);
     background-size:contain;

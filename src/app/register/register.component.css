@@ -2,3 +2,8 @@
   .linktoLogin:hover {
     background-color: #adafae;
   }
+
+  button{
+    color: white;
+    background-color:#8f1414;
+  }

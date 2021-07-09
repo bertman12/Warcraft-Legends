@@ -16,6 +16,7 @@ import { AuthService } from './_services/auth.service';
 //HttpClientModule in the appmodule then inject in component where it will be used 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     [HttpClientModule],
     NoopAnimationsModule,
-    FormsModule
+    FormsModule,
+    MatIconModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

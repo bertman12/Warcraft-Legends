@@ -17,6 +17,7 @@ import { GameReviewsListItemComponent } from './game-reviews-list/game-reviews-l
 import { ExpandOptionsDirective } from './custom-directives/expand-options.directive';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,7 @@ import { ExpandOptionsDirective } from './custom-directives/expand-options.direc
     RegisterComponent,
     GameReviewsListComponent,
     GameReviewsListItemComponent,
-    ExpandOptionsDirective
+    ExpandOptionsDirective,
   ],
   imports: [
     BrowserModule,

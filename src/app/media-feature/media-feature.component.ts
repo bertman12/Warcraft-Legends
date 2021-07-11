@@ -17,11 +17,11 @@ export class MediaFeatureComponent implements OnInit {
   publishDate: {month: "January", day: 1, year: 2005},
   videoSrc: "",
   imgSrc: "" }
+  @Input() showTitle: boolean = true;
 
   
   gameTitle:string = "Game Name";
   showImage: boolean = false;
-
   ngOnInit(): void {}
 
 }

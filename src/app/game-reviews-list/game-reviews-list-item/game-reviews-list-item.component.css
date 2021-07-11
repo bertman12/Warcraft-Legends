@@ -4,6 +4,7 @@
     flex-direction: column;
     justify-content: flex-end;
     margin-bottom: 15px;
+    padding-right: 5px;
 }
 .interface{
     display: flex;

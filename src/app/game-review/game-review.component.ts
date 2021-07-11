@@ -10,6 +10,7 @@ export class GameReviewComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

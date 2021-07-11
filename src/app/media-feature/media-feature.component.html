@@ -1,5 +1,5 @@
 <div class="feature-container ">
-    <p class="game-title-overlay font-effect-fire">{{ game.title }}</p>
+    <p *ngIf="showTitle" class="game-title-overlay font-effect-fire">{{ game.title }}</p>
     <div class="bottom-fade" ></div>      
     <video *ngIf="!showImage" class = "gameplay-video" height="100%" appPlayVideo loop #localVideo>
         <source src="../../assets/Action 7-3-2021 3-09-01 PM.mp4" type="video/mp4">

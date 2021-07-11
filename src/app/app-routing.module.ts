@@ -10,9 +10,9 @@ import { GameReviewsListComponent } from './game-reviews-list/game-reviews-list.
 const routes: Routes = [
   {path: "login", component: LoginComponent },
   {path:"", component: HomeComponent}, //home-landing-page
-  {path:"game-reviews-list", component: GameReviewsListComponent}, //review
+  {path:"game-reviews-list", component: GameReviewsListComponent}, //review list
   {path:"game-reviews-list/:id", component: GameReviewComponent}, //review
-  //{path:"game-review-list", component: GameReviewListComponent}, //review
+  {path:"game-review", component: GameReviewComponent}, //
   {path:"media", component: MediaFeatureComponent}, //media-feature-component
   {path:"register", component: RegisterComponent}
 ];

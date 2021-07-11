@@ -27,7 +27,9 @@
         </ul>
         <!--------------------------------- Right Side Of Navbar -------------------------------->
         <!-- <ul *ngIf="currentUser; else showLoginRegister" class="navbar-nav ml-auto"> -->
-          <button mat-icon-button type="button" class="btn navbar-btn navbar-right signInButton align-content-center">
+          <button mat-icon-button type="button" 
+          class="btn navbar-btn navbar-right signInButton align-content-center"
+          (click)="onSignIn()">
             <mat-icon class="iconUser">account_circle</mat-icon> <span>Sign In</span>
           </button>
         <!-- Authentication Links -->

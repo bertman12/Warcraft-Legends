@@ -14,6 +14,7 @@ import { RegisterComponent } from './register/register.component';
 import { GamesService } from './_services/games.service';
 import { GameReviewsListComponent } from './game-reviews-list/game-reviews-list.component';
 import { GameReviewsListItemComponent } from './game-reviews-list/game-reviews-list-item/game-reviews-list-item.component';
+import { ExpandOptionsDirective } from './custom-directives/expand-options.directive';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { GameReviewsListItemComponent } from './game-reviews-list/game-reviews-l
     PlayVideoDirective,
     RegisterComponent,
     GameReviewsListComponent,
-    GameReviewsListItemComponent
+    GameReviewsListItemComponent,
+    ExpandOptionsDirective
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,29 @@
 .item-wrapper{
-    /* width: 20%; */
+    position: relative;
     display:flex;
     flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+}
+.interface{
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
 }
 .rating{
     display: flex;
-    justify-content: end;
+    align-items: flex-end;
+    margin: 5px;
+    color: goldenrod;
+}
+.admin-options{
+    margin: 5px;
+    margin-left:0px;
+    margin-right:5px;
+    opacity: 0;
+    transition: 0.5s opacity ease-in-out;
+}
+.item-wrapper:hover .admin-options{
+    opacity: 1;
 }

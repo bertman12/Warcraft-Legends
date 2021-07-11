@@ -1,9 +1,14 @@
 <div class="feature-container ">
     <p class="game-title-overlay font-effect-fire">{{ game.title }}</p>
     <div class="bottom-fade" ></div>      
-    <video class = "gameplay-video" height="100%" appPlayVideo loop #localVideo>
+    <video *ngIf="!showImage" class = "gameplay-video" height="100%" appPlayVideo loop #localVideo>
         <source src="../../assets/Action 7-3-2021 3-09-01 PM.mp4" type="video/mp4">
     </video>
+    <!-- <div *ngIf="showImage" class = "previewImage"> -->
+    <!-- <div class = "previewImage" [ngStyle]="{'background-image': url(game.imgSrc)}"> -->
+
+    <!-- </div> -->
+    <!-- <img *ngIf="showImage" id="previewImage" [src]=game.imgSrc alt="image"> -->
 </div>
 <!-- add a preiview image source for game data for use in the game list -->
 

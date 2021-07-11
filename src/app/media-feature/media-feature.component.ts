@@ -15,11 +15,12 @@ export class MediaFeatureComponent implements OnInit {
   author: "guy",
   description: "classic warcraft 3 game",
   publishDate: {month: "January", day: 1, year: 2005},
-  videoSrc: "../../assets/Action 7-3-2021 3-09-01 PM.mp4",
-  imgSrc: "../../assets/WARCRAFT 3 - Copy.png" }
+  videoSrc: "",
+  imgSrc: "" }
 
   
   gameTitle:string = "Game Name";
+  showImage: boolean = false;
 
   ngOnInit(): void {}
 

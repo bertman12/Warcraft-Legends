@@ -34,5 +34,10 @@
 }
 .feature-container:hover{
         transform: scale(1.05);
+        /* background-image: url(../../assets/Warcraft-III-generic-image-half-size.png); */
 }
-
+/* .previewImage{
+        width: 100%;
+        height: 100%;
+        background-image: url(../../assets/Warcraft-III-generic-image-half-size.png);
+} */

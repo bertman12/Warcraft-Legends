@@ -6,15 +6,33 @@
     padding:0px;
     background-image: url("../../assets/Warcraft-III-generic-image-3-1-ratio.png");
     background-repeat: no-repeat;
-    background-position: center;
-}
 
-.review-items-group{
+    border: 19px solid transparent;
+    border-image-source: url(../../assets/modified-metal-border.png);
+    border-image-slice: 38;
+    border-image-repeat: repeat;
+    border-image-width: 1;
+    border-image-outset: 0; 
+    border-right: 0;
+    border-left: 0;
+}
+.header-text{
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.75);
+    border: 3px rgb(95, 95, 95) ridge;
+    border-radius: 10px;
+    width:35%;
+    margin-top: 10px;
+}
+.review-items-container{
     display: flex;
     flex-flow: wrap;
-    justify-content: space-evenly;
 }
-
 .review-item{
-    margin: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.hoverMenu{
+    display: inline;
 }

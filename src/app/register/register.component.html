@@ -1,45 +1,52 @@
 <div class="container">
     <div class="row justify-content-center mt-5">
         <div class="col-md-8 col-sm-6 warcraft-border" style="padding: 0;">
-            <div class="card text-white text-center" style="width: 100%; background-color: #f3440f;">
-                <div class="card-header justify-content-center align-content-center">
-                    <h5>Registration</h5>
+            <div class="card text-white text-center" style="width: 100%; background-color: #333;">
+                <div class="card-header justify-content-center align-content-center" style="background-color: #1f1f1f;">
+                    <img src="../../assets/regfont.png" style="width: 150px;">
                 </div>
-                <div class="card-body" style="margin: 20px">
+                <div class="card-body" style="margin: 20px;">
                     <form>
                         <fieldset>
                           <div class="form-group">
-                            <label class="form-label mt-1">Email address</label>
+                            <label class="form-label mt-1">Email address:</label>
                             <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" #email>
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            <small id="emailHelp" class="form-text text-muted "><span style="color: #8c8c8c;">We'll never share your email with anyone else.</span></small>
                           </div>
                           <div class="form-group">
-                            <label class="form-label mt-3">Name</label>
+                            <label class="form-label mt-3">Name:</label>
                             <input type="text" class="form-control" placeholder="First and/or Last Name" #name>
                           </div>
                           <div class="form-group">
-                            <label class="form-label mt-3">Password</label>
+                            <label class="form-label mt-3">Password:</label>
                             <input type="password" class="form-control" placeholder="Password" #password>
                           </div>
                           <div class="form-group">
-                            <label  class="form-label mt-4">Username</label>
+                            <label  class="form-label mt-4">Username:</label>
                             <input type="text" class="form-control" placeholder="Username" #username>
                           </div>
                           <div class="form-group">
-                            <label  class="form-label mt-4">Age</label>
+                            <label  class="form-label mt-4">Age:</label>
                             <input type="number" class="form-control" placeholder="Age" #age>
                           </div>
                           <div class="form-group">
-                            <label  class="form-label mt-4">Location</label>
+                            <label  class="form-label mt-4">Location:</label>
                             <input type="number" class="form-control" id="exampleInputPassword1" maxlength="4" size="4" placeholder="Zip Code" #location>
-                            <small id="emailHelp" class="form-text text-muted">Zip Code (Example: 95351)</small>
+                            <small id="emailHelp" class="form-text text-muted"><span style="color: #8c8c8c">Zip Code (Example: 95351)</span></small>
                           </div>
                         </fieldset>
-                        <div class="text-start">
-                            <p><a class="linktoLogin"  (click)="onBack()"> <span style="color: white;">Back to Login</span></a></p>
+                        <div class="form-check mt-4 text-start">
+                          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                          <label class="form-check-label" for="flexCheckDefault">
+                            I agree to the terms and privacy policy. 
+                          </label>
                         </div>
-                        <div class="mt-3">
-                            <button type="button" class="btn" (click)="onRegister(username,password,name,email,age,location)"> Register </button>
+                        <div class="text-start mt-4">
+                            <a class="linktoLogin"  (click)="onBack()">Back to Login</a>
+                        </div>
+                        <div class="mt-4">
+                            <!-- <button type="button" class="btn" (click)="onRegister(username,password,name,email,age,location)"> Register </button> -->
+                            <input type="image" src="../../assets/registerButton.png" class="imageButton" id="saveForm" />
                         </div>
                     </form>
                 </div>

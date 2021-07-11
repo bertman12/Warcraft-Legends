@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
 
   displayError: boolean = false; 
 
-
   constructor(private router: Router, private auth: AuthService) { }
 
   ngOnInit(): void { }

@@ -17,6 +17,7 @@ import { AuthService } from './_services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {MatIconModule} from '@angular/material/icon';
     [HttpClientModule],
     NoopAnimationsModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

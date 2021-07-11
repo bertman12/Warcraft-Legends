@@ -3,20 +3,48 @@ button {
     width: 35%; 
 }
 
+label{
+    color: #d9d3c3;
+}
 
-    .logo{
-        width: 150px;
-        height: 150px; 
-        border: 5px solid #8F1414;
-        border-radius: 100%;
-    }
+.loginText{
+    color: #ffd823;
+}
+
+
+.logo{
+    width: 150px;
+    height: 150px; 
+    border: 5px solid #8F1414;
+    border-radius: 100%;
+}
+
+.websiteName{
+    width: 300px ;
+    margin-top: 5px ;
+}
 
 .loginBtn{
-    color: white;
+    color: #ffd823;
     background-color:#8f1414;
 }
 
 .signUpBtn{
-    color: white;
+    color: #ffd823;
     background-color:#E50E0E;
 }
+
+.imageButton{
+ width: 200px;
+}
+
+.linktoForgot:hover {
+    background-color: transparent; 
+    color: white; 
+    cursor: pointer;
+}
+
+.linktoForgot{
+    color: #ffd823;
+}
+

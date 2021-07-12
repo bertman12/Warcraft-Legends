@@ -29,8 +29,14 @@ export class MediaFeatureComponent implements OnInit {
   @Input() showTitle: boolean = true;
   @Input() showImage: boolean = false;
   //============================================================
-
+  @Input() featureImg: string = '';
   gameTitle:string = "Game Name";
   
+  getImgSrc(){
+    if(!this.featureImg){
+      return this.game.imgSrc;
+    }
+    else return this.featureImg;
+  }
   ngOnInit(): void {}
 }

@@ -107,14 +107,16 @@ export class GamesService {
     {
     id: 6,  
     title: "Island Defense", 
-    author: "guy",
-    description: "classic warcraft 3 game",
+    author: "IAmDragon & Remixer",
+    description: "Island Defense is a survival tower defense game where you can choose to be a naga, demon or other races.\
+    Each race offers there own unique qualities which you must use to try and survive until the 45 minute timer ends. All the\
+    while a rampaging island titan is trying to kill your and your allies.",
     featureDescriptions: ['FeatureDesc1','FeatureDesc2','FeatureDesc3'],
     featureImages: ['../../assets/Warcraft-III-generic-image-half-size.png','../../arthas-evil-hr-flipped.jpg','../../orc-hr.jpg'],
-    genre: 'MOBA',
-    version: '6.88',
+    genre: 'Timed Survival/Tower Defense',
+    version: '4.12e',
     rating: '5',
-    publishDate: {month: "January", day: 1, year: 2005},
+    publishDate: {month: "September", day: 7, year: 2020},
     videoSrc: "../../assets/Action 7-3-2021 3-09-01 PM.mp4",
     imgSrc: "../../assets/Warcraft-III-generic-image-half-size.png" },
     {

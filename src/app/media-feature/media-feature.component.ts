@@ -24,11 +24,13 @@ export class MediaFeatureComponent implements OnInit {
   publishDate: {month: "January", day: 1, year: 2005},
   videoSrc: "",
   imgSrc: "" }
-  @Input() showTitle: boolean = true;
-
   
-  gameTitle:string = "Game Name";
-  showImage: boolean = false;
-  ngOnInit(): void {}
+  // configure these properties to control what is displayed in the media-feature component
+  @Input() showTitle: boolean = true;
+  @Input() showImage: boolean = false;
+  //============================================================
 
+  gameTitle:string = "Game Name";
+  
+  ngOnInit(): void {}
 }

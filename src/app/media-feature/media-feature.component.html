@@ -1,8 +1,11 @@
 <div class="feature-container ">
-    <p *ngIf="showTitle" class="game-title-overlay font-effect-fire">{{ game.title }}</p>
-    <div class="bottom-fade" ></div>      
+    <div class="game-title-overlay d-flex justify-content-center">
+        <p *ngIf="showTitle" class="font-effect-fire">{{ game.title }}</p>
+    </div>
+    <div class="shadow-effect" ></div>      
     <video *ngIf="!showImage" class = "gameplay-video" height="100%" appPlayVideo loop #localVideo>
         <source src="../../assets/Action 7-3-2021 3-09-01 PM.mp4" type="video/mp4">
     </video>
+    <img *ngIf="showImage" class="previewImg" src="../../assets/Warcraft-III-generic-image-half-size.png" alt="img" height="100%">
 </div>
 

@@ -13,5 +13,11 @@ export class GameReviewsListItemComponent implements OnInit {
   localGamesArr:Game[] = this.gameService.getGames();
   ngOnInit(): void {
   }
+  onEdit(){
+    alert("Route to edit component");
+  }
+  onDelete(){
+    alert("Are you sure you want to delete review?\nEnter Admin password: [ - ]");
+  }
 
 }

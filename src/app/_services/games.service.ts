@@ -27,7 +27,7 @@ export class GamesService {
     id: 1,
     title: "Castle Fight", 
     author: "Sunus",
-    description: "You and your team must the correct composition of units to counter the enemy team's army.\
+    description: "You and your team must pick the correct composition of units to counter the enemy team's army.\
     You also have access to multiple races, each offering their own unique pros and cons. The goal is to \
     overwhelm the enemy team with your army before they do you.",
     featureDescriptions: [''],

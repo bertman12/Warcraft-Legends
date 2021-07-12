@@ -1,0 +1,42 @@
+.navbarContainer{
+    background-image: url('../../assets/top-background.png');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: repeat;
+    background-size: 300px ;
+}
+
+.logo{
+    width: 75px;
+    height: 75px; 
+    border: 5px solid #8F1414;
+    border-radius: 100%;
+}
+
+li, a{
+    color: #d9d3c3;
+}
+
+span{
+    color: #d9d3c3;
+}
+
+.websiteName{
+    padding: 5px; 
+    margin: 5px;
+    color: #d9d3c3;
+}
+
+.signInButton{
+    color: white;
+    background-color:#8f1414;
+}
+
+.iconUser{
+    vertical-align: middle;
+    margin-right: 5px; 
+}
+
+.userSignedIn{
+    color: #d9d3c3;
+}

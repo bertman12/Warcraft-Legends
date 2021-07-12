@@ -16,10 +16,17 @@
 .game-description{
     width: 60ch;
 }
-.gameplay-features{
+/* .gameplay-features{
 
+} */
+
+/* THESE SHOULD BE IN THE FEATURE ITEM COMPONENT */
+.feature-item{
+    display: flex;
+    margin-bottom: 10px;
 }
 .feature-img{
     border: 3px rgb(95, 95, 95) ridge;
     border-radius: 10px;
+    margin-right: 10px;
 }

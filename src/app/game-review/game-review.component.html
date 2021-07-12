@@ -1,29 +1,33 @@
 <div class="container-fluid">
     <div class="row header-row">
         <div class="col d-flex justify-content-center">
-            <h1 class="suez-font">DOTA ALL-STARS</h1>
+            <h1 class="suez-font">{{ game?.title ?? ''}}</h1>
         </div>
         <div class="col d-flex justify-content-center">
             <div class="video-wrapper warcraft-border">
-                <app-media-feature [showTitle] = "false"></app-media-feature>
+                <app-media-feature [game] = "game" [showTitle] = "false"></app-media-feature>
             </div>
         </div>
     </div>
     <div class="row d-flex justify-content-center">
         <div class="col-12 game-description-wrapper">
-            <p class="game-description">A classic custom game mode that has been around even before warcraft 3 originating from a Starcraft custom game called Aeon of Strife<br>
-                Dota All-Stars started as a custom game made and updated by several creators which eventually led to the popular MOBA genre<br>
-                giving birth to new MOBA games like League of Legends, Heroes of the Storm, and Dota 2. <br> <br>
-                 Author: Icefrog plus many others<br>
-                  Date created: 2003<br>
-                    Genre: MOBA<br>
-                     Version: 6.88 <br>
-                    Rating: 5/5</p>
+            <p class="game-description">{{ game?.description ?? '' }}<br>
+                  Date created: {{ game?.publishDate?.year ?? ''}}<br>
+                    Genre: {{ game?.genre ?? ''}}<br>
+                     Version: {{ game?.version ?? ''}} <br>
+                    Rating: {{ game?.rating ?? ''}}/5</p>
         </div>
         <hr>
         <div class="col-10 gameplay-features">
             <h3 class="suez-font d-flex justify-content-center">GAMEPLAY FEATURES</h3>
-            <img class="feature-img"src="../../assets/Warcraft-III-generic-image-half-size.png" alt="img" height="200px">
+            <!-- FEATURE ITEM DIV BELONGS IN ITS OWN COMPONENT -->
+            <div class="feature-item" *ngFor="let x of game.featureDescriptions;let index = index">
+                <!-- This src path needs to come from the media component otherwise the path will be different with respect to this components directory -->
+                <img class="feature-img"src="../../assets/Warcraft-III-generic-image-half-size.png" alt="img" height="200px">
+                <p>{{ game.featureDescriptions[index] }}</p>
+            </div>
+            <hr>
+            <button class="btn-primary btn"><h1 class ="suez-font"><strong>DOWNLOAD</strong></h1></button>
         </div>
     </div>
 </div>

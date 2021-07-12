@@ -23,7 +23,9 @@
     class="col-12 feature-wrapper warcraft-border"
     [ngClass]="staggerMedia(index)">
       <div class="video-wrapper">
-        <a routerLink="/game-review/game.title" routerLinkActive="active"><app-media-feature [game]="game"></app-media-feature></a>
+        <a [routerLink]="['/game-reviews-list', game.id]"
+         routerLinkActive="active"
+         ><app-media-feature [game]="game"></app-media-feature></a>
       </div>
       <div class="featured-background-image">
         <div class="featured-game-description">

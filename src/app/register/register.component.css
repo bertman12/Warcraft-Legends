@@ -1,4 +1,26 @@
   /* mouse over link */
   .linktoLogin:hover {
-    background-color: #adafae;
+    background-color:transparent ;
+    color: white;
+    cursor: pointer;
+  }
+
+  .linktoLogin{
+    color: #ffd823; 
+  }
+
+  h5{
+    color: #ffd823;;
+  }
+
+  .imageButton{
+    width: 200px;
+  }
+
+  label{
+    color:#d9d3c3 ;
+  }
+
+  small{
+    color: #8c8c8c;
   }

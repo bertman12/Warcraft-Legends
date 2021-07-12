@@ -1,9 +1,12 @@
 /* I might need to use a background with an alpha channel and then use that lay on top of the video player itself to create the gradient effect */
-.media-feature-container{
-        color: red;
+.feature-container{
         position: relative;
-        margin: 0px;
         padding: 0px;
+        margin: 10px;
+        transition: transform 0.3s;
+}
+.feature-container:hover{
+        transform: scale(1.05);
 }
 .gameplay-video{
         padding: 0px;
@@ -26,18 +29,3 @@
         left: .5px;
         transform: scale(1.01);
 }
-.feature-container{
-        position: relative;
-        padding: 0px;
-        margin: 10px;
-        transition: transform 0.3s;
-}
-.feature-container:hover{
-        transform: scale(1.05);
-        /* background-image: url(../../assets/Warcraft-III-generic-image-half-size.png); */
-}
-/* .previewImage{
-        width: 100%;
-        height: 100%;
-        background-image: url(../../assets/Warcraft-III-generic-image-half-size.png);
-} */

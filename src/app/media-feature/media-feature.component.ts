@@ -11,9 +11,16 @@ export class MediaFeatureComponent implements OnInit {
 
   constructor(private gameService: GamesService) {}
   @Input() game: Game = 
-  {title: "Uther Party", 
+  {
+  id: 0,  
+  title: "Uther Party", 
   author: "guy",
   description: "classic warcraft 3 game",
+  featureDescriptions: [''],
+  featureImages: [''],
+  genre: 'Mini Games',
+  version: '10.0',
+  rating: '5',
   publishDate: {month: "January", day: 1, year: 2005},
   videoSrc: "",
   imgSrc: "" }

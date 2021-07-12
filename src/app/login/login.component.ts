@@ -1,5 +1,6 @@
 import { Component, OnInit, NgModule } from '@angular/core'; 
 import { Router } from '@angular/router';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,21 +9,34 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  userUsername = '';
-  userPassword = '';
+  userEmail: string = '';
+  userPassword: string = '';
+  responce: string = '';
 
+  displayError: boolean = false; 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private auth: AuthService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   authErorr(){
     console.log('Missing password'); 
   }
 
-  onLogin(){
-    this.playAudio();
-    this.router.navigate(['']),{relativeTo: this.router};
+  async onLogin(){
+    this.clearAlert();  
+
+    await this.auth.login({email: this.userEmail, password: this.userPassword});
+    if ( !this.auth.authFlag ){
+        this.playAudio();
+        this.router.navigate(['']),{relativeTo: this.router};  
+      }
+    else if ( this.auth.authFlag ){
+      console.log("error email or password not found")
+      this.displayError = true; 
+    }
+
+    
   }
 
   onSignUp(){
@@ -36,6 +50,10 @@ export class LoginComponent implements OnInit {
     audio.load();
     audio.play();
   } 
+
+  clearAlert(){
+    this.displayError = false; 
+  }
 }
 
 

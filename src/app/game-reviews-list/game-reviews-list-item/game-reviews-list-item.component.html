@@ -2,7 +2,9 @@
     <div class="row">
         <div class = "col-4" *ngFor="let game of localGamesArr">
             <div class="item-wrapper warcraft-border">
-                <app-media-feature [game] = game></app-media-feature>
+                <a [routerLink]="['/game-reviews-list', game.id]"
+                 routerLinkActive="active"
+                 ><app-media-feature [game] = game></app-media-feature></a>
                 <div class="interface">
                     <div class = "rating">
                         <!-- STARS -->

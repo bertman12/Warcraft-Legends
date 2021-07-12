@@ -16,6 +16,13 @@ import { GameReviewsListComponent } from './game-reviews-list/game-reviews-list.
 import { GameReviewsListItemComponent } from './game-reviews-list/game-reviews-list-item/game-reviews-list-item.component';
 import { ExpandOptionsDirective } from './custom-directives/expand-options.directive';
 
+import { AuthService } from './_services/auth.service';
+// Before you can use HttpClient, you need to import the Angular 
+//HttpClientModule in the appmodule then inject in component where it will be used 
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @NgModule({
@@ -35,9 +42,16 @@ import { ExpandOptionsDirective } from './custom-directives/expand-options.direc
   imports: [
     BrowserModule,
     AppRoutingModule,
+    [HttpClientModule],
     NoopAnimationsModule,
+    FormsModule,
+    MatIconModule,
+    MatFormFieldModule,
   ],
-  providers: [GamesService],
+  providers: [
+    GamesService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

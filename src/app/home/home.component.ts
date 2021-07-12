@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
   }
 
   staggerMedia(index: number):string {
-    console.log(`Index is ${index}`);
     if(index % 2 ===0){
       return "feature-container-right"
     }

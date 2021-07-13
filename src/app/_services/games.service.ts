@@ -122,14 +122,16 @@ export class GamesService {
     {
     id: 7,  
     title: "Island Troll Tribes", 
-    author: "guy",
-    description: "classic warcraft 3 game",
+    author: "Quazz",
+    description: "Island troll tribes is a team survival game. You and your allies must survive the wilderness by finding food and stay safe from\
+    the weather by building a shelter. You must also fight for resources against 2 other teams on their own islands. You also get to choose a specialization\
+    for your hero to suit your team's needs as well as being able to build a huge variety of items by combining smaller items.",
     featureDescriptions: ['FeatureDesc1','FeatureDesc2','FeatureDesc3'],
     featureImages: ['../../assets/Warcraft-III-generic-image-half-size.png','../../arthas-evil-hr-flipped.jpg','../../orc-hr.jpg'],
-    genre: 'MOBA',
-    version: '6.88',
+    genre: 'Survival',
+    version: '3.10b',
     rating: '5',
-    publishDate: {month: "January", day: 1, year: 2005},
+    publishDate: {month: "April", day: 3, year: 2021},
     videoSrc: "../../assets/Action 7-3-2021 3-09-01 PM.mp4",
     imgSrc: "../../assets/Warcraft-III-generic-image-half-size.png" },
     {

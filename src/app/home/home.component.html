@@ -1,31 +1,43 @@
-<!-- insert navbar component -->
 <div class="container-fluid home-component">
-    <div class="row header-row">
-        <div class="col-8 header-column">     
-          <h1 class = "custom-font2 font-effect-fire">Warcraft 3 Reviews</h1>
-          <img class = "warcraft-border" src="../../assets/WARCRAFT 3 - Copy.png" alt="site logo" height = 250px width = 250px>
-          <h4>Welcome to a website all about showcasing and reviewing some of the popular warcraft 3 custom games made by the community. If you have any custom games you'd like to see reviewed on here, send me an email.</h4>
-        </div>
-        <div class="col d-flex justify-content-center ">
-          <div class="card h-75 ">
-            <div class="card-body warcraft-border">
-              <h4 class="card-title custom-font2 ">FEATURED CONTENT</h4>
-            </div>
-          </div>
-        </div>
+  <div class="row header-row">
+    <div class="col-8 header-column">     
+      <h1 class = "header-title">Warcraft Legends</h1>
+      <img class = "header-logo" src="../../assets/WARCRAFT 3-logo-rounded-v3.png" alt="site logo" height = 250px width = 250px>
+      <h4 class = "custom-font2">Welcome to a website all about showcasing and reviewing some of the popular warcraft 3 custom games made by the community.
+        Warcraft 3 was made in 2003 by Blizzard Entertainment and launched with a easy to use game engine using Blizzard's Art assets and featuring their own GUI
+        and scripting language JASS. This was enough to create a community of content creators who have impacted the gaming environment with their ideas and also
+        popularizing the MOBA genre with successors like DOTA 2, League of Legends, Heroes of the Storm and more. If you have any custom games you'd like to see 
+        reviewed on here, send me an email.</h4>
     </div>
-    <div class="row featured-content-row">
-      <div class="col-8">
-        <app-media-feature></app-media-feature>
-      </div>
-      <div class="col-8">
-        <app-media-feature></app-media-feature>
-      </div>
-      <div class="col-8">
-        <app-media-feature></app-media-feature>
-      </div>
-      <div class="col-8">
-        <app-media-feature></app-media-feature>
+  </div>
+
+  <div class="col d-flex justify-content-center ">
+    <div class="card h-75 ">
+      <div class="card-body warcraft-border feature-text-box">
+        <h4 class="card-title custom-font2 "id="featured">FEATURED CONTENT</h4>
       </div>
     </div>
+  </div>
+
+    <!-- FEATURED CONTENT We use [ngClass] to call staggerMedia() which appends a class
+    to right align the video if index is even and left align when even  -->
+  <div class="row featured-content-row">
+    <div 
+    *ngFor="let game of localGameArr; let index = index" 
+    class="col-12 feature-wrapper warcraft-border"
+    [ngClass]="staggerMedia(index)">
+      <div class="video-wrapper">
+        <a [routerLink]="['/game-reviews-list', game.id]"
+         routerLinkActive="active"
+         ><app-media-feature [game]="game"></app-media-feature></a>
+      </div>
+      <div class="featured-background-image">
+        <div class="featured-game-description">
+          <strong>{{ game.title }}</strong>
+          <p style ="color:white">{{ game.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+

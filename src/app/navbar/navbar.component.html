@@ -10,13 +10,15 @@
         <!----------------------------------- Middle Of Navbar ---------------------------------->
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link" href="">Home</a>
+            <a class="nav-link active" routerLink="" routerLinkActive="active">Home
+              <span class="visually-hidden">(current)</span>
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Featured Games</a>
+            <a class="nav-link" href="#featured">Featured Games</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Games</a>
+            <a class="nav-link" routerLink="/game-reviews-list" routerLinkActive="active">Game Reviews</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="gamereviews">Reviews</a>

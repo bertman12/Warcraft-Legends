@@ -5,12 +5,13 @@ import { HomeComponent } from './home/home.component';
 import { MediaFeatureComponent } from './media-feature/media-feature.component';
 import { RegisterComponent } from './register/register.component';
 import { GameReviewComponent } from './game-review/game-review.component';
+import { GameReviewsListComponent } from './game-reviews-list/game-reviews-list.component';
 
 const routes: Routes = [
   {path: "login", component: LoginComponent },
   {path:"", component: HomeComponent}, //home-landing-page
-  {path:"game-review/:id", component: GameReviewComponent}, //review
-  //{path:"game-review-list", component: GameReviewListComponent}, //review
+  {path:"game-reviews-list", component: GameReviewsListComponent}, //review list
+  {path:"game-reviews-list/:id", component: GameReviewComponent}, //review
   {path:"media", component: MediaFeatureComponent}, //media-feature-component
   {path:"register", component: RegisterComponent}
 ];

@@ -1,6 +1,7 @@
 import { Component, OnInit, NgModule } from '@angular/core'; 
 import { Router } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
+import { User } from '../_models/userInterface';
 
 @Component({
   selector: 'app-login',
@@ -24,9 +25,10 @@ export class LoginComponent implements OnInit {
   }
 
   async onLogin(){
-    this.clearAlert();  
 
+    this.clearAlert();  
     await this.auth.login({email: this.userEmail, password: this.userPassword});
+    this.ongetUser(this.userEmail);
     if ( !this.auth.authFlag ){
         this.playAudio();
         this.router.navigate(['']),{relativeTo: this.router};  
@@ -35,8 +37,12 @@ export class LoginComponent implements OnInit {
       console.log("error email or password not found")
       this.displayError = true; 
     }
+  }
 
-    
+  async ongetUser(email: string){
+    await this.auth.getUser(email).then( res => {
+      console.log(res);
+    })
   }
 
   onSignUp(){

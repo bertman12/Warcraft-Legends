@@ -35,6 +35,12 @@ export class AuthService {
     localStorage.removeItem(this.jwtKey);
   }
 
+  getUser(email: string): Promise<any>{
+    const jwt = localStorage.getItem(this.jwtKey);
+
+    return this.http.get(`${API_URL}/user`,{headers: { Authorization: `Bearer ${jwt}`}}).toPromise(); 
+  }
+
   userAuthorized(res: string){
     if( res == 'Email Not Found' || res == 'Password Not Found' ){
       this.authFlag = true; 

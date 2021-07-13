@@ -1,0 +1,35 @@
+.header-row{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.video-wrapper{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: 50%;
+    padding: 12px;
+}
+.game-description-wrapper{
+    display: flex;
+    justify-content: center;
+}
+.game-description{
+    width: 60ch;
+}
+/* .gameplay-features{
+
+} */
+
+/* THESE SHOULD BE IN THE FEATURE ITEM COMPONENT */
+.feature-item{
+    display: flex;
+    margin-bottom: 10px;
+}
+.feature-img{
+    width: 30%;
+    border: 3px rgb(95, 95, 95) ridge;
+    border-radius: 10px;
+    margin-right: 10px;
+    padding: 5px;
+}

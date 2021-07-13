@@ -1,3 +1,5 @@
+/* .home-component{
+} */
 .header-row{
     display: flex;
     flex-direction: column;
@@ -6,24 +8,92 @@
     margin-top: 10px;
     height: 100%;
     min-height: 600px;
+    position: relative;
+    
+    background-image: linear-gradient(to right ,rgba(0,0,0,0.1),rgb(0,0,0) 40%, rgb(0,0,0) 70%, rgba(0,0,0,0.1)), url("../../assets/orc-hr.jpg"),url("../../assets/arthas-evil-hr-flipped.jpg") ;
+    background-repeat: no-repeat;
+    box-shadow: inset 0px 0px 20px 30px rgba(0,0,0,1);
+    background-size:contain;
+    background-position: center, center left, center right;
+}
+.header-background-wrapper{
+    position:absolute;
+    width:100%;
+}
+.header-background{
+    width:50%; 
+    box-shadow: inset 0px 0px 20px 30px rgba(0,0,0,1);
 }
 .header-column{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-
     padding: 10px;
+}
+.header-logo{
+    border: 5px solid #8F1414;
+    border-radius: 100%;
+    margin: 20px;
+    
 }
 .custom-font1{
     font-family: "Sofia", sans-serif;
 }
-
-.custom-font2{
+.header-title{
+    /* color:goldenrod; */
     font-family: 'Suez One', serif;
+    /* text-shadow: 0px 0px 30px red;
+    background: linear-gradient(to bottom, #ffffff 40%, #461718 60%); */
+    /* background-clip: text; */
+    /* -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block; */
 }
 .featured-content-row{
     display: flex;
     justify-content: center;
+    margin-top: 10px;
+    margin-left: 1px;
+    margin-right: 1px;
 }
-
+.feature-wrapper{
+    overflow: hidden;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+/*Scales the video size*/
+.video-wrapper{
+    width: 40%;
+    min-width: 40%;
+}
+.feature-container-left{
+    display:flex;
+}
+.feature-container-right{
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+.featured-background-image{
+    background-position: center;
+    background-size: 100% 93%;
+    width:100%;
+    background-image: url("../../assets/Warcraft-III-generic-image-3-1-ratio.png");
+    background-repeat: no-repeat;
+    box-shadow: inset 0px 0px 20px 30px rgba(0,0,0,1);
+    transform: scale(1.02);
+}
+.featured-game-description{
+    position:relative;
+    top:15px;
+    width: 50%;
+    
+    margin-left: 30px;
+    padding: 15px;
+    color:goldenrod;
+    background-color: rgba(0, 0, 0, 0.75);
+    border: 3px rgb(95, 95, 95) ridge;
+    border-radius: 10px;
+    overflow: hidden;
+}

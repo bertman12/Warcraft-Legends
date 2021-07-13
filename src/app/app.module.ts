@@ -11,6 +11,11 @@ import { GameReviewComponent } from './game-review/game-review.component';
 import { PlayVideoDirective } from './custom-directives/play-video.directive';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './register/register.component';
+import { GamesService } from './_services/games.service';
+import { GameReviewsListComponent } from './game-reviews-list/game-reviews-list.component';
+import { GameReviewsListItemComponent } from './game-reviews-list/game-reviews-list-item/game-reviews-list-item.component';
+import { ExpandOptionsDirective } from './custom-directives/expand-options.directive';
+
 import { AuthService } from './_services/auth.service';
 // Before you can use HttpClient, you need to import the Angular 
 //HttpClientModule in the appmodule then inject in component where it will be used 
@@ -29,7 +34,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MediaFeatureComponent,
     GameReviewComponent,
     PlayVideoDirective,
-    RegisterComponent
+    RegisterComponent,
+    GameReviewsListComponent,
+    GameReviewsListItemComponent,
+    ExpandOptionsDirective,
   ],
   imports: [
     BrowserModule,
@@ -38,9 +46,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     NoopAnimationsModule,
     FormsModule,
     MatIconModule,
-    MatFormFieldModule
+    MatFormFieldModule,
   ],
-  providers: [AuthService],
+  providers: [
+    GamesService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

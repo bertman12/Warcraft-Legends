@@ -8,3 +8,4 @@ export interface User{
     age ?: number ;
     location ?: number ;
 }
+// admin-level: 0 = user, 1 = moderator, 2 = admin

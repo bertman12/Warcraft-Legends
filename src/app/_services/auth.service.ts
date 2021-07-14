@@ -33,12 +33,7 @@ export class AuthService {
 
   logout(){
     localStorage.removeItem(this.jwtKey);
-  }
-
-  getUser(email: string): Promise<any>{
-    const jwt = localStorage.getItem(this.jwtKey);
-
-    return this.http.get(`${API_URL}/user`,{headers: { Authorization: `Bearer ${jwt}`}}).toPromise(); 
+    console.log(this.jwtKey);
   }
 
   userAuthorized(res: string){

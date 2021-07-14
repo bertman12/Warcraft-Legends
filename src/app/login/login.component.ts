@@ -2,6 +2,7 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
 import { User } from '../_models/userInterface';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   displayError: boolean = false; 
 
-  constructor(private router: Router, private auth: AuthService) { }
+  constructor(private router: Router, private auth: AuthService, private userService: UserService) { }
 
   ngOnInit(): void { }
 
@@ -40,9 +41,7 @@ export class LoginComponent implements OnInit {
   }
 
   async ongetUser(email: string){
-    await this.auth.getUser(email).then( res => {
-      console.log(res);
-    })
+    await this.userService.getUser({email});
   }
 
   onSignUp(){

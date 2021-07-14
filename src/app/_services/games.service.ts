@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Game } from '../models/game.model';
 
 @Injectable({
@@ -149,7 +149,7 @@ export class GamesService {
     imgSrc: "../../assets/Warcraft-III-generic-image-half-size.png" },
   ];  
 
-
+  @Output() gameAdded = new EventEmitter<null>();
   constructor() { }
 
   getSelectedGame(id: number) {
@@ -159,11 +159,12 @@ export class GamesService {
   }
 
   getGames():Game[]{
-    return this.gameList.slice();
+    return this.gameList;
   }
 
   addGame(game:Game){
-
+    game.id = this.gameList.length;
+    this.gameList.push(game);
   }
 
   removeGame(game:Game){

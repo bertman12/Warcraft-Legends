@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-    Launch static backdrop modal
+    Add New Game
   </button>
   
   <!-- Modal -->
@@ -12,12 +12,26 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <label for="game">Game Name: </label>
-            <input id="game" type="text" [formControl]="game">
+            <form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
+                <input type="text" formControlName="title" placeholder="Title">
+                <input type="text" formControlName="author" placeholder="Author">
+                <input type="text" formControlName="description" placeholder="Description">
+                <input type="text" formControlName="featureDescriptions" placeholder="Feature Descriptions">
+                <input type="text" formControlName="featureImages" placeholder="Feature Image Sources">
+                <input type="text" formControlName="genre" placeholder="Genre">
+                <input type="text" formControlName="version" placeholder="Version">
+                <div formGroupName="publishDate">
+                    <input type="text" formControlName="month" placeholder="Month">
+                    <input type="number" formControlName="day" placeholder="Day">
+                    <input type="number" formControlName="year" placeholder="Year">
+                </div>
+                <input type="text" formControlName="videoSrc" placeholder="Video Source">
+                <input type="text" formControlName="imgSrc" placeholder="Preview Image Source">
+                <button class="btn btn-primary" type="submit" [disabled]="!gameForm.valid" data-bs-dismiss="modal">Submit</button>
+            </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Submit</button>
         </div>
       </div>
     </div>

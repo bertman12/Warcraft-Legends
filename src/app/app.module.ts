@@ -14,7 +14,6 @@ import { RegisterComponent } from './register/register.component';
 import { GamesService } from './_services/games.service';
 import { GameReviewsListComponent } from './game-reviews-list/game-reviews-list.component';
 import { GameReviewsListItemComponent } from './game-reviews-list/game-reviews-list-item/game-reviews-list-item.component';
-import { ExpandOptionsDirective } from './custom-directives/expand-options.directive';
 
 import { AuthService } from './_services/auth.service';
 // Before you can use HttpClient, you need to import the Angular 
@@ -23,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { ModifyGameListComponent } from './game-reviews-list/modify-game-list/modify-game-list.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     RegisterComponent,
     GameReviewsListComponent,
     GameReviewsListItemComponent,
-    ExpandOptionsDirective,
+    ModifyGameListComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +47,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     FormsModule,
     MatIconModule,
     MatFormFieldModule,
+    ReactiveFormsModule
   ],
   providers: [
     GamesService,

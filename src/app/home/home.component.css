@@ -1,5 +1,4 @@
-/* .home-component{
-} */
+
 .header-row{
     display: flex;
     flex-direction: column;
@@ -41,14 +40,7 @@
     font-family: "Sofia", sans-serif;
 }
 .header-title{
-    /* color:goldenrod; */
     font-family: 'Suez One', serif;
-    /* text-shadow: 0px 0px 30px red;
-    background: linear-gradient(to bottom, #ffffff 40%, #461718 60%); */
-    /* background-clip: text; */
-    /* -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-block; */
 }
 .featured-content-row{
     display: flex;

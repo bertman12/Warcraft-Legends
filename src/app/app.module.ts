@@ -15,6 +15,7 @@ import { GamesService } from './_services/games.service';
 import { GameReviewsListComponent } from './game-reviews-list/game-reviews-list.component';
 import { GameReviewsListItemComponent } from './game-reviews-list/game-reviews-list-item/game-reviews-list-item.component';
 import { ExpandOptionsDirective } from './custom-directives/expand-options.directive';
+import { UserService } from './_services/user.service';
 
 import { AuthService } from './_services/auth.service';
 // Before you can use HttpClient, you need to import the Angular 
@@ -50,7 +51,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   ],
   providers: [
     GamesService,
-    AuthService
+    AuthService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

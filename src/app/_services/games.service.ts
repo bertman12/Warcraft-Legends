@@ -150,6 +150,7 @@ export class GamesService {
   ];  
 
   @Output() gameAdded = new EventEmitter<null>();
+  
   constructor() { }
 
   getSelectedGame(id: number) {
@@ -159,12 +160,13 @@ export class GamesService {
   }
 
   getGames():Game[]{
-    return this.gameList;
+    return this.gameList.slice();
   }
 
   addGame(game:Game){
     game.id = this.gameList.length;
     this.gameList.push(game);
+    this.gameAdded.emit();
   }
 
   removeGame(game:Game){

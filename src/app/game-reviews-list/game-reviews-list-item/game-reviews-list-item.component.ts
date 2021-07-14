@@ -12,6 +12,9 @@ export class GameReviewsListItemComponent implements OnInit {
   
   localGamesArr:Game[] = this.gameService.getGames();
   ngOnInit(): void {
+    this.gameService.gameAdded.subscribe(
+      ()=> this.localGamesArr = this.gameService.getGames()
+    )
   }
   onEdit(){
     alert("Route to edit component");

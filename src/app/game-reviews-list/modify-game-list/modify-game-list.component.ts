@@ -53,25 +53,7 @@ export class ModifyGameListComponent implements OnInit {
   }
 
   onClearForm(){
-    console.log('cleraing');
-    this.gameForm.setValue({
-      id: [0],
-      title: [''],
-      author: [''],
-      description: [''],
-      featureDescriptions: [''],
-      featureImages: [''],
-      genre: [''],
-      version: [''],
-      rating: [''],
-      publishDate: {
-        month: [''],
-        day: [''],
-        year: [''],
-      },
-      videoSrc: [''],
-      imgSrc: ['']
-    })
+    this.gameForm.reset();
   }
   // when this component in instantiated from the edit button we will use .setValue method to grab the game object data and input it in there to make it easier to edit the list item
 }

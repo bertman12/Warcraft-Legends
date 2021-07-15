@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Game } from 'src/app/models/game.model';
 import { GamesService } from 'src/app/_services/games.service';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-modify-game-list',
@@ -45,12 +45,33 @@ export class ModifyGameListComponent implements OnInit {
     console.warn(this.gameForm.value);
     //Here we will check if user is editing for adding a game
     if(this.gameService.isEditing){
-      this.gameService.editGame(this.gameForm.value);
+      this.gameService.submitEditedGame(this.gameForm.value);
     }
     else{
       this.gameService.addGame(this.gameForm.value);
     }
   }
 
+  onClearForm(){
+    console.log('cleraing');
+    this.gameForm.setValue({
+      id: [0],
+      title: [''],
+      author: [''],
+      description: [''],
+      featureDescriptions: [''],
+      featureImages: [''],
+      genre: [''],
+      version: [''],
+      rating: [''],
+      publishDate: {
+        month: [''],
+        day: [''],
+        year: [''],
+      },
+      videoSrc: [''],
+      imgSrc: ['']
+    })
+  }
   // when this component in instantiated from the edit button we will use .setValue method to grab the game object data and input it in there to make it easier to edit the list item
 }

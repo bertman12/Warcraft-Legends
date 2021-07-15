@@ -13,7 +13,7 @@ export class GameReviewsListItemComponent implements OnInit {
   localGamesArr:Game[] = this.gameService.getGames();
 
   ngOnInit(): void {
-    this.gameService.gameAdded.subscribe(
+    this.gameService.gameListModified.subscribe(
       ()=> this.localGamesArr = this.gameService.getGames()
     )
   }

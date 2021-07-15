@@ -149,9 +149,10 @@ export class GamesService {
     imgSrc: "../../assets/Warcraft-III-generic-image-half-size.png" },
   ];  
 
-  @Output() gameAdded = new EventEmitter<null>();
+  @Output() gameListModified = new EventEmitter<null>();
   @Output() editingGame = new EventEmitter<Game>();
   isEditing: boolean = false;
+
   constructor() { }
 
   getSelectedGame(id: number) {
@@ -170,7 +171,7 @@ export class GamesService {
     //videoSrc: "../../assets/Action 7-3-2021 3-09-01 PM.mp4",
     //imgSrc: "../../assets/Warcraft-III-generic-image-half-size.png" },
     this.gameList.push(game);
-    this.gameAdded.emit();
+    this.gameListModified.emit();
   }
 
   removeGame(game:Game){
@@ -180,5 +181,11 @@ export class GamesService {
   editGame(game:Game){
     this.isEditing = true;
     this.editingGame.emit(game);
+  }
+  submitEditedGame(game:Game){
+    this.gameList[game.id] = game;
+    console.log('the new game is');
+    console.log(game);
+    this.gameListModified.emit();
   }
 }

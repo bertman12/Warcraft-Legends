@@ -8,7 +8,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Enter new game info</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">Enter Game Info</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -27,7 +27,9 @@
                 </div>
                 <input type="text" formControlName="videoSrc" placeholder="Video Source">
                 <input type="text" formControlName="imgSrc" placeholder="Preview Image Source">
+                <br>
                 <button class="btn btn-primary" type="submit" [disabled]="!gameForm.valid" data-bs-dismiss="modal">Submit</button>
+                <button type="button" class="btn btn-danger" (click)="onClearForm()">Clear</button>
             </form>
         </div>
         <div class="modal-footer">

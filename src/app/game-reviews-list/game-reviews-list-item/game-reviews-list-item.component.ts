@@ -19,13 +19,9 @@ export class GameReviewsListItemComponent implements OnInit {
   }
   onEdit(game: Game){
     this.gameService.editGame(game);
-    // alert("Route to edit component");
   }
   onDelete(game: Game){
     this.gameService.deleteGame(game);
     alert("Are you sure you want to delete review?\nEnter Admin password: [ - ]");
-  }
-  printList(){
-    console.log(this.localGamesArr);
   }
 }

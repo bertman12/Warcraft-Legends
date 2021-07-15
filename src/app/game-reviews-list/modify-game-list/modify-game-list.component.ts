@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormArray } from '@angular/forms';
 import { GamesService } from 'src/app/_services/games.service';
 import { Validators } from '@angular/forms';
 
@@ -22,14 +22,37 @@ export class ModifyGameListComponent implements OnInit {
       }
     )
   }
-
+  // without form array
+  // gameForm = this.formBuilder.group({
+  //   id: [0],
+  //   title: ['', Validators.required],
+  //   author: [''],
+  //   description: [''],
+  //   featureDescriptions: [''],
+  //   featureImages: [''],
+  //   genre: [''],
+  //   version: [''],
+  //   rating: [''],
+  //   publishDate: this.formBuilder.group({
+  //     month: [''],
+  //     day: [''],
+  //     year: [''],
+  //   }),
+  //   videoSrc: [''],
+  //   imgSrc: ['']
+  // })
+  
+  //with form array
   gameForm = this.formBuilder.group({
     id: [0],
-    title: [''],
+    title: ['', Validators.required],
     author: [''],
     description: [''],
-    featureDescriptions: [''],
-    featureImages: [''],
+    features: this.formBuilder.array([{
+      featureDescriptions: this.formBuilder.control(''),
+      featureImages: this.formBuilder.control('')
+    }
+    ]),
     genre: [''],
     version: [''],
     rating: [''],
@@ -41,7 +64,8 @@ export class ModifyGameListComponent implements OnInit {
     videoSrc: [''],
     imgSrc: ['']
   })
-  
+
+
   onSubmit(){
     console.warn(this.gameForm.value);
     //Here we will check if user is editing for adding a game

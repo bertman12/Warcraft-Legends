@@ -168,8 +168,6 @@ export class GamesService {
     game.videoSrc = "../../assets/Action 7-3-2021 3-09-01 PM.mp4";
     game.imgSrc = "../../assets/Warcraft-III-generic-image-half-size.png";
     console.log(game);
-    //videoSrc: "../../assets/Action 7-3-2021 3-09-01 PM.mp4",
-    //imgSrc: "../../assets/Warcraft-III-generic-image-half-size.png" },
     this.gameList.push(game);
     this.gameListModified.emit();
   }
@@ -182,17 +180,20 @@ export class GamesService {
           this.gameList.splice(index, 1);
         }
       });
+      //when setting up api, always increment id do not reassign id
     this.gameList.forEach(
       (obj, index) => {
         obj.id = index;
       }
     );
+
     this.gameListModified.emit();
   }
   
   editGame(game:Game){
     this.isEditing = true;
     this.editingGame.emit(game);
+
   }
 
   submitEditedGame(game:Game){

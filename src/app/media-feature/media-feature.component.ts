@@ -13,9 +13,9 @@ export class MediaFeatureComponent implements OnInit {
   @Input() game: Game = 
   {
   id: 0,  
-  title: "Uther Party", 
+  title: "Add A Game", 
   author: "guy",
-  description: "classic warcraft 3 game",
+  description: "NO GAME DATA SHOWED",
   featureDescriptions: [''],
   featureImages: [''],
   genre: 'Mini Games',

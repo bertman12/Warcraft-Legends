@@ -174,18 +174,30 @@ export class GamesService {
     this.gameListModified.emit();
   }
 
-  removeGame(game:Game){
-
+  deleteGame(game:Game){
+    
+    this.gameList.forEach(
+      (obj, index) => {
+        if (obj.title === game.title){
+          this.gameList.splice(index, 1);
+        }
+      });
+    this.gameList.forEach(
+      (obj, index) => {
+        obj.id = index;
+      }
+    );
+    this.gameListModified.emit();
   }
   
   editGame(game:Game){
     this.isEditing = true;
     this.editingGame.emit(game);
   }
+
   submitEditedGame(game:Game){
     this.gameList[game.id] = game;
-    console.log('the new game is');
-    console.log(game);
     this.gameListModified.emit();
+    this.isEditing = false;
   }
 }

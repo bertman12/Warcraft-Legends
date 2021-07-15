@@ -10,9 +10,7 @@ import { Game } from '../models/game.model';
 export class GameReviewsListComponent implements OnInit {
 
   constructor(private gameService: GamesService) { }
-  localGamesArr:Game[] =  this.gameService.getGames();
 
   ngOnInit(): void {
   }
-
 }

@@ -14,15 +14,18 @@ export class GameReviewsListItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.gameService.gameListModified.subscribe(
-      ()=> this.localGamesArr = this.gameService.getGames()
+      () => this.localGamesArr = this.gameService.getGames()
     )
   }
   onEdit(game: Game){
     this.gameService.editGame(game);
     // alert("Route to edit component");
   }
-  onDelete(){
+  onDelete(game: Game){
+    this.gameService.deleteGame(game);
     alert("Are you sure you want to delete review?\nEnter Admin password: [ - ]");
   }
-
+  printList(){
+    console.log(this.localGamesArr);
+  }
 }

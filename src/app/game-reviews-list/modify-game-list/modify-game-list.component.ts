@@ -41,6 +41,7 @@ export class ModifyGameListComponent implements OnInit {
     videoSrc: [''],
     imgSrc: ['']
   })
+  
   onSubmit(){
     console.warn(this.gameForm.value);
     //Here we will check if user is editing for adding a game

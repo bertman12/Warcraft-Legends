@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormArray } from '@angular/forms';
+import { FormBuilder, FormArray, FormArrayName } from '@angular/forms';
 import { GamesService } from 'src/app/_services/games.service';
 import { Validators } from '@angular/forms';
 
@@ -48,10 +48,11 @@ export class ModifyGameListComponent implements OnInit {
     title: ['', Validators.required],
     author: [''],
     description: [''],
-    features: this.formBuilder.array([{
-      featureDescriptions: this.formBuilder.control(''),
-      featureImages: this.formBuilder.control('')
-    }
+    featuresDescriptions: this.formBuilder.array([
+      this.formBuilder.control('')
+    ]),
+    featuresImages: this.formBuilder.array([
+      this.formBuilder.control('')
     ]),
     genre: [''],
     version: [''],
@@ -65,6 +66,20 @@ export class ModifyGameListComponent implements OnInit {
     imgSrc: ['']
   })
 
+  getFeaturesDescriptions(){
+    return this.gameForm.get('featureDescriptions') as FormArray;
+  }
+  getFeaturesImages(){
+    return this.gameForm.get('featureImages') as FormArray;
+  }
+  
+  getFeature(index: number){
+    this.getFeatures()
+  }
+
+  addFeature(){
+
+  }
 
   onSubmit(){
     console.warn(this.gameForm.value);

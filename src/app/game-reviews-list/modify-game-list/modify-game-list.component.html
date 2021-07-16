@@ -11,8 +11,20 @@
                 <input type="text" formControlName="title" placeholder="Title">
                 <input type="text" formControlName="author" placeholder="Author">
                 <input type="text" formControlName="description" placeholder="Description">
-                <input type="text" formControlName="featureDescriptions" placeholder="Feature Descriptions">
-                <input type="text" formControlName="featureImages" placeholder="Feature Image Sources">
+                <div formArrayName="features">
+
+                  <h4>Features</h4>
+                  <div *ngFor="let feature of getFeaturesDescriptions().controls; let i=index">
+                    <!-- The repeated features template -->
+                    <label for="feature-{{ i }}">Feature Image:</label>
+                    <input id="feature-{{ i }}" type="text" formControlName="feature.featureImages">
+                  </div>
+                  <button class="btn btn-warning" (click)="addFeature()">Add a Feature image and description.</button>
+                </div>
+                <!-- <input id="feature-{{ i }}" type="text" formControlName="getFeatures().get('featureImages') as FormControl"> -->
+                
+                <!-- <input type="text" formControlName="featureDescriptions" placeholder="Feature Descriptions">
+                <input type="text" formControlName="featureImages" placeholder="Feature Image Sources"> -->
                 <input type="text" formControlName="genre" placeholder="Genre">
                 <input type="text" formControlName="version" placeholder="Version">
                 <div formGroupName="publishDate">

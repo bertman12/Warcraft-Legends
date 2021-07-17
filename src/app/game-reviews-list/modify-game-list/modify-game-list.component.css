@@ -7,6 +7,10 @@
 .game-features{
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
+    border: 1px ridge white;
+    border-radius: 15px;
+    padding: 5px;
 }
 .form-inputs-format{
     display: flex;

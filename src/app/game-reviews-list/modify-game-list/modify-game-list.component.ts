@@ -53,13 +53,15 @@ export class ModifyGameListComponent implements OnInit {
       return this.gameForm.get('featureImages') as FormArray;
     }
     
-    addFeatureImage(){
-      this.featureImages.push(this.formBuilder.control(''));
-      this.featureDescriptions.push(this.formBuilder.control(''));
-      this.featureImages.setValidators([Validators.required, Validators.minLength(1)]);
-      this.featureDescriptions.setValidators([Validators.required, Validators.minLength(1)]);
+    addFeature(){
+      this.featureImages.push(this.formBuilder.control('',[Validators.required, Validators.minLength(1)]));
+      this.featureDescriptions.push(this.formBuilder.control('',[Validators.required, Validators.minLength(1)]));
       this.featureImages.updateValueAndValidity();
       this.featureDescriptions.updateValueAndValidity();
+    }
+    removeFeature(index:number){
+      this.featureImages.removeAt(index);
+      this.featureDescriptions.removeAt(index);
     }
     
     onSubmit(){

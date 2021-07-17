@@ -55,7 +55,7 @@ export class ModifyGameListComponent implements OnInit {
       return this.gameForm.get('featureImages') as FormArray;
     }
     
-    addFeature(){
+    addFeatureImage(){
       this.featureImages.push(this.formBuilder.control(''));
       this.featureDescriptions.push(this.formBuilder.control(''));
     }
@@ -72,6 +72,8 @@ export class ModifyGameListComponent implements OnInit {
     
     onClearForm(){
       this.gameForm.reset();
+      this.featureDescriptions.clear();
+      this.featureImages.clear();
     }
     // when this component in instantiated from the edit button we will use .setValue method to grab the game object data and input it in there to make it easier to edit the list item
   }

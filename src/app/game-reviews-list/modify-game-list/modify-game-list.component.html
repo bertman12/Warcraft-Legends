@@ -1,47 +1,65 @@
 <!-- Modal -->
   <div class="modal fade" id="gameEditModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
+    <div class="modal-dialog d-flex justify-content-center">
+      <div class="modal-content  form-modal">
         <div class="modal-header">
           <h4 class="modal-title" id="staticBackdropLabel">Enter Game Info</h4>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
-                <input type="text" formControlName="title" placeholder="Title">
-                <input type="text" formControlName="author" placeholder="Author">
-                <input type="text" formControlName="description" placeholder="Description">
+          <div class="container-fluid">
+            <div class="row">
 
-                <h5>Features</h5>
-                <div formArrayName="featureImages">
-                  <div *ngFor="let featureI of featureImages.controls; let index = index">
-                    <label for="featureImages-{{ index }}">Feature Image:</label>
-                    <input id="featureImages-{{ index }}" type="text" [formControlName]="index">
+              <form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
+                <div class="col-12 form-inputs-format" style="margin-bottom: 5px;">
+                  <label>Title: <input type="text" formControlName="title"></label>
+                  <label>Author: <input type="text" formControlName="author"></label>
+                </div>
+                <div class="col-5">
+                  <label>Description:  
+                  <textarea class="description-area" type="text" rows="6" cols="50"
+                  formControlName="description" ></textarea></label>
+                </div>
+                  <hr>
+                  <h5>Features</h5>
+                  <div *ngFor="let feature of featureImages.controls; let index = index"class="game-features">
+                    <div formArrayName="featureImages">
+                      <div>
+                        <label style="margin-right: 14px;">Image: <input type="text" [formControlName]="index" ></label>
+                      </div>
+                    </div>
+                    <div formArrayName="featureDescriptions">
+                      <div>
+                        <label>Description:<textarea class="description-area" type="text" rows="3" cols="25"
+                        [formControlName]="index"></textarea></label>
+                      </div>
+                    </div>
                   </div>
-                </div>
-
-                <div formArrayName="featureDescriptions">
-                  <div *ngFor="let featureD of featureDescriptions.controls; let index = index">
-                    <label for="featureDescriptions-{{ index }}">Feature Description:</label>
-                    <input id="featureDescriptions-{{ index }}" type="text" [formControlName]="index">
+                  <button class="btn btn-warning" type="button" (click)="addFeatureImage()">Add a Feature image and description.</button>
+                  <hr>
+                  <div class="col-12 d-flex form-inputs-format">
+                    <label>Genre: <input type="text" formControlName="genre" ></label>
+                    <label>Version: <input type="text" formControlName="version" ></label>
                   </div>
-                </div>
-
-                <button class="btn btn-warning" type="button" (click)="addFeature()">Add a Feature image and description.</button>
-                <input type="text" formControlName="featureImages" placeholder="Feature Image Sources"> -->
-                <input type="text" formControlName="genre" placeholder="Genre">
-                <input type="text" formControlName="version" placeholder="Version">
-                <div formGroupName="publishDate">
-                    <input type="text" formControlName="month" placeholder="Month">
-                    <input type="number" formControlName="day" placeholder="Day">
-                    <input type="number" formControlName="year" placeholder="Year">
-                </div>
-                <input type="text" formControlName="videoSrc" placeholder="Video Source">
-                <input type="text" formControlName="imgSrc" placeholder="Preview Image Source">
-                <br>
-                <button class="btn btn-primary" type="submit" [disabled]="!gameForm.valid" data-bs-dismiss="modal">Submit</button>
-                <button type="button" class="btn btn-danger" (click)="onClearForm()">Clear</button>
-            </form>
+                  <div formGroupName="publishDate">
+                    <div class="col-12 form-inputs-format">
+                      <label>Month: <input type="text" formControlName="month"></label>
+                      <label>Day: <input type="number" formControlName="day"></label>
+                    </div>
+                    <div class="form-inputs-format">
+                      <label class="d-flex flex-column">Year: <input type="number" formControlName="year" ></label>
+                    </div>
+                  </div>
+                  <div class="col-12 form-inputs-format">
+                    <label style="margin-right: 14px;">Video: <input type="text" formControlName="videoSrc" ></label>
+                    <label>Preview Image: <input type="text" formControlName="imgSrc"></label>
+                  </div>
+                  <br>
+                  <button style="margin-right: 10px;" class="btn btn-primary" type="submit" [disabled]="!gameForm.valid" data-bs-dismiss="modal">Submit</button>
+                  <button type="button" class="btn btn-danger" (click)="onClearForm()">Clear</button>
+              </form>
+            </div>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -50,3 +68,22 @@
     </div>
   </div>
   
+
+
+<!-- 
+  <div formArrayName="featureImages">
+    <div *ngFor="let featureI of featureImages.controls; let index = index">
+      <label>Image: <input type="text" [formControlName]="index" ></label>
+      <hr>
+    </div>
+  </div>
+  <div formArrayName="featureDescriptions">
+    <div *ngFor="let featureD of featureDescriptions.controls; let index = index">
+      <label>Description:<textarea class="description-area" type="text" rows="3" cols="25"
+      [formControlName]="index" Description"></textarea></label>
+      <hr>
+    </div>
+  </div> -->
+
+
+  <!-- <label for="featureDescriptions-{{ index }}">Feature Description:</label> -->

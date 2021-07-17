@@ -1,0 +1,14 @@
+.form-modal{
+    width:fit-content;
+}
+.description-area{
+    resize: none;
+}
+.game-features{
+    display: flex;
+    justify-content: space-between;
+}
+.form-inputs-format{
+    display: flex;
+    justify-content: space-between;
+}

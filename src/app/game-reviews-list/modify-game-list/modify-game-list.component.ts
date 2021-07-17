@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormArray, FormArrayName, FormControl, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormArray } from '@angular/forms';
 import { GamesService } from 'src/app/_services/games.service';
 import { Validators } from '@angular/forms';
 
@@ -28,23 +28,21 @@ export class ModifyGameListComponent implements OnInit {
     
     gameForm = this.formBuilder.group({
       id: [],
-      title: [''],
-      author: [''],
-      description: [''],
-      featureDescriptions: this.formBuilder.array([
-      ]),
-      featureImages: this.formBuilder.array([
-      ]),
-      genre: [''],
-      version: [''],
-      rating: [''],
+      title: ['', Validators.required],
+      author: ['', Validators.required],
+      description: ['', Validators.required],
+      featureDescriptions: this.formBuilder.array([['', [Validators.required, Validators.minLength(1)]]],[ Validators.required, Validators.minLength(1)]),
+      featureImages: this.formBuilder.array([['', [ Validators.required, Validators.minLength(1)]]],[ Validators.required, Validators.minLength(1)]),
+      genre: ['', Validators.required],
+      version: ['', Validators.required],
+      rating: [''], //this will be calculated
       publishDate: this.formBuilder.group({
-        month: [''],
-        day: [''],
-        year: [''],
+        month: ['', Validators.required],
+        day: ['', [Validators.required, Validators.max(32)]],
+        year: ['', [Validators.required, Validators.max(2021)]],
       }),
-      videoSrc: [''],
-      imgSrc: ['']
+      videoSrc: ['',Validators.required],
+      imgSrc: ['',Validators.required]
     })
     
     //instantiating form array class properties
@@ -58,6 +56,10 @@ export class ModifyGameListComponent implements OnInit {
     addFeatureImage(){
       this.featureImages.push(this.formBuilder.control(''));
       this.featureDescriptions.push(this.formBuilder.control(''));
+      this.featureImages.setValidators([Validators.required, Validators.minLength(1)]);
+      this.featureDescriptions.setValidators([Validators.required, Validators.minLength(1)]);
+      this.featureImages.updateValueAndValidity();
+      this.featureDescriptions.updateValueAndValidity();
     }
     
     onSubmit(){

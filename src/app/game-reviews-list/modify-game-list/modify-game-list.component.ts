@@ -14,36 +14,26 @@ export class ModifyGameListComponent implements OnInit {
     private gameService: GamesService) { }
     
     ngOnInit(): void {
-      //deos this need to be done in another lifecycle hook?
       this.gameService.editingGame.subscribe(
         (game) => {
           this.gameForm.patchValue(game);
-          console.log('feature descriptions controls =>', this.featureDescriptions.controls, '\nfeature description controls length', this.featureDescriptions.controls.length);
-          // for(let y = 0; y <= this.featureDescriptions.controls.length; y++){
-            // this.featureDescriptions.removeAt(0);
-            // this.featureImages.removeAt(0);
-          // }
-        //were pushing a form control with the value in the games property array at x 
-        for(let x = 0; x < game.featureImages.length; x++){
-          this.featureDescriptions.push(this.formBuilder.control(game.featureDescriptions[x]));
-          this.featureImages.push(this.formBuilder.control(game.featureImages[x]));
-        }
-        console.log('Editing value of the form group.', this.gameForm.value);
-      }
-      )
-      
+          this.featureDescriptions.clear();
+          this.featureImages.clear();
+          for(let x = 0; x < game.featureImages.length; x++){
+            this.featureDescriptions.push(this.formBuilder.control(game.featureDescriptions[x]));
+            this.featureImages.push(this.formBuilder.control(game.featureImages[x]));
+          }
+      })
     }
     
     gameForm = this.formBuilder.group({
-      id: [0],
+      id: [],
       title: [''],
       author: [''],
       description: [''],
       featureDescriptions: this.formBuilder.array([
-        this.formBuilder.control('')
       ]),
       featureImages: this.formBuilder.array([
-        this.formBuilder.control('')
       ]),
       genre: [''],
       version: [''],
@@ -65,14 +55,13 @@ export class ModifyGameListComponent implements OnInit {
       return this.gameForm.get('featureImages') as FormArray;
     }
     
-    addFeatureImage(){
+    addFeature(){
       this.featureImages.push(this.formBuilder.control(''));
       this.featureDescriptions.push(this.formBuilder.control(''));
     }
     
     onSubmit(){
       console.warn(this.gameForm.value);
-      //Here we will check if user is editing for adding a game
       if(this.gameService.isEditing){
         this.gameService.submitEditedGame(this.gameForm.value);
       }
@@ -84,8 +73,6 @@ export class ModifyGameListComponent implements OnInit {
     onClearForm(){
       this.gameForm.reset();
     }
-    
-    
     // when this component in instantiated from the edit button we will use .setValue method to grab the game object data and input it in there to make it easier to edit the list item
   }
   

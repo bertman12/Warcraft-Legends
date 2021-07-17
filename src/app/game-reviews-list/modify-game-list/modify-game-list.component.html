@@ -11,23 +11,23 @@
                 <input type="text" formControlName="title" placeholder="Title">
                 <input type="text" formControlName="author" placeholder="Author">
                 <input type="text" formControlName="description" placeholder="Description">
+
                 <h5>Features</h5>
                 <div formArrayName="featureImages">
-                  <div *ngFor="let feature of featureImages.controls; let index = index">
+                  <div *ngFor="let featureI of featureImages.controls; let index = index">
                     <label for="featureImages-{{ index }}">Feature Image:</label>
                     <input id="featureImages-{{ index }}" type="text" [formControlName]="index">
                   </div>
                 </div>
+
                 <div formArrayName="featureDescriptions">
-                  <div *ngFor="let feature of featureDescriptions.controls; let index = index">
+                  <div *ngFor="let featureD of featureDescriptions.controls; let index = index">
                     <label for="featureDescriptions-{{ index }}">Feature Description:</label>
                     <input id="featureDescriptions-{{ index }}" type="text" [formControlName]="index">
                   </div>
                 </div>
-                <button class="btn btn-warning" (click)="addFeatureImage()">Add a Feature image and description.</button>
-                <!-- <input id="feature-{{ i }}" type="text" formControlName="getFeatures().get('featureImages') as FormControl"> -->
-                
-                <!-- <input type="text" formControlName="featureDescriptions" placeholder="Feature Descriptions">
+
+                <button class="btn btn-warning" type="button" (click)="addFeature()">Add a Feature image and description.</button>
                 <input type="text" formControlName="featureImages" placeholder="Feature Image Sources"> -->
                 <input type="text" formControlName="genre" placeholder="Genre">
                 <input type="text" formControlName="version" placeholder="Version">

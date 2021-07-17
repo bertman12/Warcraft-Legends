@@ -15,7 +15,7 @@ export class GamesService {
     description: "Play a variety of randomly selected mini-games against your opponents.\
      A highly appraised warcraft classic, this custom game has been a benchmark for other\
      content creators when it comes to interesting and fun gameplay.",
-    featureDescriptions: ['FeatureDesc1','FeatureDesc2','FeatureDesc3'],
+    featureDescriptions: ['FeatureDesc1','FeatureDesc2','FeatureDesc3',],
     featureImages: ['../../assets/Warcraft-III-generic-image-half-size.png','../../arthas-evil-hr-flipped.jpg','../../orc-hr.jpg'],
     genre: 'Mini Games',
     version: '10.0',
@@ -173,7 +173,6 @@ export class GamesService {
   }
 
   deleteGame(game:Game){
-    
     this.gameList.forEach(
       (obj, index) => {
         if (obj.title === game.title){
@@ -186,7 +185,6 @@ export class GamesService {
         obj.id = index;
       }
     );
-
     this.gameListModified.emit();
   }
   

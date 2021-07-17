@@ -19,7 +19,7 @@ export class ModifyGameListComponent implements OnInit {
           this.gameForm.patchValue(game);
           this.featureDescriptions.clear();
           this.featureImages.clear();
-          for(let x = 0; x < game.featureImages.length; x++){
+          for(let x = 0; x < game.featureDescriptions.length; x++){
             this.featureDescriptions.push(this.formBuilder.control(game.featureDescriptions[x]));
             this.featureImages.push(this.formBuilder.control(game.featureImages[x]));
           }
@@ -58,6 +58,7 @@ export class ModifyGameListComponent implements OnInit {
       this.featureDescriptions.push(this.formBuilder.control('',[Validators.required, Validators.minLength(1)]));
       this.featureImages.updateValueAndValidity();
       this.featureDescriptions.updateValueAndValidity();
+      console.log(this.featureImages);
     }
     removeFeature(index:number){
       this.featureImages.removeAt(index);

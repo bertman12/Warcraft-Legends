@@ -198,7 +198,7 @@ export class GamesService {
 
   submitEditedGame(game:Game){
     this.gameList[game.id] = game;
-    this.gameListModified.emit();
     this.isEditing = false;
+    this.gameListModified.emit();
   }
 }

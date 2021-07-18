@@ -12,10 +12,10 @@ const routes: Routes = [
   {path:"", component: HomeComponent}, //home-landing-page
   {path:"game-reviews-list", component: GameReviewsListComponent}, //review list
   {path:"game-reviews-list/:id", component: GameReviewComponent}, //review
-  {path:"media", component: MediaFeatureComponent}, //media-feature-component
   {path:"register", component: RegisterComponent},
-  {path:"**", redirectTo: ''}
 
+
+  {path:"**", redirectTo: '', pathMatch: 'full'}
 ];
 
 

@@ -20,8 +20,8 @@ import { AuthService } from './_services/auth.service';
 //HttpClientModule in the appmodule then inject in component where it will be used 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import {MatIconModule} from '@angular/material/icon';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModifyGameListComponent } from './game-reviews-list/modify-game-list/modify-game-list.component';
 

@@ -21,7 +21,7 @@ export class GameReviewsListItemComponent implements OnInit {
     this.gameService.editGame(game);
   }
   onDelete(game: Game){
+    confirm('Are you sure you want to delete game?');
     this.gameService.deleteGame(game);
-    alert("Are you sure you want to delete review?\nEnter Admin password: [ - ]");
   }
 }

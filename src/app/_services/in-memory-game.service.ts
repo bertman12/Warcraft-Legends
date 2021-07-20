@@ -153,5 +153,7 @@ export class InMemoryGameService implements InMemoryDbService{
         imgSrc: "../../assets/Warcraft-III-generic-image-half-size.png" },
     ];
     return {gameListDB};
+    let length = gameListDB.length;
+    return {length};
   }
 }

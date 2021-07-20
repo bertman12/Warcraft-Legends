@@ -46,7 +46,7 @@ import { InMemoryBackendConfigArgs } from 'angular-in-memory-web-api'
     BrowserModule,
     AppRoutingModule,
     [HttpClientModule],
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryGameService), //configuartion options for angular in memory web api module
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryGameService,{delay:0}), //configuartion options for angular in memory web api module
     NoopAnimationsModule,
     FormsModule,
     MatIconModule,

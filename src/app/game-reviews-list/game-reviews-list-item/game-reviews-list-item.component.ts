@@ -11,16 +11,20 @@ export class GameReviewsListItemComponent implements OnInit {
   constructor(private gameService:GamesService) { }
   
   // localGamesArr:Game[] = this.gameService.getGames();
-  localGamesArr:Game[] = [];
+  
 
+  localGamesArr:Game[] = []
   ngOnInit(): void {
     // this.gameService.gameListModified.subscribe(
     //   () => this.localGamesArr = this.gameService.getGames()
     // );
-    this.gameService.getGames().subscribe((games)=>{
+    this.gameService.getGames().subscribe((games)=> {
+      console.log('This is what i get from the get games function that returns an observable: ', games);
       this.localGamesArr = games;
-    })
+    });
   }
+
+
   onEdit(game: Game){
     this.gameService.editGame(game);
   }

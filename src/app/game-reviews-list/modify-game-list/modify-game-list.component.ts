@@ -71,7 +71,9 @@ export class ModifyGameListComponent implements OnInit {
         // this.gameService.submitEditedGame(this.gameForm.value);
       }
       else{
-        // this.gameService.addGame(this.gameForm.value);
+        this.gameService.createGame(this.gameForm.value).subscribe((info)=>{
+            console.log("info from the sub",info);
+        });
       }
     }
     

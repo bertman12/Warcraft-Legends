@@ -68,10 +68,10 @@ export class ModifyGameListComponent implements OnInit {
     onSubmit(){
       console.warn(this.gameForm.value);
       if(this.gameService.isEditing){
-        this.gameService.submitEditedGame(this.gameForm.value);
+        // this.gameService.submitEditedGame(this.gameForm.value);
       }
       else{
-        this.gameService.addGame(this.gameForm.value);
+        // this.gameService.addGame(this.gameForm.value);
       }
     }
     

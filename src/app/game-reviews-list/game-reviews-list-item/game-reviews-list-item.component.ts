@@ -10,18 +10,24 @@ import { GamesService } from 'src/app/_services/games.service';
 export class GameReviewsListItemComponent implements OnInit {
   constructor(private gameService:GamesService) { }
   
-  localGamesArr:Game[] = this.gameService.getGames();
+  // localGamesArr:Game[] = this.gameService.getGames();
+  localGamesArr:Game[] = [];
 
   ngOnInit(): void {
-    this.gameService.gameListModified.subscribe(
-      () => this.localGamesArr = this.gameService.getGames()
-    )
+    // this.gameService.gameListModified.subscribe(
+    //   () => this.localGamesArr = this.gameService.getGames()
+    // );
+    this.gameService.getGames().subscribe((games)=>{
+      this.localGamesArr = games;
+    })
   }
   onEdit(game: Game){
     this.gameService.editGame(game);
   }
-  onDelete(game: Game){
-    confirm('Are you sure you want to delete game?');
-    this.gameService.deleteGame(game);
-  }
+
+  //WITHOUT API
+  // onDelete(game: Game){
+  //   confirm('Are you sure you want to delete game?');
+  //   this.gameService.deleteGame(game);
+  // }
 }

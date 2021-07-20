@@ -28,9 +28,10 @@ export class GameReviewComponent implements OnInit {
   ngOnInit(): void {
     console.log("THESE ARE THE ID:");
     console.log(this.route.snapshot.params['id']);
-    this.gameService.getSelectedGame().subscribe((data)=>{
-      this.game = data;
-    })
+    // this.gameService.getSelectedGame().subscribe((data)=>{
+    //   this.game = data;
+    // })
+    //WITHOUT API
     // this.game = this.gameService.getSelectedGame(this.route.snapshot.params['id']);
   }
 

@@ -1,20 +1,17 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Game } from '../models/game.model';
-import { HttpClient } from '@angular/common/http';
-import { API_URL } from 'src/environments/environment'; 
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class InMemoryGameService {
+export class InMemoryGameService implements InMemoryDbService{
 
-  constructor(private http: HttpClient) { }
-  
+  constructor() { }
 
   createDb() {
-    let gameList:Game[] = [
+    let gameListDB :Game[] = [
       {
         id: 0,  
         title: "Uther Party", 
@@ -155,11 +152,6 @@ export class InMemoryGameService {
         videoSrc: "../../assets/Action 7-3-2021 3-09-01 PM.mp4",
         imgSrc: "../../assets/Warcraft-III-generic-image-half-size.png" },
     ];
-    return {gameList};
+    return {gameListDB};
   }
-
-  getGames(){
-    this.http.get(`${API_URL}/gameList`)
-  }
-
 }

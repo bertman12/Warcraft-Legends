@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { MediaFeatureComponent } from './media-feature/media-feature.component';
 import { RegisterComponent } from './register/register.component';
 import { GameReviewComponent } from './game-review/game-review.component';
 import { GameReviewsListComponent } from './game-reviews-list/game-reviews-list.component';

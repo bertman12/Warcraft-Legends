@@ -14,7 +14,7 @@ import { Validators } from '@angular/forms';
 export class ModifyGameListComponent implements OnInit {
   
   constructor(private formBuilder: FormBuilder,
-    private gameService: GamesService) {}
+              private gameService: GamesService) {}
     
     ngOnInit(): void {
       this.gameService.editingGame.subscribe(
@@ -61,6 +61,7 @@ export class ModifyGameListComponent implements OnInit {
       console.log('modal closed');
       this.gameService.isEditing = false;
     }
+    
     addFeature(){
       this.featureImages.push(this.formBuilder.control('',[Validators.required, Validators.minLength(1)]));
       this.featureDescriptions.push(this.formBuilder.control('',[Validators.required, Validators.minLength(1)]));
@@ -77,10 +78,18 @@ export class ModifyGameListComponent implements OnInit {
     onSubmit(){
       console.warn(this.gameForm.value);
       if(this.gameService.isEditing){
-        this.gameService.submitEditedGame(this.gameForm.value).subscribe();
+        this.gameService.submitEditedGame(this.gameForm.value).subscribe(()=>{
+          this.gameService.getGames().subscribe((games)=>{
+           this.gameService.gameListModified.next(games);
+          })
+        });
       }
       else{
-        this.gameService.createGame(this.gameForm.value).subscribe();
+        this.gameService.createGame(this.gameForm.value).subscribe(()=>{
+          this.gameService.getGames().subscribe((games)=>{
+           this.gameService.gameListModified.next(games);
+          })
+        });
       }
     }
     

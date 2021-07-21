@@ -157,7 +157,7 @@ export class GamesService implements OnInit{
   gameListModified = new Subject<Game[]>();
   editingGame = new Subject<Game>();
   isEditing: boolean = false;
-  
+
   private gamesUrl = 'api/gameListDB/';
 
   constructor(private http: HttpClient) { }
@@ -173,7 +173,7 @@ export class GamesService implements OnInit{
   }
 
   //works
-  getGames(){
+  getGames():Observable<Game[]> {
     return this.http.get<Game[]>(this.gamesUrl).pipe(
       retry(2),
       catchError((error: HttpErrorResponse) => {
@@ -187,11 +187,6 @@ export class GamesService implements OnInit{
   createGame(Game: Game) {
     Game.videoSrc = "../../assets/Action 7-3-2021 3-09-01 PM.mp4";
     Game.imgSrc = "../../assets/Warcraft-III-generic-image-half-size.png";
-
-    this.getGames().subscribe((games) => {
-      Game.id = games.length;
-      this.gameListModified.next(games);
-    });
 
     return this.http.post<Game>(this.gamesUrl, Game)
     .pipe(
@@ -210,12 +205,15 @@ export class GamesService implements OnInit{
   //works
   submitEditedGame(Game:Game){
     this.isEditing = false;
-    this.gameListModified.next();
+    this.getGames().subscribe((games) => {
+
+      this.gameListModified.next(games);
+    })
     return this.http.put(this.gamesUrl + Game.id, Game);
   }
 
   deleteGame(id: number){
-    return this.http.delete(this.gamesUrl + id).subscribe();
+    return this.http.delete(this.gamesUrl + id);
   }
 
   getSelectedGame(id: number){

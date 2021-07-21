@@ -13,8 +13,6 @@ export class GameReviewsListItemComponent implements OnInit, OnDestroy {
 
   localGamesArr:Game[] = []
 
-  
-
   ngOnInit(){
     //update local array on edit game
     this.gameService.getGames().subscribe((games)=> {
@@ -32,9 +30,15 @@ export class GameReviewsListItemComponent implements OnInit, OnDestroy {
     this.gameService.editGame(game);
   }
 
-  //WITHOUT API
-  // onDelete(game: Game){
-  //   confirm('Are you sure you want to delete game?');
-  //   this.gameService.deleteGame(game);
-  // }
+  onDelete(game: Game){
+    confirm('Are you sure you want to delete game?');
+    this.gameService.deleteGame(game.id).subscribe(()=>{
+      this.gameService.getGames().subscribe((games)=>{
+       this.gameService.gameListModified.next(games);
+      })
+    })
+  
+  }
+
 }
+

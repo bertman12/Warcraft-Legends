@@ -151,9 +151,8 @@ export class InMemoryGameService implements InMemoryDbService{
         publishDate: {month: "January", day: 1, year: 2005},
         videoSrc: "../../assets/Action 7-3-2021 3-09-01 PM.mp4",
         imgSrc: "../../assets/Warcraft-III-generic-image-half-size.png" },
+
     ];
     return {gameListDB};
-    let length = gameListDB.length;
-    return {length};
   }
 }

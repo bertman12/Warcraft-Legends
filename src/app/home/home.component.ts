@@ -16,9 +16,7 @@ export class HomeComponent implements OnInit {
   localGameArr: Game[] = [];
 
   ngOnInit(): void {
-    this.gameService.getGames().subscribe((games)=> {
-      this.localGameArr = games;
-    });
+    this.gameService.getGames().subscribe((games)=> {this.localGameArr = games;});
   }
 
   staggerMedia(index: number):string {

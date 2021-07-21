@@ -1,8 +1,9 @@
 import { Injectable, Output, EventEmitter, OnInit } from '@angular/core';
 import { Game } from '../models/game.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, Subscription, throwError } from 'rxjs';
 import { catchError, map, retry } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 
 @Injectable({
@@ -10,6 +11,7 @@ import { catchError, map, retry } from 'rxjs/operators';
 })
 export class GamesService implements OnInit{
 
+  //games data outside api
   // gameList: Game[] = [
     
   //   {
@@ -152,19 +154,16 @@ export class GamesService implements OnInit{
   //   videoSrc: "../../assets/Action 7-3-2021 3-09-01 PM.mp4",
   //   imgSrc: "../../assets/Warcraft-III-generic-image-half-size.png" },
   // ];  
-  @Output() gameListModified = new EventEmitter<null>();
-  @Output() editingGame = new EventEmitter<Game>();
+  gameListModified = new Subject<Game[]>();
+  editingGame = new Subject<Game>();
   isEditing: boolean = false;
-  private gamesUrl = 'api/gameListDB';
+  
+  private gamesUrl = 'api/gameListDB/';
 
   constructor(private http: HttpClient) { }
-  numberOfGames: number = 0;
-
+  numberOfGames: number = 0
+  
   ngOnInit(){
-    this.http.get<number>('api/length').subscribe((length)=>{
-      this.numberOfGames = length;
-    });
-    console.log('Were inside the init function in the game service.!')
   }
 
   printer(){
@@ -173,7 +172,8 @@ export class GamesService implements OnInit{
     console.log("What is the this.http", this.http);
   }
 
-  getGames(): Observable<Game[]> {
+  //works
+  getGames(){
     return this.http.get<Game[]>(this.gamesUrl).pipe(
       retry(2),
       catchError((error: HttpErrorResponse) => {
@@ -183,30 +183,45 @@ export class GamesService implements OnInit{
     );
   }
 
-  createGame(Game: Game): Observable<Game> {
-    console.log('Creating a game', Game);
-    Game.id = this.numberOfGames - 1;
-    return this.http.post<Game>(this.gamesUrl, Game).pipe(
+  //works
+  createGame(Game: Game) {
+    Game.videoSrc = "../../assets/Action 7-3-2021 3-09-01 PM.mp4";
+    Game.imgSrc = "../../assets/Warcraft-III-generic-image-half-size.png";
+
+    this.getGames().subscribe((games) => {
+      Game.id = games.length;
+      this.gameListModified.next(games);
+    });
+
+    return this.http.post<Game>(this.gamesUrl, Game)
+    .pipe(
       catchError((error: HttpErrorResponse) => {
         console.error(error);
         return throwError(error);
-      })
-    )
+      }));
   }
 
-  editGame(Game: Game): Observable<any> {
+  //works
+  editGame(Game: Game){
+    this.isEditing = true;
+    this.editingGame.next(Game);
+  }
+
+  //works
+  submitEditedGame(Game:Game){
+    this.isEditing = false;
+    this.gameListModified.next();
     return this.http.put(this.gamesUrl + Game.id, Game);
   }
 
-  deleteGame(id: number): Observable<any> {
-    return this.http.delete(this.gamesUrl + id);
+  deleteGame(id: number){
+    return this.http.delete(this.gamesUrl + id).subscribe();
   }
 
-  getSelectedGame(id: number) {
-    return this.getGames().pipe(map((data:Game[])=>{
-      data[id];
-    }));
+  getSelectedGame(id: number){
+    return this.http.get(this.gamesUrl + id);
   }
+
 
 
   //Service Functions not using api

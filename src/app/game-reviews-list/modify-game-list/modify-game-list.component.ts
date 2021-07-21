@@ -8,10 +8,13 @@ import { Validators } from '@angular/forms';
   templateUrl: './modify-game-list.component.html',
   styleUrls: ['./modify-game-list.component.css']
 })
-export class ModifyGameListComponent implements OnInit {
 
+// when this component in instantiated from the edit button we will use .setValue method to grab the game object data and input it in there to make it easier to edit the list item
+
+export class ModifyGameListComponent implements OnInit {
+  
   constructor(private formBuilder: FormBuilder,
-    private gameService: GamesService) { }
+    private gameService: GamesService) {}
     
     ngOnInit(): void {
       this.gameService.editingGame.subscribe(
@@ -25,6 +28,7 @@ export class ModifyGameListComponent implements OnInit {
           }
       })
     }
+    
     
     gameForm = this.formBuilder.group({
       id: [],
@@ -53,6 +57,10 @@ export class ModifyGameListComponent implements OnInit {
       return this.gameForm.get('featureImages') as FormArray;
     }
     
+    onModalClose(){
+      console.log('modal closed');
+      this.gameService.isEditing = false;
+    }
     addFeature(){
       this.featureImages.push(this.formBuilder.control('',[Validators.required, Validators.minLength(1)]));
       this.featureDescriptions.push(this.formBuilder.control('',[Validators.required, Validators.minLength(1)]));
@@ -60,6 +68,7 @@ export class ModifyGameListComponent implements OnInit {
       this.featureDescriptions.updateValueAndValidity();
       console.log(this.featureImages);
     }
+
     removeFeature(index:number){
       this.featureImages.removeAt(index);
       this.featureDescriptions.removeAt(index);
@@ -68,12 +77,10 @@ export class ModifyGameListComponent implements OnInit {
     onSubmit(){
       console.warn(this.gameForm.value);
       if(this.gameService.isEditing){
-        // this.gameService.submitEditedGame(this.gameForm.value);
+        this.gameService.submitEditedGame(this.gameForm.value).subscribe();
       }
       else{
-        this.gameService.createGame(this.gameForm.value).subscribe((info)=>{
-            console.log("info from the sub",info);
-        });
+        this.gameService.createGame(this.gameForm.value).subscribe();
       }
     }
     
@@ -82,27 +89,5 @@ export class ModifyGameListComponent implements OnInit {
       this.featureDescriptions.clear();
       this.featureImages.clear();
     }
-    // when this component in instantiated from the edit button we will use .setValue method to grab the game object data and input it in there to make it easier to edit the list item
   }
   
-  
-  
-  // without form array
-  // gameForm = this.formBuilder.group({
-    //   id: [0],
-    //   title: ['', Validators.required],
-    //   author: [''],
-    //   description: [''],
-    //   featureDescriptions: [''],
-    //   featureImages: [''],
-    //   genre: [''],
-    //   version: [''],
-//   rating: [''],
-//   publishDate: this.formBuilder.group({
-//     month: [''],
-//     day: [''],
-//     year: [''],
-//   }),
-//   videoSrc: [''],
-//   imgSrc: ['']
-// })

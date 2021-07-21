@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Game } from 'src/app/models/game.model';
 import { GamesService } from 'src/app/_services/games.service';
 
@@ -7,23 +8,25 @@ import { GamesService } from 'src/app/_services/games.service';
   templateUrl: './game-reviews-list-item.component.html',
   styleUrls: ['./game-reviews-list-item.component.css']
 })
-export class GameReviewsListItemComponent implements OnInit {
+export class GameReviewsListItemComponent implements OnInit, OnDestroy {
   constructor(private gameService:GamesService) { }
-  
-  // localGamesArr:Game[] = this.gameService.getGames();
-  
 
   localGamesArr:Game[] = []
-  ngOnInit(): void {
-    // this.gameService.gameListModified.subscribe(
-    //   () => this.localGamesArr = this.gameService.getGames()
-    // );
+
+  
+
+  ngOnInit(){
+    //update local array on edit game
     this.gameService.getGames().subscribe((games)=> {
-      console.log('This is what i get from the get games function that returns an observable: ', games);
       this.localGamesArr = games;
     });
+    this.gameService.gameListModified.subscribe(
+      (gamez)=>{this.localGamesArr=gamez;}    
+      );
   }
 
+  ngOnDestroy(){
+  }
 
   onEdit(game: Game){
     this.gameService.editGame(game);

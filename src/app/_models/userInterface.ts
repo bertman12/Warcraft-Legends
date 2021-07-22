@@ -8,5 +8,6 @@ export interface User{
     email ?: string ;
     age ?: number ;
     location ?: number ;
+    role ?: number; 
 }
 // admin-level: 0 = user, 1 = moderator, 2 = admin

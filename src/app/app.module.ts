@@ -21,9 +21,11 @@ import { AuthService } from './_services/auth.service';
 // Before you can use HttpClient, you need to import the Angular 
 //HttpClientModule in the appmodule then inject in component where it will be used 
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { GameCommentComponent } from './game-review/game-comment/game-comment.component';
+
 
 
 @NgModule({
@@ -39,6 +41,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     GameReviewsListComponent,
     GameReviewsListItemComponent,
     ExpandOptionsDirective,
+    GameCommentComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     FormsModule,
     MatIconModule,
     MatFormFieldModule,
+    ReactiveFormsModule
   ],
   providers: [
     GamesService,

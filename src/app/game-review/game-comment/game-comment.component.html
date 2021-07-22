@@ -1,0 +1,79 @@
+<div class="warcraft-border mb-3 ">
+    <div class="card text-white bg-secondary" style="max-width: 100%">
+        <div class="card-header" style="background-color: #1f1f1f;">
+            <div class="row">
+                <div class=" col-4">
+                    <button mat-icon-button type="button" 
+                    class="btn align-content-center">
+                      <mat-icon style="vertical-align: bottom;">account_circle</mat-icon> <span> Username </span>
+                    </button> 
+                </div>
+                <div class="col-4 text-center">
+                    <span style="color: #adafae;">SUBJECT</span>
+                </div>
+                <div class="col-4 text-end">
+                    <span style="color: #adafae;">September 12, 2020</span>
+                </div>
+            </div> 
+        </div>
+        <div class="card-body" style="background-color: #333;">
+            <div class="text-center mb-3 mt-3">
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error eos pariatur recusandae labore beatae? Ipsum possimus cupiditate labore itaque officiis. Eos, mollitia a ipsum id consequuntur dignissimos quis doloribus unde.</p>
+            </div>
+            <div class="row"> 
+                <div class="col-6 align-text-bottom">
+                    <button mat-icon-button type="button" 
+                    class="btn align-content-center">
+                      <span style="margin-right: 5px;">69 Likes</span><mat-icon class="likeButton" style="vertical-align: bottom; margin-right: 5px;">thumb_up</mat-icon>
+                    </button>
+                </div>
+                <div class="col-6 text-end">
+                    <input type="image" src="../../../assets/editButton.png" class="imageButton" id="saveForm">
+                    <input type="image" src="../../../assets/deleteButton.png" class="imageButton" id="saveForm">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Button trigger modal -->
+<div class="text-center mt-3 mb-3" (click)="onAddComment()">
+    <button type="button" class="btn addCommentButton" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <mat-icon style="vertical-align: bottom;">add_circle_outline</mat-icon> <span> Add Comment </span>
+    </button>
+</div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Comment</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="background-color: #333333;">
+        <!-- form -->
+        <!-- directive to connect our template for with ts form and directive to submit our template form -->
+        <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <!-- directive that connects our template controls with our ts controls-->
+                <label for="username">Username:</label>
+                <input type="text" id="username" formControlName="username" class="form-control" readonly>
+            </div>
+            <div class="form-group mt-3">
+                <!-- directive that connects our template controls with our ts controls-->
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" formControlName="subject" class="form-control">
+                <span *ngIf=" !commentForm.get('subject')?.valid && commentForm.get('subject')?.touched">This subject is invalid!</span>
+            </div>
+            <div class="form-group mt-3">
+                <!-- directive that connects our template controls with our ts controls-->
+                <label for="comment">Text:</label>
+                <input type="text" id="comment" formControlName="comment" class="form-control">
+                <span *ngIf=" !commentForm.get('comment')?.valid && commentForm.get('comment')?.touched">This text is invalid!</span>
+            </div>
+            <button class="btn btn-secondary mt-3" type="submit">Add</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>

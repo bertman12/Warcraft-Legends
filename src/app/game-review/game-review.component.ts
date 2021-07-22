@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GamesService } from '../_services/games.service';
 import { Game } from '../models/game.model';
+
 @Component({
   selector: 'app-game-review',
   templateUrl: './game-review.component.html',
   styleUrls: ['./game-review.component.css']
 })
+
 export class GameReviewComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, 
@@ -30,6 +32,8 @@ export class GameReviewComponent implements OnInit {
     console.log(this.route.snapshot.params['id']);
 
     this.game = this.gameService.getSelectedGame(this.route.snapshot.params['id']);
+
   }
 
 }
+

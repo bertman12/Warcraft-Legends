@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Game } from 'src/app/models/game.model';
 import { GamesService } from 'src/app/_services/games.service';
 
@@ -10,34 +11,47 @@ import { GamesService } from 'src/app/_services/games.service';
 })
 export class GameReviewsListItemComponent implements OnInit, OnDestroy {
   constructor(private gameService:GamesService) { }
-
-  localGamesArr:Game[] = []
-
+  
+  
+  localGamesArr:Game[] = [];
+  private destroy$ = new Subject(); //used for unsubscribing from observables in ng OnDestroy
+  
   ngOnInit(){
-    //update local array on edit game
-    this.gameService.getGames().subscribe((games)=> {
+    this.gameService.getGames()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe((games)=> {
       this.localGamesArr = games;
     });
-    this.gameService.gameListModified.subscribe(
-      (gamez)=>{this.localGamesArr=gamez;}    
-      );
-  }
-
-  ngOnDestroy(){
+    this.gameService.gameListModified
+    .pipe(takeUntil(this.destroy$))
+    .subscribe((games) => {this.localGamesArr = games;});
   }
 
   onEdit(game: Game){
     this.gameService.editGame(game);
   }
 
-  onDelete(game: Game){
+  // onDelete(game: Game){
+  //   confirm('Are you sure you want to delete game?');
+  //   this.gameService.deleteGame(game.id)
+  //   .pipe(takeUntil(this.destroy$))
+  //   .subscribe(()=>{
+  //     this.gameService.getGames()
+  //     .pipe(takeUntil(this.destroy$))
+  //     .subscribe((games)=>{
+  //      this.gameService.gameListModified.next(games);
+  //     })
+  //   })
+  // }
+  async onDelete(game: Game){
     confirm('Are you sure you want to delete game?');
-    this.gameService.deleteGame(game.id).subscribe(()=>{
-      this.gameService.getGames().subscribe((games)=>{
-       this.gameService.gameListModified.next(games);
-      })
-    })
-  
+    await this.gameService.deleteGame(game.id);
+    
+  }
+
+  ngOnDestroy(){
+  this.destroy$.next();
+  this.destroy$.complete();
   }
 
 }

@@ -1,7 +1,7 @@
 import { Injectable, Output, EventEmitter, OnInit } from '@angular/core';
 import { Game } from '../models/game.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, Subscription, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, map, retry } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
@@ -206,65 +206,19 @@ export class GamesService implements OnInit{
   submitEditedGame(Game:Game){
     this.isEditing = false;
     this.getGames().subscribe((games) => {
-
       this.gameListModified.next(games);
-    })
+    });
     return this.http.put(this.gamesUrl + Game.id, Game);
   }
 
-  deleteGame(id: number){
-    return this.http.delete(this.gamesUrl + id);
+  async deleteGame(id: number){
+    await this.http.delete(this.gamesUrl + id).toPromise();
+    this.getGames().subscribe((games) => {
+      this.gameListModified.next(games);
+    });
   }
 
   getSelectedGame(id: number){
     return this.http.get(this.gamesUrl + id);
   }
-
-
-
-  //Service Functions not using api
-
-  // getGames():Game[]{
-  //   return this.gameList.slice();
-  // }
-
-  // addGame(game:Game){
-  //   game.id = this.gameList.length;
-  //   game.videoSrc = "../../assets/Action 7-3-2021 3-09-01 PM.mp4";
-  //   game.imgSrc = "../../assets/Warcraft-III-generic-image-half-size.png";
-  //   console.log(game);
-  //   this.gameList.push(game);
-  //   this.gameListModified.emit();
-  // }
-
-  // deleteGame(game:Game){
-  //   this.gameList.forEach(
-  //     (obj, index) => {
-  //       if (obj.title === game.title){
-  //         this.gameList.splice(index, 1);
-  //       }
-  //     });
-  //     //when setting up api, always increment id do not reassign id
-  //   this.gameList.forEach(
-  //     (obj, index) => {
-  //       obj.id = index;
-  //     }
-  //   );
-  //   this.gameListModified.emit();
-  // }
-  
-  // editGame(game:Game){
-  //   this.isEditing = true;
-  //   this.editingGame.emit(game);
-
-  // }
-
-  // submitEditedGame(game:Game){
-  //   this.gameList[game.id] = game;
-  //   this.isEditing = false;
-  //   this.gameListModified.emit();
-  // }
-
-
-
 }

@@ -15,11 +15,11 @@ import { GamesService } from './_services/games.service';
 import { GameReviewsListComponent } from './game-reviews-list/game-reviews-list.component';
 import { GameReviewsListItemComponent } from './game-reviews-list/game-reviews-list-item/game-reviews-list-item.component';
 import { ExpandOptionsDirective } from './custom-directives/expand-options.directive';
-import { UserService } from './_services/user.service';
 
+import { UserService } from './_services/user.service';
+import { CommentService } from './_services/comment.service';
 import { AuthService } from './_services/auth.service';
-// Before you can use HttpClient, you need to import the Angular 
-//HttpClientModule in the appmodule then inject in component where it will be used 
+
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
@@ -56,7 +56,8 @@ import { GameCommentComponent } from './game-review/game-comment/game-comment.co
   providers: [
     GamesService,
     AuthService,
-    UserService
+    UserService,
+    CommentService
   ],
   bootstrap: [AppComponent]
 })

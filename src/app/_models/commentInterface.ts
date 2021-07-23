@@ -1,7 +1,7 @@
 export interface User{
     userID ?: number; 
     gameID ?: number; 
-    likes ?: string; 
+    likes ?: number; 
     commentText ?: string ;
     time ?: string ;
 }

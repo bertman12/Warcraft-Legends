@@ -12,16 +12,13 @@ import { takeUntil } from 'rxjs/operators';
 })
 
 // when this component in instantiated from the edit button we will use .setValue method to grab the game object data and input it in there to make it easier to edit the list item
-
 export class ModifyGameListComponent implements OnInit, OnDestroy {
   
   constructor(private formBuilder: FormBuilder,
               private gameService: GamesService){}
 
-  private destroy$ = new Subject(); //used for unsubscribing from observables in ng OnDestroy
-  private testSub!: Subscription;
   ngOnInit(): void {
-    this.testSub = this.gameService.editingGame.subscribe(
+    this.gameService.editingGame.subscribe(
       (game) => {
         this.gameForm.patchValue(game);
         this.featureDescriptions.clear();
@@ -30,9 +27,8 @@ export class ModifyGameListComponent implements OnInit, OnDestroy {
           this.featureDescriptions.push(this.formBuilder.control(game.featureDescriptions[x]));
           this.featureImages.push(this.formBuilder.control(game.featureImages[x]));
         }
-    }).add();
+    });
   }
-  
   
   gameForm = this.formBuilder.group({
     id: [],
@@ -63,6 +59,9 @@ export class ModifyGameListComponent implements OnInit, OnDestroy {
   
   onModalClose(){
     console.log('modal closed');
+    this.gameForm.reset();
+    this.featureDescriptions.clear();
+    this.featureImages.clear();
     this.gameService.isEditing = false;
   }
   
@@ -83,23 +82,17 @@ export class ModifyGameListComponent implements OnInit, OnDestroy {
     console.warn(this.gameForm.value);
     if(this.gameService.isEditing){
       this.gameService.submitEditedGame(this.gameForm.value)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(
+      .then(
         ()=>{
-        this.gameService.getGames().subscribe((games)=>{
+        this.gameService.getGames().then((games)=>{
           this.gameService.gameListModified.next(games);
         })},
-        (err) => {console.log(err)},
-        () => {console.log('http request completed')}
       );
     }
     else{
       this.gameService.createGame(this.gameForm.value)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(()=>{
-        this.gameService.getGames()
-        .pipe(takeUntil(this.destroy$))
-        .subscribe((games)=>{
+      .then(()=>{
+        this.gameService.getGames().then((games)=>{
           this.gameService.gameListModified.next(games);
         })
       });
@@ -113,9 +106,6 @@ export class ModifyGameListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    this.destroy$.next();
-    this.destroy$.complete();
-    console.log('The test sub', this.testSub);
   }
 }
   

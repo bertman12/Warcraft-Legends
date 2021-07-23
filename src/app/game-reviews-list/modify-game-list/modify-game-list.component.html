@@ -23,7 +23,6 @@
                   <hr>
                   <h5>Features</h5>
                   <div *ngFor="let feature of featureImages.controls; let index = index"class="game-features">
-                    
                     <div formArrayName="featureImages">
                       <div>
                         <label style="margin-right: 14px;">Image: <input type="text" [formControlName]="index" ></label>

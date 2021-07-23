@@ -16,12 +16,13 @@ export class GameReviewsListItemComponent implements OnInit, OnDestroy {
   localGamesArr:Game[] = [];
   private destroy$ = new Subject(); //used for unsubscribing from observables in ng OnDestroy
   
-  ngOnInit(){
-    this.gameService.getGames()
-    .pipe(takeUntil(this.destroy$))
-    .subscribe((games)=> {
-      this.localGamesArr = games;
-    });
+  async ngOnInit(){
+    await this.gameService.getGames().then(
+      (res) => {
+        this.localGamesArr = res;
+      }
+    );
+    
     this.gameService.gameListModified
     .pipe(takeUntil(this.destroy$))
     .subscribe((games) => {this.localGamesArr = games;});
@@ -31,18 +32,10 @@ export class GameReviewsListItemComponent implements OnInit, OnDestroy {
     this.gameService.editGame(game);
   }
 
-  // onDelete(game: Game){
-  //   confirm('Are you sure you want to delete game?');
-  //   this.gameService.deleteGame(game.id)
-  //   .pipe(takeUntil(this.destroy$))
-  //   .subscribe(()=>{
-  //     this.gameService.getGames()
-  //     .pipe(takeUntil(this.destroy$))
-  //     .subscribe((games)=>{
-  //      this.gameService.gameListModified.next(games);
-  //     })
-  //   })
-  // }
+  onNewGame(){
+    this.gameService.isEditing = false;
+  }
+  
   async onDelete(game: Game){
     confirm('Are you sure you want to delete game?');
     await this.gameService.deleteGame(game.id);

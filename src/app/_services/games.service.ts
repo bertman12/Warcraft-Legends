@@ -161,7 +161,7 @@ export class GamesService implements OnInit{
   private gamesUrl = 'api/gameListDB/';
 
   constructor(private http: HttpClient) { }
-  numberOfGames: number = 0
+  numberOfGames: number = 0;
   
   ngOnInit(){
   }
@@ -173,27 +173,23 @@ export class GamesService implements OnInit{
   }
 
   //works
-  getGames():Observable<Game[]> {
-    return this.http.get<Game[]>(this.gamesUrl).pipe(
-      retry(2),
-      catchError((error: HttpErrorResponse) => {
-        console.error(error);
-        return throwError(error);
-      })
-    );
+  getGames(){
+    return this.http.get<Game[]>(this.gamesUrl).toPromise();
   }
 
   //works
-  createGame(Game: Game) {
+  async createGame(Game: Game) {
     Game.videoSrc = "../../assets/Action 7-3-2021 3-09-01 PM.mp4";
     Game.imgSrc = "../../assets/Warcraft-III-generic-image-half-size.png";
+    this.getGames().then(
+      (games) => {
+        Game.id = games.length;
+      }
+    )
+    console.log(Game);
+    this.isEditing = false;
 
-    return this.http.post<Game>(this.gamesUrl, Game)
-    .pipe(
-      catchError((error: HttpErrorResponse) => {
-        console.error(error);
-        return throwError(error);
-      }));
+    return this.http.post<Game>(this.gamesUrl, Game).toPromise();
   }
 
   //works
@@ -203,17 +199,17 @@ export class GamesService implements OnInit{
   }
 
   //works
-  submitEditedGame(Game:Game){
+  async submitEditedGame(Game:Game){
     this.isEditing = false;
-    this.getGames().subscribe((games) => {
+    this.getGames().then((games) => {
       this.gameListModified.next(games);
     });
-    return this.http.put(this.gamesUrl + Game.id, Game);
+    await this.http.put(this.gamesUrl + Game.id, Game).toPromise();
   }
 
   async deleteGame(id: number){
     await this.http.delete(this.gamesUrl + id).toPromise();
-    this.getGames().subscribe((games) => {
+    this.getGames().then((games) => {
       this.gameListModified.next(games);
     });
   }

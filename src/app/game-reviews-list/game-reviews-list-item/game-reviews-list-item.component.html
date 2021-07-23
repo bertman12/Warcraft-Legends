@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-4 add-game-wrapper ">
             <div class="warcraft-border add-button">
-                <button class="btn btn-info font-effect-fire" data-bs-toggle="modal" data-bs-target="#gameEditModal">+</button>
+                <button class="btn btn-info font-effect-fire" data-bs-toggle="modal" data-bs-target="#gameEditModal" (click)="onNewGame()">+</button>
             </div>
         </div>
         <div class = "col-4" *ngFor="let game of localGamesArr">

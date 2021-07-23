@@ -29,7 +29,7 @@
         </ul>
         <!--------------------------------- Right Side Of Navbar -------------------------------->
         <!-- <ul *ngIf="currentUser; else showLoginRegister" class="navbar-nav ml-auto"> -->
-        <div *ngIf="!userExist; else showLoginRegister">
+        <div *ngIf="!currentUser; else showLoginRegister">
           <button mat-icon-button type="button" 
           class="btn navbar-btn navbar-right signInButton align-content-center"
           (click)="onSignIn()">

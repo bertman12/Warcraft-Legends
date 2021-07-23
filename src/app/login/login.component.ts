@@ -31,7 +31,10 @@ export class LoginComponent implements OnInit {
     await this.auth.login({email: this.userEmail, password: this.userPassword});
     this.ongetUser(this.userEmail);
     if ( !this.auth.authFlag ){
-        this.playAudio();
+        //this.playAudio();
+        setTimeout(()=>{
+          window.location.reload();
+        }, 100);
         this.router.navigate(['']),{relativeTo: this.router};  
       }
     else if ( this.auth.authFlag ){

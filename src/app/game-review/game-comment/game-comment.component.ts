@@ -10,14 +10,18 @@ import { FormGroup, FormControl, FormGroupDirective, Validators } from '@angular
 })
 export class GameCommentComponent implements OnInit {
 
-  currentUser !: User ; 
-  userSignedIn : boolean = false; 
-
+  currentUser : User = {} ; 
   commentForm !: FormGroup; 
 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+
+    this.userService.currentUser.subscribe((user: User) =>
+      {
+        this.currentUser = user; 
+      });
+
     //********** creating form  ***********/
     this.commentForm = new FormGroup({
       // controls
@@ -26,12 +30,7 @@ export class GameCommentComponent implements OnInit {
       'comment': new FormControl(null, Validators.required)
     });
 
-    // this.userService.userLoggedIn.subscribe( 
-    //   loggedInUser => {
-    //     this.userSignedIn = true; 
-    //     console.log(loggedInUser);
-    //     this.currentUser = loggedInUser; 
-    // })
+
 
   }
 
@@ -41,8 +40,12 @@ export class GameCommentComponent implements OnInit {
   }
 
   onAddComment(){
-    // @ts-ignore: Object is possibly 'null'.
-    console.log(this.userSignedIn); 
+
+    if(this.currentUser){
+      this.commentForm.patchValue({'username' : this.currentUser.username });
+    }
+    
   }
+
 
 }

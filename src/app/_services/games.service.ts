@@ -1,8 +1,6 @@
 import { Injectable, Output, EventEmitter, OnInit } from '@angular/core';
 import { Game } from '../models/game.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map, retry } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 
@@ -172,12 +170,10 @@ export class GamesService implements OnInit{
     console.log("What is the this.http", this.http);
   }
 
-  //works
   getGames(){
     return this.http.get<Game[]>(this.gamesUrl).toPromise();
   }
 
-  //works
   async createGame(Game: Game) {
     Game.videoSrc = "../../assets/Action 7-3-2021 3-09-01 PM.mp4";
     Game.imgSrc = "../../assets/Warcraft-III-generic-image-half-size.png";
@@ -192,13 +188,11 @@ export class GamesService implements OnInit{
     return this.http.post<Game>(this.gamesUrl, Game).toPromise();
   }
 
-  //works
   editGame(Game: Game){
     this.isEditing = true;
     this.editingGame.next(Game);
   }
 
-  //works
   async submitEditedGame(Game:Game){
     this.isEditing = false;
     this.getGames().then((games) => {

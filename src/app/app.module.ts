@@ -26,7 +26,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModifyGameListComponent } from './game-reviews-list/modify-game-list/modify-game-list.component';
 import { InMemoryGameService } from './_services/in-memory-game.service';
-import { InMemoryBackendConfigArgs } from 'angular-in-memory-web-api'
 
 @NgModule({
   declarations: [

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { Game } from 'src/app/models/game.model';
+import { Game } from 'src/app/_models/game.model';
 import { GamesService } from 'src/app/_services/games.service';
 
 @Component({

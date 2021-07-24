@@ -18,8 +18,4 @@ export class NavbarComponent implements OnInit {
   onSignIn(){
     this.router.navigate(['login']),{relativeTo: this.router};
   }
-
-  printHTTP(){
-    this.gameService.printer();
-  }
 }

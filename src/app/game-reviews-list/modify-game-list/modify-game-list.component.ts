@@ -1,9 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormArray } from '@angular/forms';
 import { GamesService } from 'src/app/_services/games.service';
 import { Validators } from '@angular/forms';
-import { Subject, Subscription } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-modify-game-list',
@@ -12,7 +10,7 @@ import { takeUntil } from 'rxjs/operators';
 })
 
 // when this component in instantiated from the edit button we will use .setValue method to grab the game object data and input it in there to make it easier to edit the list item
-export class ModifyGameListComponent implements OnInit, OnDestroy {
+export class ModifyGameListComponent implements OnInit {
   
   constructor(private formBuilder: FormBuilder,
               private gameService: GamesService){}
@@ -49,7 +47,6 @@ export class ModifyGameListComponent implements OnInit, OnDestroy {
     imgSrc: ['',Validators.required]
   })
   
-  //instantiating form array class properties
   get featureDescriptions(){
     return this.gameForm.get('featureDescriptions') as FormArray;
   }
@@ -58,7 +55,6 @@ export class ModifyGameListComponent implements OnInit, OnDestroy {
   }
   
   onModalClose(){
-    console.log('modal closed');
     this.gameForm.reset();
     this.featureDescriptions.clear();
     this.featureImages.clear();
@@ -70,7 +66,6 @@ export class ModifyGameListComponent implements OnInit, OnDestroy {
     this.featureDescriptions.push(this.formBuilder.control('',[Validators.required, Validators.minLength(1)]));
     this.featureImages.updateValueAndValidity();
     this.featureDescriptions.updateValueAndValidity();
-    console.log(this.featureImages);
   }
 
   removeFeature(index:number){
@@ -79,7 +74,6 @@ export class ModifyGameListComponent implements OnInit, OnDestroy {
   }
   
   onSubmit(){
-    console.warn(this.gameForm.value);
     if(this.gameService.isEditing){
       this.gameService.submitEditedGame(this.gameForm.value)
       .then(
@@ -105,7 +99,5 @@ export class ModifyGameListComponent implements OnInit, OnDestroy {
     this.featureImages.clear();
   }
 
-  ngOnDestroy(){
-  }
 }
   

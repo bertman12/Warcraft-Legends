@@ -15,6 +15,8 @@ import { GamesService } from './_services/games.service';
 import { GameReviewsListComponent } from './game-reviews-list/game-reviews-list.component';
 import { GameReviewsListItemComponent } from './game-reviews-list/game-reviews-list-item/game-reviews-list-item.component';
 
+import { UserService } from './_services/user.service';
+
 import { AuthService } from './_services/auth.service';
 // Before you can use HttpClient, you need to import the Angular 
 //HttpClientModule in the appmodule then inject in component where it will be used 
@@ -54,7 +56,8 @@ import { InMemoryGameService } from './_services/in-memory-game.service';
   ],
   providers: [
     GamesService,
-    AuthService
+    AuthService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

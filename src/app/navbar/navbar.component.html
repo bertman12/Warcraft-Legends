@@ -28,20 +28,29 @@
         </ul>
         <!--------------------------------- Right Side Of Navbar -------------------------------->
         <!-- <ul *ngIf="currentUser; else showLoginRegister" class="navbar-nav ml-auto"> -->
+        <div *ngIf="!userExist; else showLoginRegister">
           <button mat-icon-button type="button" 
           class="btn navbar-btn navbar-right signInButton align-content-center"
           (click)="onSignIn()">
             <mat-icon class="iconUser">account_circle</mat-icon> <span>Sign In</span>
           </button>
+        </div>
         <!-- Authentication Links -->
-        <!-- <ng-template #showLoginRegister>
-          
-        </ng-template> -->
-          <!-- <div class="userSignedIn">
-            <mat-icon class="iconUser" aria-hidden="false" aria-label="Example home icon">account_circle</mat-icon> 
-            <span>User Name</span>
-          </div> -->
-
+        <ng-template #showLoginRegister>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <mat-icon class="iconUser" aria-hidden="false" aria-label="Example home icon">account_circle</mat-icon> 
+                <span>{{currentUser.name}}</span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item dropdownMenu " 
+                  (click)=onLogOut() 
+                  routerLink="" routerLinkActive="active">
+                    Logout</a>
+                </li>
+              </ul>
+            </div>
+        </ng-template>
     </div>
   </nav>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { getMatIconFailedToSanitizeUrlError } from '@angular/material/icon';
 import { Router } from '@angular/router';
+import { GamesService } from '../_services/games.service';
 import { UserService } from '../_services/user.service';
 import { User } from '../_models/userInterface';
 import { AuthService } from '../_services/auth.service';

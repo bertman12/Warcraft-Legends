@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Game } from '../models/game.model';
+import { ActivatedRoute } from '@angular/router';
+import { Game } from '../_models/game.model';
 import { GamesService } from '../_services/games.service';
 
 @Component({
@@ -8,10 +9,14 @@ import { GamesService } from '../_services/games.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private gameService: GamesService) { }
-  localGameArr: Game[] = this.gameService.getGames();
+  constructor(private gameService: GamesService,
+              private route: ActivatedRoute) { }
+
+  // localGameArr: Game[] = this.gameService.getGames();
+  localGameArr: Game[] = [];
 
   ngOnInit(): void {
+    this.gameService.getGames().then((games)=> {this.localGameArr = games;});
   }
 
   staggerMedia(index: number):string {

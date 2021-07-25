@@ -1,6 +1,5 @@
 import {  Component, Input, OnInit } from '@angular/core';
-import { Game } from '../models/game.model';
-import { GamesService } from '../_services/games.service';
+import { Game } from '../_models/game.model';
 
 @Component({
   selector: 'app-media-feature',
@@ -9,13 +8,13 @@ import { GamesService } from '../_services/games.service';
 })
 export class MediaFeatureComponent implements OnInit {
 
-  constructor(private gameService: GamesService) {}
+  constructor() {}
   @Input() game: Game = 
   {
   id: 0,  
-  title: "Uther Party", 
+  title: "Add A Game", 
   author: "guy",
-  description: "classic warcraft 3 game",
+  description: "NO GAME DATA SHOWED",
   featureDescriptions: [''],
   featureImages: [''],
   genre: 'Mini Games',

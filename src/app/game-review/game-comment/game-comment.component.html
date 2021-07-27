@@ -72,7 +72,7 @@
             <div class="form-group mt-3">
                 <!-- directive that connects our template controls with our ts controls-->
                 <label for="comment">Text:</label>
-                <input type="text" id="comment" formControlName="comment" class="form-control">
+                <textarea type="text" id="comment" formControlName="comment" class="form-control commnettextArea" rows="5" columns="40"></textarea>
                 <span class="warningmes" *ngIf=" !commentForm.get('comment')?.valid && commentForm.get('comment')?.touched">This text is invalid!</span>
             </div>
             <button class="btn btn-secondary mt-3" type="submit">Add</button>

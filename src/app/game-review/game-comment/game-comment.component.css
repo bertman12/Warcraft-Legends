@@ -18,3 +18,7 @@ input.ng-invalid.ng-touched {
 .warningmes {
     color: red; 
 }
+
+.commenttextArea{
+    resize: none;
+}

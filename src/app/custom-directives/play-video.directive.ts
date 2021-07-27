@@ -1,13 +1,10 @@
-import { Directive, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
   selector: '[appPlayVideo]'
 })
 export class PlayVideoDirective {
-/**
- * This directive should listen to the mouse-enter event and access the video DOM element .play()
- * 
- */
+
   constructor(private elRef: ElementRef) { }
 
   @HostListener('mouseenter') mouseover() {

@@ -1,3 +1,21 @@
+.add-game-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.add-button{
+    transition: transform 0.25s;
+}
+.add-button:hover{
+    transform: scale(1.1);
+}
+.add-game-wrapper button{
+    width: 3ch;
+    height: 3ch;
+    font-size: 5ch;
+    background-color: #00000033;
+    
+}
 .item-wrapper{
     position: relative;
     display:flex;

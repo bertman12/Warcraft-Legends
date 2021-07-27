@@ -14,7 +14,6 @@ import { RegisterComponent } from './register/register.component';
 import { GamesService } from './_services/games.service';
 import { GameReviewsListComponent } from './game-reviews-list/game-reviews-list.component';
 import { GameReviewsListItemComponent } from './game-reviews-list/game-reviews-list-item/game-reviews-list-item.component';
-import { ExpandOptionsDirective } from './custom-directives/expand-options.directive';
 
 import { UserService } from './_services/user.service';
 import { CommentService } from './_services/comment.service';
@@ -25,8 +24,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { GameCommentComponent } from './game-review/game-comment/game-comment.component';
-
-
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api'
+import { ModifyGameListComponent } from './game-reviews-list/modify-game-list/modify-game-list.component';
+import { InMemoryGameService } from './_services/in-memory-game.service';
 
 @NgModule({
   declarations: [
@@ -40,13 +40,14 @@ import { GameCommentComponent } from './game-review/game-comment/game-comment.co
     RegisterComponent,
     GameReviewsListComponent,
     GameReviewsListItemComponent,
-    ExpandOptionsDirective,
     GameCommentComponent,
+    ModifyGameListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     [HttpClientModule],
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryGameService,{delay:0}), //configuartion options for angular in memory web api module
     NoopAnimationsModule,
     FormsModule,
     MatIconModule,

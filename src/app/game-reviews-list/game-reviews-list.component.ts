@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { GamesService } from '../_services/games.service';
-import { Game } from '../models/game.model';
 
 @Component({
   selector: 'app-game-reviews-list',
@@ -8,12 +6,9 @@ import { Game } from '../models/game.model';
   styleUrls: ['./game-reviews-list.component.css']
 })
 export class GameReviewsListComponent implements OnInit {
-  onHover: boolean = false;
 
-  constructor(private gameService: GamesService) { }
-  localGamesArr:Game[] =  this.gameService.getGames();
+  constructor() { }
 
   ngOnInit(): void {
   }
-
 }

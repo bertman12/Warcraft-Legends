@@ -1,0 +1,78 @@
+<!-- Modal -->
+  <div (hidden.bs.modal)="onModalClose()" class="modal fade" id="gameEditModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog d-flex justify-content-center">
+      <div class="modal-content  form-modal">
+        <div class="modal-header">
+          <h4 class="modal-title" id="staticBackdropLabel">Enter Game Info</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+
+              <form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
+                <div class="col-12 form-inputs-format" style="margin-bottom: 5px;">
+                  <label>Title: <input type="text" formControlName="title"></label>
+                  <label>Author: <input type="text" formControlName="author"></label>
+                </div>
+                <div class="col-5">
+                  <label>Description:  
+                  <textarea class="description-area" type="text" rows="6" cols="50"
+                  formControlName="description" ></textarea></label>
+                </div>
+                  <hr>
+                  <h5>Features</h5>
+                  <div *ngFor="let feature of featureImages.controls; let index = index"class="game-features">
+                    <div formArrayName="featureImages">
+                      <div>
+                        <label style="margin-right: 14px;">Image: <input type="text" [formControlName]="index" ></label>
+                        <div>
+                          <button class="btn btn-danger" (click)="removeFeature(index)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                              <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div formArrayName="featureDescriptions">
+                      <div>
+                        <label>Description:<textarea class="description-area" type="text" rows="3" cols="25"
+                        [formControlName]="index"></textarea></label>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="btn btn-warning" type="button" (click)="addFeature()">Add a Feature image and description.</button>
+                  <hr>
+                  <div class="col-12 d-flex form-inputs-format">
+                    <label>Genre: <input type="text" formControlName="genre" ></label>
+                    <label>Version: <input type="text" formControlName="version" ></label>
+                  </div>
+                  <div formGroupName="publishDate">
+                    <div class="col-12 form-inputs-format">
+                      <label>Month: <input type="text" formControlName="month"></label>
+                      <label>Day: <input type="number" formControlName="day"></label>
+                    </div>
+                    <div class="form-inputs-format">
+                      <label class="d-flex flex-column">Year: <input type="number" formControlName="year" ></label>
+                    </div>
+                  </div>
+                  <div class="col-12 form-inputs-format">
+                    <label style="margin-right: 14px;">Video: <input type="text" formControlName="videoSrc" ></label>
+                    <label>Preview Image: <input type="text" formControlName="imgSrc"></label>
+                  </div>
+                  <br>
+                  <button style="margin-right: 10px;" class="btn btn-primary" type="submit" [disabled]="!gameForm.valid" data-bs-dismiss="modal">Submit</button>
+                  <button type="button" class="btn btn-danger" (click)="onClearForm()">Clear</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

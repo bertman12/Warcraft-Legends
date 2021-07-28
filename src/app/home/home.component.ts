@@ -12,7 +12,6 @@ export class HomeComponent implements OnInit {
   constructor(private gameService: GamesService,
               private route: ActivatedRoute) { }
 
-  // localGameArr: Game[] = this.gameService.getGames();
   localGameArr: Game[] = [];
 
   ngOnInit(): void {

@@ -2,6 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { Game } from '../_models/game.model';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
+import { API_URL } from 'src/environments/environment';
 
 
 @Injectable({

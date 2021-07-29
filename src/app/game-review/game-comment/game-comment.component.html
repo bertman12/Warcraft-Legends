@@ -1,40 +1,43 @@
-<div class="warcraft-border mb-3 ">
-    <div class="card text-white bg-secondary" style="max-width: 100%">
-        <div class="card-header" style="background-color: #1f1f1f;">
-            <div class="row">
-                <div class=" col-4">
-                    <button mat-icon-button type="button" 
-                    class="btn align-content-center">
-                      <mat-icon style="vertical-align: bottom;">account_circle</mat-icon> <span> Username </span>
-                    </button> 
+<h4 class="text-center"> Comments </h4>
+<div *ngFor=" let comment of comments" >
+        <div class="warcraft-border mb-3 ">
+            <div class="card text-white bg-secondary" style="max-width: 100%">
+                <div class="card-header" style="background-color: #1f1f1f;">
+                    <div class="row">
+                        <div class=" col-4">
+                            <button mat-icon-button type="button" 
+                            class="btn align-content-center">
+                            <mat-icon style="vertical-align: bottom;">account_circle</mat-icon> <span> {{comment.username}} </span>
+                            </button> 
+                        </div>
+                        <div class="col-4 text-center">
+                            <span style="color: #adafae;">{{comment.subject}}</span>
+                        </div>
+                        <div class="col-4 text-end">
+                            <span style="color: #adafae;">{{comment.time}}</span>
+                        </div>
+                    </div> 
                 </div>
-                <div class="col-4 text-center">
-                    <span style="color: #adafae;">SUBJECT</span>
-                </div>
-                <div class="col-4 text-end">
-                    <span style="color: #adafae;">September 12, 2020</span>
-                </div>
-            </div> 
-        </div>
-        <div class="card-body" style="background-color: #333;">
-            <div class="text-center mb-3 mt-3">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error eos pariatur recusandae labore beatae? Ipsum possimus cupiditate labore itaque officiis. Eos, mollitia a ipsum id consequuntur dignissimos quis doloribus unde.</p>
-            </div>
-            <div class="row"> 
-                <div class="col-6 align-text-bottom">
-                    <button mat-icon-button type="button" 
-                    class="btn align-content-center">
-                      <span style="margin-right: 5px;">69 Likes</span><mat-icon class="likeButton" style="vertical-align: bottom; margin-right: 5px;">thumb_up</mat-icon>
-                    </button>
-                </div>
-                <div class="col-6 text-end">
-                    <input type="image" src="../../../assets/editButton.png" class="imageButton" id="saveForm">
-                    <input type="image" src="../../../assets/deleteButton.png" class="imageButton" id="saveForm">
+                <div class="card-body" style="background-color: #333;">
+                    <div class="text-center mb-3 mt-3">
+                        <p>{{comment.commentText}}</p>
+                    </div>
+                    <div class="row"> 
+                        <div class="col-6 align-text-bottom">
+                            <button mat-icon-button type="button" 
+                            class="btn align-content-center">
+                            <span style="margin-right: 5px;">{{comment.likes}} Likes</span><mat-icon class="likeButton" style="vertical-align: bottom; margin-right: 5px;">thumb_up</mat-icon>
+                            </button>
+                        </div>
+                            <div *ngIf=" currentUser && (comment.username == currentUser.username) " class="col-6 text-end">
+                                <!-- <input type="image" src="../../../assets/editButton.png" class="imageButton" id="saveForm"> Edit button-->
+                                <input type="image" src="../../../assets/deleteButton.png" class="imageButton" id="saveForm">
+                            </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 <!-- Button trigger modal -->
 <div class="text-center mt-3 mb-3" (click)="onAddComment()">
     <button type="button" class="btn addCommentButton" data-bs-toggle="modal" data-bs-target="#exampleModal">

@@ -2,33 +2,33 @@ import { Injectable } from '@angular/core';
 import { API_URL } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Comment } from '../_models/commentInterface';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentService {
 
-  jwtKey: string = 'user_jwt';
+  private userjwt: string = this.auth.jwtKey;
 
-  constructor( private http: HttpClient) { }
+  constructor( private http: HttpClient, private auth: AuthService) { }
 
   getComments(id: number): Promise<any>{
-    const jwt = localStorage.getItem(this.jwtKey);
-    return this.http.get(`${API_URL}/comments/${id}`, { headers:{ Authorization: `Bearer${jwt}`}}).toPromise(); 
+    return this.http.get(`${API_URL}/comments/${id}`).toPromise(); 
   }
 
-  addComment(body: {comment: Comment}): Promise<any>{
-    const jwt = localStorage.getItem(this.jwtKey);
+  addComment(body:{}): Promise<any>{
+    const jwt = localStorage.getItem(this.userjwt);
+    // put space in betweeen bearer and jwt 
     const httpOptions = {
-      headers: { Authorization: `Bearer${jwt}`}
+      headers: { Authorization: `Bearer ${jwt}`}
     };
-
-    return this.http.post(`${API_URL}/comments`,body , httpOptions).toPromise(); 
+    return this.http.post(`${API_URL}/comment`,body , httpOptions).toPromise(); 
   }
 
   deleteComment( id: number): Promise<any>{
-    const jwt = localStorage.getItem(this.jwtKey);
-    return this.http.delete(`${API_URL}/comments/${id}`, {headers:{ Authorization: `Bearer${jwt}`}}).toPromise(); 
+    const jwt = localStorage.getItem(this.userjwt);
+    return this.http.delete(`${API_URL}/comment/${id}`, {headers:{ Authorization: `Bearer ${jwt}`}}).toPromise(); 
   }
 
 }

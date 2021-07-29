@@ -3,9 +3,7 @@ import { User } from '../_models/userInterface';
 import { HttpClient } from '@angular/common/http';
 import { API_URL } from '../../environments/environment'; 
 import { AuthService } from '../_services/auth.service';
-import { Output, EventEmitter } from '@angular/core';
 import { BehaviorSubject, Observable} from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

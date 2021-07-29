@@ -47,7 +47,7 @@ import { InMemoryGameService } from './_services/in-memory-game.service';
     BrowserModule,
     AppRoutingModule,
     [HttpClientModule],
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryGameService,{delay:0}), //configuartion options for angular in memory web api module
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryGameService,{passThruUnknownUrl: true}), //configuartion options for angular in memory web api module
     NoopAnimationsModule,
     FormsModule,
     MatIconModule,

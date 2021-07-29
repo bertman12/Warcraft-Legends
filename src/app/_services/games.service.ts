@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { API_URL } from '../../environments/environment'; 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -20,35 +19,29 @@ export class GamesService implements OnInit{
   ;
 
   constructor(private http: HttpClient) { }
-  numberOfGames: number = 0;
   
   ngOnInit(){
   }
 
-  getGames(){
-    return this.http.get<Game[]>(this.gamesUrl).toPromise();
+  async getGames(){
+    console.log('getGames() has been called!');
+    await this.http.get<Game[]>(`${API_URL}/game-reviews-list`).toPromise().then(
+      (games) => {
+        this.gameListModified.next(games);
+      }
+    );
   }
 
-  // async getGames(){
-  //   await this.http.get<Game[]>(this.gamesUrl)
-    // .toPromise()
-    // .then((games)=>{
-  //   this.gameService.gameListModified.next(games);
-  // };
-  // }
-
-  async createGame(Game: Game) {
+  createGame(Game: Game) {
     Game.videoSrc = "../../assets/Action 7-3-2021 3-09-01 PM.mp4";
     Game.imgSrc = "../../assets/Warcraft-III-generic-image-half-size.png";
 
-    this.getGames().then(
-      (games) => {
-        Game.id = games.length;
-      }
-    )
+    let tempGame;
+    //we need to remove the feature descriptions and images array
     this.isEditing = false;
-
-    await this.http.post<Game>(`${API_URL}/game-reviews-list/create`, Game, {headers: {"Authorization": this.temp_jwt, "Content-Type": "application/json"}}).toPromise();
+    return this.http.post<Game>(`${API_URL}/game-reviews-list/create`, {body: Game}, {headers: {"Authorization": `Bearer ${this.temp_jwt}`, "Content-Type": "application/json"}})
+    .toPromise().then((res) => {this.getGames();});
+    
   }
 
   editGame(Game: Game){
@@ -56,22 +49,22 @@ export class GamesService implements OnInit{
     this.editingGame.next(Game);
   }
 
-  async submitEditedGame(Game:Game){
+  submitEditedGame(Game:Game){
     this.isEditing = false;
-    this.getGames().then((games) => {
-      this.gameListModified.next(games);
-    });
-    await this.http.put(this.gamesUrl + Game.id, Game).toPromise();
+    
+    this.http.put(this.gamesUrl + Game.id, Game).toPromise().then(
+      (rex) => {
+      this.getGames();});
   }
 
-  async deleteGame(id: number){
-    await this.http.delete(this.gamesUrl + id).toPromise();
-    this.getGames().then((games) => {
-      this.gameListModified.next(games);
-    });
+  //in the backend i can have the delete request send back a resposne with the new modified gamelist. to reduce the number of outgoing requests
+  deleteGame(id: number){
+    console.log('HERE IS THE ID',id);
+    this.http.delete(`${API_URL}/game-reviews-list/delete/${id}`, {headers: {"Authorization": `Bearer ${this.temp_jwt}`, "Content-Type": "application/json"}}).toPromise();
+    this.getGames();
   }
 
-  getSelectedGame(id: number){
-    return this.http.get(this.gamesUrl + id);
+  async getSelectedGame(id: number){
+    await this.http.get(`${API_URL}/game-reviews-list/${id}`).toPromise();
   }
 }

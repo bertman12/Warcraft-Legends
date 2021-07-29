@@ -14,8 +14,9 @@ export class GameReviewComponent implements OnInit {
   game:any = {};
     
   ngOnInit(): void {
-    this.gameService.getSelectedGame(this.route.snapshot.params['id']).subscribe((selectedGame)=>{
+    this.gameService.getSelectedGame(this.route.snapshot.params['id']).then((selectedGame)=>{
       this.game = selectedGame;
+      console.log('THIS IS THE SELECTED GAME', selectedGame);
     });
   }
 }

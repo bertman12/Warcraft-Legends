@@ -75,20 +75,13 @@ export class ModifyGameListComponent implements OnInit {
   
   onSubmit(){
     if(this.gameService.isEditing){
-      this.gameService.submitEditedGame(this.gameForm.value)
-      .then(
-        ()=>{
-        this.gameService.getGames().then((games)=>{
-          this.gameService.gameListModified.next(games);
-        })},
-      );
+      this.gameService.submitEditedGame(this.gameForm.value);
+      
     }
     else{
       this.gameService.createGame(this.gameForm.value)
       .then(()=>{
-        this.gameService.getGames().then((games)=>{
-          this.gameService.gameListModified.next(games);
-        })
+        this.gameService.getGames();
       });
     }
   }

@@ -13,13 +13,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./game-comment.component.css']
 })
 export class GameCommentComponent implements OnInit {
-  // @Input() gameId !: number ;
 
   gameId ?: number; 
   currentUser : User = {} ; 
   commentForm !: FormGroup; 
   newComment !: Comment; 
   comments: Comment[] = []; 
+  editCommentId ?: number; 
 
   constructor(private userService: UserService, private commServ: CommentService,private route: ActivatedRoute) { }
 
@@ -45,10 +45,9 @@ export class GameCommentComponent implements OnInit {
     //******* when a game is picked show the comments already in the database ***/
     this.onGetComments(); 
 
-   
-
   }
 
+  // submitting new comment and 
   async onSubmit(){
     // hard coded likes to 0 since its a new commnet 
     // structuring new comment 
@@ -61,7 +60,7 @@ export class GameCommentComponent implements OnInit {
       subject:this.commentForm.value.subject
     }
     // sending new comment to service to post 
-    this.commServ.addComment(newComment);
+    await this.commServ.addComment(newComment);
     this.onGetComments(); 
 
     // resetting form and getting username 
@@ -69,7 +68,44 @@ export class GameCommentComponent implements OnInit {
     if(this.currentUser){
       this.commentForm.patchValue({'username' : this.currentUser.username });
     }
+
   }
+
+  // when user click on edit button pops up modal and get id of comment and user
+  onEditComment(id: number){
+    if(this.currentUser){
+      this.commentForm.patchValue({'username' : this.currentUser.username });
+      // search through the array for the content 
+      for( let i =0; i < this.comments.length-1 ; i++){
+        if( this.comments[i].gameID = id ){
+          this.commentForm.patchValue({'subject': this.comments[i].subject});
+          this.commentForm.patchValue({'comment': this.comments[i].commentText});
+        }
+      }
+    }
+    this.editCommentId = id; 
+  }
+
+  // when user submits the edit we send info editted and the comment id 
+  async onEdit(){
+    let editComment = {
+      commentText: this.commentForm.value.comment,
+      subject: this.commentForm.value.subject 
+    }
+
+   await this.commServ.editComment( editComment, this.editCommentId! );
+    this.onGetComments();
+    this.editCommentId != null; 
+
+    // resetting form and getting username 
+    this.commentForm.reset(); 
+    if(this.currentUser){
+      this.commentForm.patchValue({'username' : this.currentUser.username });
+    }
+
+
+  }
+
 
   // when user click on add comment button initializes the username input if user exists  
   onAddComment(){
@@ -83,8 +119,18 @@ export class GameCommentComponent implements OnInit {
      await this.commServ.getComments(this.gameId!).then((res) => 
      {
         this.comments = res; 
-        console.log(res)
      }); 
+  }
+
+  onDeleteComments(id: number){
+    this.commServ.deleteComment(id);
+    setTimeout(()=>{
+      window.location.reload();
+    }, 100);
+  }
+
+  onLike(count: number, id: number){
+    
   }
 
 

@@ -27,6 +27,7 @@ import { GameCommentComponent } from './game-review/game-comment/game-comment.co
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api'
 import { ModifyGameListComponent } from './game-reviews-list/modify-game-list/modify-game-list.component';
 import { InMemoryGameService } from './_services/in-memory-game.service';
+import { FooterComponent } from './footer/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { InMemoryGameService } from './_services/in-memory-game.service';
     GameReviewsListItemComponent,
     GameCommentComponent,
     ModifyGameListComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

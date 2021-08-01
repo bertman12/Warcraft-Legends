@@ -26,6 +26,13 @@ export class CommentService {
     return this.http.post(`${API_URL}/comment`,body , httpOptions).toPromise(); 
   }
 
+  editComment(body:{}, id: number): Promise<any>{
+    const jwt = localStorage.getItem(this.userjwt);
+    const httpOptions = { headers: { Authorization: `Bearer ${jwt}`}};
+
+    return this.http.post(`${API_URL}/comment/${id}`,body , httpOptions).toPromise();
+  }
+
   deleteComment( id: number): Promise<any>{
     const jwt = localStorage.getItem(this.userjwt);
     return this.http.delete(`${API_URL}/comment/${id}`, {headers:{ Authorization: `Bearer ${jwt}`}}).toPromise(); 

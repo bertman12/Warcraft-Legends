@@ -24,11 +24,11 @@
                     </div>
                     <div class="row"> 
                         <div class="col-6 align-text-bottom">
-                            <button mat-icon-button type="button" class="btn align-content-center" (click)="onLike(comment.likes!, comment.commentID!)">
+                            <button mat-icon-button type="button" class="btn align-content-center" (click)="onLike(comment.commentID!)">
                             <span style="margin-right: 5px;">{{comment.likes}} Likes</span><mat-icon class="likeButton" style="vertical-align: bottom; margin-right: 5px;">thumb_up</mat-icon>
                             </button>
                         </div>
-                            <div *ngIf=" currentUser && (comment.username == currentUser.username) " class="col-6 text-end">
+                            <div *ngIf=" currentUser && ((comment.username == currentUser.username) || (currentUser.role == 2 )) " class="col-6 text-end">
                                 <input type="image" src="../../../assets/editButton.png" class="imageButton" id="editForm" data-bs-toggle="modal" data-bs-target="#exampleModal2" (click)="onEditComment(comment.commentID!)">
                                 <input type="image" src="../../../assets/deleteButton.png" class="imageButton" id="saveForm" (click)="onDeleteComments(comment.commentID!)">
                             </div>
@@ -38,7 +38,7 @@
         </div>
     </div>
 
-<!----------------------------------------------- Modal for Editting comments ----------------------------------------------->
+<!----------------------------------------------- Modal for Editing comments ----------------------------------------------->
 <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -71,7 +71,7 @@
                 <textarea type="text" id="comment" formControlName="comment" class="form-control commnettextArea" rows="5" columns="40"></textarea>
                 <span class="warningmes" *ngIf=" !commentForm.get('comment')?.valid && commentForm.get('comment')?.touched">This text is invalid!</span>
             </div>
-            <button class="btn btn-secondary mt-3" type="submit" data-bs-dismiss="modal">Add</button>
+            <button class="btn btn-secondary mt-3" type="submit" data-bs-dismiss="modal">Confirm</button>
         </form>
         </div>
       </div>

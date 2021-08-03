@@ -38,4 +38,11 @@ export class CommentService {
     return this.http.delete(`${API_URL}/comment/${id}`, {headers:{ Authorization: `Bearer ${jwt}`}}).toPromise(); 
   }
 
+  editLikes(id:number, body:{}): Promise<any> {
+    const jwt = localStorage.getItem(this.userjwt);
+    const httpOptions = { headers: { Authorization: `Bearer ${jwt}`}};
+
+    return this.http.post(`${API_URL}/likes/${id}`,body , httpOptions).toPromise();
+  }
+
 }

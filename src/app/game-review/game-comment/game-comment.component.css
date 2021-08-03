@@ -22,3 +22,7 @@ input.ng-invalid.ng-touched {
 .commenttextArea{
     resize: none;
 }
+
+.imageButton:hover{
+    filter: brightness(150%);
+}

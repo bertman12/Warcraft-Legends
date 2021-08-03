@@ -24,9 +24,6 @@ export class GameCommentComponent implements OnInit {
   constructor(private userService: UserService, private commServ: CommentService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-
-    console.log(this.currentUser)
-
     this.userService.currentUser.subscribe((user: User) =>
       {
         this.currentUser = user; 
@@ -44,7 +41,6 @@ export class GameCommentComponent implements OnInit {
 
     //******* when a game is picked show the comments already in the database ***/
     this.onGetComments(); 
-
   }
 
   // submitting new comment and 
@@ -76,8 +72,8 @@ export class GameCommentComponent implements OnInit {
     if(this.currentUser){
       this.commentForm.patchValue({'username' : this.currentUser.username });
       // search through the array for the content 
-      for( let i =0; i < this.comments.length-1 ; i++){
-        if( this.comments[i].gameID = id ){
+      for( let i =0; i < this.comments.length ; i++){
+        if( this.comments[i].commentID == id ){
           this.commentForm.patchValue({'subject': this.comments[i].subject});
           this.commentForm.patchValue({'comment': this.comments[i].commentText});
         }
@@ -102,8 +98,6 @@ export class GameCommentComponent implements OnInit {
     if(this.currentUser){
       this.commentForm.patchValue({'username' : this.currentUser.username });
     }
-
-
   }
 
 
@@ -114,23 +108,32 @@ export class GameCommentComponent implements OnInit {
     }
   }
 
+  // when function called all comments (w/ corresponding game id )are fetched
   async onGetComments(){
     //Type 'number| undefined' is not assignable to type 'number' solution 
      await this.commServ.getComments(this.gameId!).then((res) => 
      {
-        this.comments = res; 
+        this.comments = res;
      }); 
   }
 
-  onDeleteComments(id: number){
-    this.commServ.deleteComment(id);
-    setTimeout(()=>{
-      window.location.reload();
-    }, 100);
+  // deleting comments depending on comments id 
+  async onDeleteComments(id: number){
+   await this.commServ.deleteComment(id);
+   this.onGetComments(); 
   }
 
-  onLike(count: number, id: number){
-    
+  // updating likes to plus 1 (maybe keep track of who has liked the comments)
+  async onLike( id: number){
+    let count = 0; 
+
+    for( let i =0; i < this.comments.length; i++){
+      if( this.comments[i].commentID === id ){
+        count = this.comments[i].likes! + 1 ; 
+      }
+    }
+    await this.commServ.editLikes(id, {'likes': count});
+    this.onGetComments(); 
   }
 
 

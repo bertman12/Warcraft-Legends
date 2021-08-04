@@ -5,7 +5,7 @@
         </div>
         <div class="col d-flex justify-content-center">
             <div class="video-wrapper warcraft-border">
-                <app-media-feature [game] = "game" [showTitle] = "false"></app-media-feature>
+                <app-media-feature [game] = "game" [showTitle] = "false" [showImage]="false"></app-media-feature>
             </div>
         </div>
     </div>
@@ -13,28 +13,28 @@
         <div class="col-12 game-description-wrapper">
             <p class="game-description">
                 {{ game?.description ?? '' }}                       <br><br>
-                Date created: {{ game?.publishDate?.year ?? ''}}    <br>
+                Date created: {{ game?.publishDate?.month ?? ''}} {{ game?.publishDate?.day ?? ''}} {{ game?.publishDate?.year ?? ''}}    <br>
                 Author: {{ game?.author ?? ''}}                     <br>
                 Genre: {{ game?.genre ?? ''}}                       <br>
                 Version: {{ game?.version ?? ''}}                   <br>
                 Rating: {{ game?.rating ?? ''}}/5</p>
         </div>
         <hr>
-        <!-- <div class="col-10 gameplay-features"> -->
-            <!-- <h3 class="suez-font d-flex justify-content-center">GAMEPLAY FEATURES</h3> -->
+        <div class="col-10 gameplay-features">
+            <h3 class="suez-font d-flex justify-content-center">GAMEPLAY FEATURES</h3>
                 <!-- FEATURE ITEM DIV BELONGS IN ITS OWN COMPONENT -->
-                <!-- <div class="feature-item" *ngFor="let x of game.featureDescriptions;let index = index"> -->
+                <div class="feature-item" *ngFor="let x of game.featureDescriptions;let index = index">
                     <!-- This src path needs to come from the media component otherwise the path will be different with respect to this components directory -->
-                    <!-- <div class="feature-img"> -->
+                    <div class="feature-img">
                         <!-- [featureImg]="game.featureDescriptions[index] will show each feature image from the array of the game object because of our ngFor directive -->
-                        <!-- <app-media-feature [showImage]="true"[showTitle]="false" [featureImg]="game.featureImages[index]"></app-media-feature> -->
-                    <!-- </div> -->
-                    <!-- <p>{{ game.featureDescriptions[index] }}</p> -->
-                <!-- </div> -->
-            <!-- <hr> -->
-            <!-- <div class="d-flex justify-content-center"> -->
-                <!-- <button class="btn-warning btn " ><h1 class ="suez-font"><strong>DOWNLOAD</strong></h1></button> -->
-            <!-- </div> -->
-        <!-- </div> -->
+                        <app-media-feature [showImage]="true"[showTitle]="false" [featureImg]="game.featureImages[index]"></app-media-feature>
+                    </div>
+                    <p>{{ game.featureDescriptions[index] }}</p>
+                </div>
+            <hr>
+            <div class="d-flex justify-content-center">
+                <button class="btn-warning btn " ><h1 class ="suez-font"><strong>DOWNLOAD</strong></h1></button>
+            </div>
+        </div>
     </div>
 </div>

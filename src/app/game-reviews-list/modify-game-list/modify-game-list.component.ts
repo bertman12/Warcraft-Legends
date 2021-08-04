@@ -55,9 +55,9 @@ export class ModifyGameListComponent implements OnInit {
   }
   
   onModalClose(){
-    this.gameForm.reset();
-    this.featureDescriptions.clear();
-    this.featureImages.clear();
+    // this.gameForm.reset();
+    // this.featureDescriptions.clear();
+    // this.featureImages.clear();
     this.gameService.isEditing = false;
   }
   
@@ -75,14 +75,12 @@ export class ModifyGameListComponent implements OnInit {
   
   onSubmit(){
     if(this.gameService.isEditing){
+      console.log('the gaem we are editing', this.gameForm.value);
       this.gameService.submitEditedGame(this.gameForm.value);
-      
     }
     else{
-      this.gameService.createGame(this.gameForm.value)
-      .then(()=>{
-        this.gameService.getGames();
-      });
+      this.gameService.createGame(this.gameForm.value);
+      console.log('The game i am creating!...', this.gameForm.value);
     }
   }
   

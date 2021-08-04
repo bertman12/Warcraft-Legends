@@ -11,9 +11,9 @@ const routes: Routes = [
   {path:"", component: HomeComponent}, //home-landing-page
   {path:"game-reviews-list", component: GameReviewsListComponent}, //list of all games
   {path:"game-reviews-list/:id", component: GameReviewComponent}, // load review by id
-  {path:"game-reviews-list/create/:id", component: GameReviewComponent}, //edit review by id
-  {path:"game-reviews-list/edit/:id", component: GameReviewComponent}, //edit review by id
-  {path:"game-reviews-list/delete/:id", component: GameReviewComponent}, //delete review by id
+  {path:"game-reviews-list/mod/create/:id", component: GameReviewsListComponent}, //edit review by id
+  {path:"game-reviews-list/mod/edit/:id", component: GameReviewsListComponent}, //edit review by id
+  {path:"game-reviews-list/mod/delete/:id", component: GameReviewsListComponent}, //delete review by id
   {path:"register", component: RegisterComponent},
 
 

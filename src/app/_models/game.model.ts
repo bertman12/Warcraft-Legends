@@ -12,5 +12,3 @@ export interface Game{
     videoSrc: string, //this will be binded to the video tags src attribute in the media component
     imgSrc: string
 }
-
-// add players:number property

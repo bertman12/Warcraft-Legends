@@ -1,6 +1,8 @@
-<h4 class="text-center"> Comments </h4>
-<div *ngFor=" let comment of comments" >
-        <div class="warcraft-border mb-3 ">
+<h4 class="text-center suez-font"> Comments </h4>
+    <div *ngFor=" let comment of comments; let index = index" >
+
+        <!-- not editing -->
+        <div class="warcraft-border mb-3 " *ngIf="index !== editingCommentIndex">
             <div class="card text-white bg-secondary" style="max-width: 100%">
                 <div class="card-header" style="background-color: #1f1f1f;">
                     <div class="row">
@@ -10,10 +12,10 @@
                             <mat-icon style="vertical-align: bottom;">account_circle</mat-icon> <span> {{comment.username}} </span>
                             </button> 
                         </div>
-                        <div class="col-4 text-center">
+                        <div class="col-4 text-center mt-2">
                             <span style="color: #adafae;">{{comment.subject}}</span>
                         </div>
-                        <div class="col-4 text-end">
+                        <div class="col-4 text-end mt-2">
                             <span style="color: #adafae;">{{comment.time}}</span>
                         </div>
                     </div> 
@@ -29,45 +31,127 @@
                             </button>
                         </div>
                             <div *ngIf=" currentUser && ((comment.username == currentUser.username) || (currentUser.role == 2 )) " class="col-6 text-end">
-                                <input type="image" src="../../../assets/editButton.png" class="imageButton" id="editForm" data-bs-toggle="modal" data-bs-target="#exampleModal2" (click)="onEditComment(comment.commentID!)">
+                                <input type="image" src="../../../assets/editButton.png" class="imageButton" id="editForm"  (click)="onEditComment(comment.commentID!,index)"> <!--data-bs-toggle="modal" data-bs-target="#exampleModal2"-->
                                 <input type="image" src="../../../assets/deleteButton.png" class="imageButton" id="saveForm" (click)="onDeleteComments(comment.commentID!)">
                             </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        <!-- ------------------------------------------------------------------- -->
+        <div class="warcraft-border mb-3 " *ngIf="index === editingCommentIndex" >
+        <form [formGroup]="commentForm" (ngSubmit)="onEdit()" >
+            <div class="card-header" style="background-color: #1f1f1f;">
+                <div class="row">
+                    <div mat-icon-button class="col-4 mt-2 form-group"> 
+                        <mat-icon style="vertical-align: bottom;">account_circle</mat-icon><span>{{comment.username}}</span>
+                        <!-- <input type="text" id="username" formControlName="username" class="form-control" readonly> -->
+                            <span class="mt-1 warningmes " *ngIf=" !commentForm.get('username')?.valid">
+                                <mat-icon style="vertical-align: bottom;">error</mat-icon>
+                                Please sign in before leaving a comment.</span>
+                    </div>
+                    <div class="col-4 text-center mt-2 form-group">
+                        <input type="text" id="subject" formControlName="subject" class="form-control" placeholder="Subject">
+                        <span class="warningmes" *ngIf=" !commentForm.get('subject')?.valid && commentForm.get('subject')?.touched">This subject is invalid!</span>
+                    </div>
+                    <div class="col-4 text-end mt-2">
+                        <span style="color: #adafae;">Today's Date</span>
+                    </div>
+                </div> 
+            </div>
+            <div class="card-body" style="background-color: #333;">
+                <div class="text-center mb-3 mt-3 form-group">
+                    <textarea type="text" id="comment" formControlName="comment" class="form-control commnettextArea" rows="5" columns="40" placeholder="Comment text area"></textarea>
+                    <span class="warningmes" *ngIf=" !commentForm.get('comment')?.valid && commentForm.get('comment')?.touched">This text is invalid!</span>
+                </div>
+                <div class="row"> 
+                    <div class="col-6 align-text-bottom">
+                        <button mat-icon-button type="button" class="btn align-content-center">
+                        <span style="margin-right: 5px;">Likes</span><mat-icon class="likeButton" style="vertical-align: bottom; margin-right: 5px;">thumb_up</mat-icon>
+                        </button>
+                    </div>
+                        <div class="col-6 text-end">
+                            <input type="image" src="../../../assets/addButton.png" class="imageButton" id="addForm">
+                            <input type="image" src="../../../assets/submitButton.png" class="imageButton" id="addForm" (click)=closeNewComment()>
+                        </div>
+                </div>
+            </div>
+        </form>
+        </div>
+        <!-- ---------------------------------------- -->
+</div>
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!-- <div class="warcraft-border mb-3 " *ngIf ="boolEditComment">
+    <div class="card text-white bg-secondary" style="max-width: 100%">
+        <form [formGroup]="commentForm" (ngSubmit)="onEdit()">
+            <div class="card-header" style="background-color: #1f1f1f;">
+                <div class="row">
+                    <div class="col-4 mt-2 form-group">
+                        <input type="text" id="username" formControlName="username" class="form-control" readonly>
+                            <span class="mt-1 warningmes " *ngIf=" !commentForm.get('username')?.valid">
+                                <mat-icon style="vertical-align: bottom;">error</mat-icon>
+                                Please sign in before leaving a comment.</span>
+                    </div>
+                    <div class="col-4 text-center mt-2 form-group">
+                        <input type="text" id="subject" formControlName="subject" class="form-control" placeholder="Subject">
+                        <span class="warningmes" *ngIf=" !commentForm.get('subject')?.valid && commentForm.get('subject')?.touched">This subject is invalid!</span>
+                    </div>
+                    <div class="col-4 text-end mt-2">
+                        <span style="color: #adafae;">Today's Date</span>
+                    </div>
+                </div> 
+            </div>
+            <div class="card-body" style="background-color: #333;">
+                <div class="text-center mb-3 mt-3 form-group">
+                    <textarea type="text" id="comment" formControlName="comment" class="form-control commnettextArea" rows="5" columns="40" placeholder="Comment text area"></textarea>
+                    <span class="warningmes" *ngIf=" !commentForm.get('comment')?.valid && commentForm.get('comment')?.touched">This text is invalid!</span>
+                </div>
+                <div class="row"> 
+                    <div class="col-6 align-text-bottom">
+                        <button mat-icon-button type="button" class="btn align-content-center">
+                        <span style="margin-right: 5px;">Likes</span><mat-icon class="likeButton" style="vertical-align: bottom; margin-right: 5px;">thumb_up</mat-icon>
+                        </button>
+                    </div>
+                        <div class="col-6 text-end">
+                            <input type="image" src="../../../assets/addButton.png" class="imageButton" id="addForm">
+                            <input type="image" src="../../../assets/cancelButton.png" class="imageButton" id="addForm" (click)=closeNewComment()>
+                        </div>
+                </div>
+            </div>
+        </form>
+
+    </div> -->
 
 <!----------------------------------------------- Modal for Editing comments ----------------------------------------------->
-<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel" style="color: #ffd823">Edit Comment</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body" style="background-color: #333333;">
+        <div class="modal-body" style="background-color: #333333;"> -->
         <!-- form -->
         <!-- directive to connect our template for with ts form and directive to submit our template form -->
-        <form [formGroup]="commentForm" (ngSubmit)="onEdit()">
-            <div class="form-group">
+        <!-- <form [formGroup]="commentForm" (ngSubmit)="onEdit()">
+            <div class="form-group"> -->
                 <!-- directive that connects our template controls with our ts controls-->
-                <label for="username">Username:</label>
+                <!-- <label for="username">Username:</label>
                 <input type="text" id="username" formControlName="username" class="form-control" readonly>
                 <span class="mt-1 warningmes " *ngIf=" !commentForm.get('username')?.valid">
                     <mat-icon style="vertical-align: bottom;">error</mat-icon>
-                    Please sign in before levaing a comment.</span>
+                    Please sign in before leaving a comment.</span>
             </div>
 
-            <div class="form-group mt-3">
+            <div class="form-group mt-3"> -->
                 <!-- directive that connects our template controls with our ts controls-->
-                <label for="subject">Subject:</label>
+                <!-- <label for="subject">Subject:</label>
                 <input type="text" id="subject" formControlName="subject" class="form-control">
                 <span class="warningmes" *ngIf=" !commentForm.get('subject')?.valid && commentForm.get('subject')?.touched">This subject is invalid!</span>
             </div>
-            <div class="form-group mt-3">
+            <div class="form-group mt-3"> -->
                 <!-- directive that connects our template controls with our ts controls-->
-                <label for="comment">Text:</label>
+                <!-- <label for="comment">Text:</label>
                 <textarea type="text" id="comment" formControlName="comment" class="form-control commnettextArea" rows="5" columns="40"></textarea>
                 <span class="warningmes" *ngIf=" !commentForm.get('comment')?.valid && commentForm.get('comment')?.touched">This text is invalid!</span>
             </div>
@@ -76,44 +160,44 @@
         </div>
       </div>
     </div>
-  </div>
+</div> -->
 <!-------------------------------------------------------------------------------------------------------------------------->
 <!-- Button trigger modal -->
     <div class="text-center mt-3 mb-3" (click)="onAddComment()">
-        <button type="button" class="btn addCommentButton" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn addCommentButton" > <!--data-bs-toggle="modal" data-bs-target="#exampleModal" -->
             <mat-icon style="vertical-align: bottom;">add_circle_outline</mat-icon> <span> Add Comment </span>
         </button>
     </div>
 <!-------------------------------------------------- Modal for adding comments ----------------------------------------------->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel" style="color: #ffd823">Add Comment</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body" style="background-color: #333333;">
+        <div class="modal-body" style="background-color: #333333;"> -->
         <!-- form -->
         <!-- directive to connect our template for with ts form and directive to submit our template form -->
-        <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
-            <div class="form-group">
+        <!-- <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+            <div class="form-group"> -->
                 <!-- directive that connects our template controls with our ts controls-->
-                <label for="username">Username:</label>
+                <!-- <label for="username">Username:</label>
                 <input type="text" id="username" formControlName="username" class="form-control" readonly>
                 <span class="mt-1 warningmes " *ngIf=" !commentForm.get('username')?.valid">
                     <mat-icon style="vertical-align: bottom;">error</mat-icon>
-                    Please sign in before levaing a comment.</span>
+                    Please sign in before leaving a comment.</span>
             </div>
 
-            <div class="form-group mt-3">
+            <div class="form-group mt-3"> -->
                 <!-- directive that connects our template controls with our ts controls-->
-                <label for="subject">Subject:</label>
+                <!-- <label for="subject">Subject:</label>
                 <input type="text" id="subject" formControlName="subject" class="form-control">
                 <span class="warningmes" *ngIf=" !commentForm.get('subject')?.valid && commentForm.get('subject')?.touched">This subject is invalid!</span>
             </div>
-            <div class="form-group mt-3">
+            <div class="form-group mt-3"> -->
                 <!-- directive that connects our template controls with our ts controls-->
-                <label for="comment">Text:</label>
+                <!-- <label for="comment">Text:</label>
                 <textarea type="text" id="comment" formControlName="comment" class="form-control commnettextArea" rows="5" columns="40"></textarea>
                 <span class="warningmes" *ngIf=" !commentForm.get('comment')?.valid && commentForm.get('comment')?.touched">This text is invalid!</span>
             </div>
@@ -122,65 +206,86 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-------------------------------------------------------------------------------------------------------------------------->
-  <div class="warcraft-border mb-3 " *ngIf= (newComment)>
+<div class="warcraft-border mb-3 " *ngIf ="boolAddComment">
     <div class="card text-white bg-secondary" style="max-width: 100%">
-        <form [formGroup]="commentForm" (ngSubmit)="onSubmit()"></form>
+        <form [formGroup]="commentForm" (ngSubmit)="onEdit()">
             <div class="card-header" style="background-color: #1f1f1f;">
                 <div class="row">
-                    <div class=" col-4">
-                        <button mat-icon-button type="button" class="btn align-content-center">
-                        <mat-icon style="vertical-align: bottom;">account_circle</mat-icon> <span> {{comment.username}} </span>
-                        </button> 
+                    <div class="col-4 mt-2 form-group">
+                        <input type="text" id="username" formControlName="username" class="form-control" readonly>
+                            <span class="mt-1 warningmes " *ngIf=" !commentForm.get('username')?.valid">
+                                <mat-icon style="vertical-align: bottom;">error</mat-icon>
+                                Please sign in before leaving a comment.</span>
                     </div>
-                    <div class="col-4 text-center">
-                        <span style="color: #adafae;">{{comment.subject}}</span>
+                    <div class="col-4 text-center mt-2 form-group">
+                        <input type="text" id="subject" formControlName="subject" class="form-control" placeholder="Subject">
+                        <span class="warningmes" *ngIf=" !commentForm.get('subject')?.valid && commentForm.get('subject')?.touched">This subject is invalid!</span>
                     </div>
-                    <div class="col-4 text-end">
-                        <span style="color: #adafae;">{{comment.time}}</span>
+                    <div class="col-4 text-end mt-2">
+                        <span style="color: #adafae;">Today's Date</span>
                     </div>
                 </div> 
             </div>
             <div class="card-body" style="background-color: #333;">
-                <div class="text-center mb-3 mt-3">
-                    <p>{{comment.commentText}}</p>
+                <div class="text-center mb-3 mt-3 form-group">
+                    <textarea type="text" id="comment" formControlName="comment" class="form-control commnettextArea" rows="5" columns="40" placeholder="Comment text area"></textarea>
+                    <span class="warningmes" *ngIf=" !commentForm.get('comment')?.valid && commentForm.get('comment')?.touched">This text is invalid!</span>
                 </div>
                 <div class="row"> 
                     <div class="col-6 align-text-bottom">
-                        <button mat-icon-button type="button" class="btn align-content-center" (click)="onLike(comment.commentID!)">
-                        <span style="margin-right: 5px;">{{comment.likes}} Likes</span><mat-icon class="likeButton" style="vertical-align: bottom; margin-right: 5px;">thumb_up</mat-icon>
+                        <button mat-icon-button type="button" class="btn align-content-center">
+                        <span style="margin-right: 5px;">Likes</span><mat-icon class="likeButton" style="vertical-align: bottom; margin-right: 5px;">thumb_up</mat-icon>
                         </button>
                     </div>
-                        <div *ngIf=" currentUser && ((comment.username == currentUser.username) || (currentUser.role == 2 )) " class="col-6 text-end">
-                            <input type="image" src="../../../assets/editButton.png" class="imageButton" id="editForm" data-bs-toggle="modal" data-bs-target="#exampleModal2" (click)="onEditComment(comment.commentID!)">
-                            <input type="image" src="../../../assets/deleteButton.png" class="imageButton" id="saveForm" (click)="onDeleteComments(comment.commentID!)">
+                        <div class="col-6 text-end">
+                            <input type="image" src="../../../assets/addButton.png" class="imageButton" id="addForm">
+                            <input type="image" src="../../../assets/cancelButton.png" class="imageButton" id="addForm" (click)=closeNewComment()>
                         </div>
                 </div>
             </div>
         </form>
     </div>
-  </div>
-
-        <div class="form-group">
-            <!-- directive that connects our template controls with our ts controls-->
-            <label for="username">Username:</label>
-            <input type="text" id="username" formControlName="username" class="form-control" readonly>
-            <span class="mt-1 warningmes " *ngIf=" !commentForm.get('username')?.valid">
-                <mat-icon style="vertical-align: bottom;">error</mat-icon>
-                Please sign in before levaing a comment.</span>
-        </div>
-
-        <div class="form-group mt-3">
-            <!-- directive that connects our template controls with our ts controls-->
-            <label for="subject">Subject:</label>
-            <input type="text" id="subject" formControlName="subject" class="form-control">
-            <span class="warningmes" *ngIf=" !commentForm.get('subject')?.valid && commentForm.get('subject')?.touched">This subject is invalid!</span>
-        </div>
-        <div class="form-group mt-3">
-            <!-- directive that connects our template controls with our ts controls-->
-            <label for="comment">Text:</label>
-            <textarea type="text" id="comment" formControlName="comment" class="form-control commnettextArea" rows="5" columns="40"></textarea>
-            <span class="warningmes" *ngIf=" !commentForm.get('comment')?.valid && commentForm.get('comment')?.touched">This text is invalid!</span>
-        </div>
-        <button class="btn btn-secondary mt-3" type="submit" data-bs-dismiss="modal">Add</button>
+</div>
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!-- <div class="warcraft-border mb-3 " *ngIf ="boolEditComment">
+    <div class="card text-white bg-secondary" style="max-width: 100%">
+        <form [formGroup]="commentForm" (ngSubmit)="onEdit()">
+            <div class="card-header" style="background-color: #1f1f1f;">
+                <div class="row">
+                    <div class="col-4 mt-2 form-group">
+                        <input type="text" id="username" formControlName="username" class="form-control" readonly>
+                            <span class="mt-1 warningmes " *ngIf=" !commentForm.get('username')?.valid">
+                                <mat-icon style="vertical-align: bottom;">error</mat-icon>
+                                Please sign in before leaving a comment.</span>
+                    </div>
+                    <div class="col-4 text-center mt-2 form-group">
+                        <input type="text" id="subject" formControlName="subject" class="form-control" placeholder="Subject">
+                        <span class="warningmes" *ngIf=" !commentForm.get('subject')?.valid && commentForm.get('subject')?.touched">This subject is invalid!</span>
+                    </div>
+                    <div class="col-4 text-end mt-2">
+                        <span style="color: #adafae;">Today's Date</span>
+                    </div>
+                </div> 
+            </div>
+            <div class="card-body" style="background-color: #333;">
+                <div class="text-center mb-3 mt-3 form-group">
+                    <textarea type="text" id="comment" formControlName="comment" class="form-control commnettextArea" rows="5" columns="40" placeholder="Comment text area"></textarea>
+                    <span class="warningmes" *ngIf=" !commentForm.get('comment')?.valid && commentForm.get('comment')?.touched">This text is invalid!</span>
+                </div>
+                <div class="row"> 
+                    <div class="col-6 align-text-bottom">
+                        <button mat-icon-button type="button" class="btn align-content-center">
+                        <span style="margin-right: 5px;">Likes</span><mat-icon class="likeButton" style="vertical-align: bottom; margin-right: 5px;">thumb_up</mat-icon>
+                        </button>
+                    </div>
+                        <div class="col-6 text-end">
+                            <input type="image" src="../../../assets/addButton.png" class="imageButton" id="addForm">
+                            <input type="image" src="../../../assets/cancelButton.png" class="imageButton" id="addForm" (click)=closeNewComment()>
+                        </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div> -->

@@ -20,6 +20,9 @@ export class GameCommentComponent implements OnInit {
   newComment !: Comment; 
   comments: Comment[] = []; 
   editCommentId ?: number; 
+  boolAddComment  = false; 
+  boolEditComment = false; 
+  editingCommentIndex!: number;
 
   constructor(private userService: UserService, private commServ: CommentService,private route: ActivatedRoute) { }
 
@@ -45,19 +48,23 @@ export class GameCommentComponent implements OnInit {
 
   // submitting new comment and 
   async onSubmit(){
-    // hard coded likes to 0 since its a new commnet 
-    // structuring new comment 
-    let newComment = { 
-      userID: this.currentUser.id , 
-      like: 0 , 
-      commentText: this.commentForm.value.comment ,
-      gameID: this.gameId,
-      username:this.commentForm.value.username,
-      subject:this.commentForm.value.subject
-    }
-    // sending new comment to service to post 
-    await this.commServ.addComment(newComment);
-    this.onGetComments(); 
+   
+   if(this.boolAddComment){ 
+    this.boolAddComment = false; 
+      // hard coded likes to 0 since its a new commnet 
+      // structuring new comment 
+      let newComment = { 
+        userID: this.currentUser.id , 
+        like: 0 , 
+        commentText: this.commentForm.value.comment ,
+        gameID: this.gameId,
+        username:this.commentForm.value.username,
+        subject:this.commentForm.value.subject
+      }
+      // sending new comment to service to post 
+      await this.commServ.addComment(newComment);
+      this.onGetComments(); 
+   }
 
     // resetting form and getting username 
     this.commentForm.reset(); 
@@ -68,9 +75,11 @@ export class GameCommentComponent implements OnInit {
   }
 
   // when user click on edit button pops up modal and get id of comment and user
-  onEditComment(id: number){
+  onEditComment(id: number, commentIndex: number){
+    this.editingCommentIndex = commentIndex;
     if(this.currentUser){
       this.commentForm.patchValue({'username' : this.currentUser.username });
+      this.boolEditComment = true; 
       // search through the array for the content 
       for( let i =0; i < this.comments.length ; i++){
         if( this.comments[i].commentID == id ){
@@ -82,8 +91,11 @@ export class GameCommentComponent implements OnInit {
     this.editCommentId = id; 
   }
 
-  // when user submits the edit we send info editted and the comment id 
+  // when user submits the edit we send info edited and the comment id 
   async onEdit(){
+    
+    this.editingCommentIndex = -1;
+    this.boolEditComment = false; 
     let editComment = {
       commentText: this.commentForm.value.comment,
       subject: this.commentForm.value.subject 
@@ -106,6 +118,7 @@ export class GameCommentComponent implements OnInit {
     if(this.currentUser){
       this.commentForm.patchValue({'username' : this.currentUser.username });
     }
+    this.boolAddComment = true; 
   }
 
   // when function called all comments (w/ corresponding game id )are fetched
@@ -134,6 +147,10 @@ export class GameCommentComponent implements OnInit {
     }
     await this.commServ.editLikes(id, {'likes': count});
     this.onGetComments(); 
+  }
+
+  closeNewComment(){
+    this.boolAddComment = false; 
   }
 
 

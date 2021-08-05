@@ -11,11 +11,13 @@ export class GameReviewComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, 
               private gameService: GamesService){}
-  game:any = {};
+  game!: any;
     
   ngOnInit(): void {
-    this.gameService.getSelectedGame(this.route.snapshot.params['id']).subscribe((selectedGame)=>{
+    this.gameService.getSelectedGame(this.route.snapshot.params['id']).then((selectedGame)=>{
       this.game = selectedGame;
+      console.log('THIS IS THE SELECTED GAME', selectedGame);
+      console.log('this is local selected game', this.game);
     });
   }
 }

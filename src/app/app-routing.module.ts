@@ -9,8 +9,11 @@ import { GameReviewsListComponent } from './game-reviews-list/game-reviews-list.
 const routes: Routes = [
   {path: "login", component: LoginComponent },
   {path:"", component: HomeComponent}, //home-landing-page
-  {path:"game-reviews-list", component: GameReviewsListComponent}, //review list
-  {path:"game-reviews-list/:id", component: GameReviewComponent}, //review
+  {path:"game-reviews-list", component: GameReviewsListComponent}, //list of all games
+  {path:"game-reviews-list/:id", component: GameReviewComponent}, // load review by id
+  {path:"game-reviews-list/mod/create/:id", component: GameReviewsListComponent}, //edit review by id
+  {path:"game-reviews-list/mod/edit/:id", component: GameReviewsListComponent}, //edit review by id
+  {path:"game-reviews-list/mod/delete/:id", component: GameReviewsListComponent}, //delete review by id
   {path:"register", component: RegisterComponent},
 
 

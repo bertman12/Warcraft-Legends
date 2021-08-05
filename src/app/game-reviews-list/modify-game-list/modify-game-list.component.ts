@@ -36,11 +36,11 @@ export class ModifyGameListComponent implements OnInit {
     featureDescriptions: this.formBuilder.array([['', [Validators.required, Validators.minLength(1)]]],[ Validators.required, Validators.minLength(1)]),
     featureImages: this.formBuilder.array([['', [ Validators.required, Validators.minLength(1)]]],[ Validators.required, Validators.minLength(1)]),
     genre: ['', Validators.required],
-    version: ['', Validators.required],
-    rating: [''], //this will be calculated
+    version: ['', [Validators.required, Validators.max(31)]],
+    rating: ['',[Validators.required, Validators.max(5), Validators.min(0)]],
     publishDate: this.formBuilder.group({
       month: ['', Validators.required],
-      day: ['', [Validators.required, Validators.max(32)]],
+      day: ['', [Validators.required, Validators.max(31)]],
       year: ['', [Validators.required, Validators.max(2021)]],
     }),
     videoSrc: ['',Validators.required],
@@ -75,21 +75,12 @@ export class ModifyGameListComponent implements OnInit {
   
   onSubmit(){
     if(this.gameService.isEditing){
-      this.gameService.submitEditedGame(this.gameForm.value)
-      .then(
-        ()=>{
-        this.gameService.getGames().then((games)=>{
-          this.gameService.gameListModified.next(games);
-        })},
-      );
+      console.log('the gaem we are editing', this.gameForm.value);
+      this.gameService.submitEditedGame(this.gameForm.value);
     }
     else{
-      this.gameService.createGame(this.gameForm.value)
-      .then(()=>{
-        this.gameService.getGames().then((games)=>{
-          this.gameService.gameListModified.next(games);
-        })
-      });
+      this.gameService.createGame(this.gameForm.value);
+      console.log('The game i am creating!...', this.gameForm.value);
     }
   }
   

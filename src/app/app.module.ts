@@ -26,7 +26,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { GameCommentComponent } from './game-review/game-comment/game-comment.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api'
 import { ModifyGameListComponent } from './game-reviews-list/modify-game-list/modify-game-list.component';
-import { InMemoryGameService } from './_services/in-memory-game.service';
 import { FooterComponent } from './footer/footer/footer.component';
 
 @NgModule({
@@ -49,7 +48,7 @@ import { FooterComponent } from './footer/footer/footer.component';
     BrowserModule,
     AppRoutingModule,
     [HttpClientModule],
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryGameService,{passThruUnknownUrl: true}), //configuartion options for angular in memory web api module
+    // HttpClientInMemoryWebApiModule.forRoot(InMemoryGameService,{delay:0, passThruUnknownUrl: true}), //configuartion options for angular in memory web api module
     NoopAnimationsModule,
     FormsModule,
     MatIconModule,

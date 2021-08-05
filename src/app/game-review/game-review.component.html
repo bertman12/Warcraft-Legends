@@ -5,7 +5,7 @@
         </div>
         <div class="col d-flex justify-content-center">
             <div class="video-wrapper warcraft-border">
-                <app-media-feature [game] = "game" [showTitle] = "false"></app-media-feature>
+                <app-media-feature [game] = "game" [showTitle] = "false" [showImage]="false"></app-media-feature>
             </div>
         </div>
     </div>
@@ -13,7 +13,7 @@
         <div class="col-12 game-description-wrapper">
             <p class="game-description">
                 {{ game?.description ?? '' }}                       <br><br>
-                Date created: {{ game?.publishDate?.year ?? ''}}    <br>
+                Date created: {{ game?.publishDate?.month ?? ''}} {{ game?.publishDate?.day ?? ''}} {{ game?.publishDate?.year ?? ''}}    <br>
                 Author: {{ game?.author ?? ''}}                     <br>
                 Genre: {{ game?.genre ?? ''}}                       <br>
                 Version: {{ game?.version ?? ''}}                   <br>

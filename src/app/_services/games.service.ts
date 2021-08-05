@@ -2,8 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { Game } from '../_models/game.model';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
-import { API_URL } from 'src/environments/environment';
-
+import { API_URL } from '../../environments/environment'; 
 
 @Injectable({
   providedIn: 'root'
@@ -14,29 +13,38 @@ export class GamesService implements OnInit{
   editingGame = new Subject<Game>();
   isEditing: boolean = false;
 
-  private gamesUrl = 'api/gameListDB/';
-
+  // private gamesUrl = 'api/gameListDB/'; WAS USED FOR THE ANGULAR IN MEMORY WEB API
+  private temp_jwt = 
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsInVzZXJuYW1lIjoiYmVubnkiLCJuYW1lIjoiYmVubnkiLCJlbWFpbCI6ImJlbm55QGJlbm55LmNvbSIsImFnZSI6NjksImxvY2F0aW9uIjo2OTY5NjksImlhdCI6MTYyNzQ1NDgzMH0.P40BsHrPynA9ZsBdwp974tBFeBMYvG6laJnuAwbaylM"
+  ;
+  
+  public readonly imageKitURL: string = "https://ik.imagekit.io/xpiswqmgdc6/";
   constructor(private http: HttpClient) { }
-  numberOfGames: number = 0;
   
   ngOnInit(){
   }
 
-  getGames(){
-    return this.http.get<Game[]>(this.gamesUrl).toPromise();
+  async getGames(){
+    console.log('getGames() has been called!');
+    await this.http.get<Game[]>(`${API_URL}/game-reviews-list`).toPromise().then(
+      (games) => {
+        console.log('I got the game reviews', games);
+        this.gameListModified.next(games);
+      });
   }
 
   async createGame(Game: Game) {
     Game.videoSrc = "../../assets/Action 7-3-2021 3-09-01 PM.mp4";
     Game.imgSrc = "../../assets/Warcraft-III-generic-image-half-size.png";
-    this.getGames().then(
-      (games) => {
-        Game.id = games.length;
-      }
-    )
     this.isEditing = false;
 
-    return this.http.post<Game>(this.gamesUrl, Game).toPromise();
+    await this.http.post<Game>(`${API_URL}/game-reviews-list/mod/create`, Game, {headers: {"Authorization": `Bearer ${this.temp_jwt}`, "Content-Type": "application/json"}})
+    .toPromise().then((res)=>{
+      this.getGames();
+    })
+    .catch( (err) => {
+      console.error(err);
+    });
   }
 
   editGame(Game: Game){
@@ -46,20 +54,22 @@ export class GamesService implements OnInit{
 
   async submitEditedGame(Game:Game){
     this.isEditing = false;
-    this.getGames().then((games) => {
-      this.gameListModified.next(games);
-    });
-    await this.http.put(this.gamesUrl + Game.id, Game).toPromise();
-  }
-
-  async deleteGame(id: number){
-    await this.http.delete(this.gamesUrl + id).toPromise();
-    this.getGames().then((games) => {
-      this.gameListModified.next(games);
+    await this.http.put(`${API_URL}/game-reviews-list/mod/edit/${Game.id}`, Game, {headers: {"Authorization": `Bearer ${this.temp_jwt}`, "Content-Type": "application/json"}}).toPromise().then(
+      (res) => {
+      this.getGames();
     });
   }
 
-  getSelectedGame(id: number){
-    return this.http.get(this.gamesUrl + id);
+  deleteGame(id: number){
+    console.log('HERE IS THE ID',id);
+    this.http.delete(`${API_URL}/game-reviews-list/mod/delete/${id}`, {headers: {"Authorization": `Bearer ${this.temp_jwt}`, "Content-Type": "application/json"}})
+    .toPromise().then((res)=> {
+      this.getGames();
+    });
+  }
+
+   getSelectedGame(id: number){
+    console.log('We are getting this game by id...', id);
+    return this.http.get(`${API_URL}/game-reviews-list/${id}`).toPromise();
   }
 }

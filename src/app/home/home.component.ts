@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
   constructor(private gameService: GamesService){}
 
   localGameArr: Game[] = [];
-
+  imageKitURL:string = this.gameService.imageKitURL;
   ngOnInit(): void {
     this.gameService.getGames();
     this.gameService.gameListModified.subscribe((games)=> {

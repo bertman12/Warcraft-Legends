@@ -16,15 +16,18 @@ import { GameReviewsListComponent } from './game-reviews-list/game-reviews-list.
 import { GameReviewsListItemComponent } from './game-reviews-list/game-reviews-list-item/game-reviews-list-item.component';
 
 import { UserService } from './_services/user.service';
+
 import { AuthService } from './_services/auth.service';
 // Before you can use HttpClient, you need to import the Angular 
 //HttpClientModule in the appmodule then inject in component where it will be used 
 import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api'
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModifyGameListComponent } from './game-reviews-list/modify-game-list/modify-game-list.component';
+import { InMemoryGameService } from './_services/in-memory-game.service';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,7 @@ import { ModifyGameListComponent } from './game-reviews-list/modify-game-list/mo
     BrowserModule,
     AppRoutingModule,
     [HttpClientModule],
+    // HttpClientInMemoryWebApiModule.forRoot(InMemoryGameService,{delay:0, passThruUnknownUrl: true}), //configuartion options for angular in memory web api module
     NoopAnimationsModule,
     FormsModule,
     MatIconModule,

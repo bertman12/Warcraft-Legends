@@ -13,11 +13,12 @@ export class GamesService implements OnInit{
   editingGame = new Subject<Game>();
   isEditing: boolean = false;
 
-  private gamesUrl = 'api/gameListDB/';
+  // private gamesUrl = 'api/gameListDB/'; WAS USED FOR THE ANGULAR IN MEMORY WEB API
   private temp_jwt = 
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsInVzZXJuYW1lIjoiYmVubnkiLCJuYW1lIjoiYmVubnkiLCJlbWFpbCI6ImJlbm55QGJlbm55LmNvbSIsImFnZSI6NjksImxvY2F0aW9uIjo2OTY5NjksImlhdCI6MTYyNzQ1NDgzMH0.P40BsHrPynA9ZsBdwp974tBFeBMYvG6laJnuAwbaylM"
   ;
-
+  
+  public readonly imageKitURL: string = "https://ik.imagekit.io/xpiswqmgdc6/";
   constructor(private http: HttpClient) { }
   
   ngOnInit(){
@@ -29,8 +30,7 @@ export class GamesService implements OnInit{
       (games) => {
         console.log('I got the game reviews', games);
         this.gameListModified.next(games);
-      }
-    );
+      });
   }
 
   async createGame(Game: Game) {
@@ -41,16 +41,13 @@ export class GamesService implements OnInit{
     this.isEditing = false;
 
     await this.http.post<Game>(`${API_URL}/game-reviews-list/mod/create`, Game, {headers: {"Authorization": `Bearer ${this.temp_jwt}`, "Content-Type": "application/json"}})
-    .toPromise()
-    .then((res)=>{
+    .toPromise().then((res)=>{
       this.getGames();
     })
     .catch( (err) => {
       console.error(err);
-    }
-    );
+    });
   }
-
 
   editGame(Game: Game){
     this.isEditing = true;
@@ -65,11 +62,12 @@ export class GamesService implements OnInit{
     });
   }
 
-  //in the backend i can have the delete request send back a resposne with the new modified gamelist. to reduce the number of outgoing requests
   deleteGame(id: number){
     console.log('HERE IS THE ID',id);
-    this.http.delete(`${API_URL}/game-reviews-list/mod/delete/${id}`, {headers: {"Authorization": `Bearer ${this.temp_jwt}`, "Content-Type": "application/json"}}).toPromise();
-    this.getGames();
+    this.http.delete(`${API_URL}/game-reviews-list/mod/delete/${id}`, {headers: {"Authorization": `Bearer ${this.temp_jwt}`, "Content-Type": "application/json"}})
+    .toPromise().then((res)=> {
+      this.getGames();
+    });
   }
 
    getSelectedGame(id: number){

@@ -22,8 +22,6 @@ export class MediaFeatureComponent implements OnInit {
       return this.game.imgSrc;
     }
     else{
-      console.log('this is the feature image source!', this.featureImg);
-      console.log('the game inside the media feature component', this.game);
       return this.featureImg;
     }
   }

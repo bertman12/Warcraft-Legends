@@ -27,7 +27,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModifyGameListComponent } from './game-reviews-list/modify-game-list/modify-game-list.component';
-import { InMemoryGameService } from './_services/in-memory-game.service';
 
 @NgModule({
   declarations: [

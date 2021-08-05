@@ -6,9 +6,9 @@ export interface Game{
     featureDescriptions: string[],
     featureImages: string[],
     genre: string,
-    version: string,
-    rating: string // may have to store as a number for calculations
+    version: number,
+    rating: number // may have to store as a number for calculations
     publishDate: {month: string, day: number, year: number},
     videoSrc: string, //this will be binded to the video tags src attribute in the media component
-    imgSrc: string
+    imgSrc: string //default image source for preview in the reviews list
 }

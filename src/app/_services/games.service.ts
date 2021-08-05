@@ -36,8 +36,6 @@ export class GamesService implements OnInit{
   async createGame(Game: Game) {
     Game.videoSrc = "../../assets/Action 7-3-2021 3-09-01 PM.mp4";
     Game.imgSrc = "../../assets/Warcraft-III-generic-image-half-size.png";
-    Game.rating = '5';
-    console.log('this is the game i am submitting', Game);
     this.isEditing = false;
 
     await this.http.post<Game>(`${API_URL}/game-reviews-list/mod/create`, Game, {headers: {"Authorization": `Bearer ${this.temp_jwt}`, "Content-Type": "application/json"}})

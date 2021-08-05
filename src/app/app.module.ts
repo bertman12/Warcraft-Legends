@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -14,9 +13,10 @@ import { RegisterComponent } from './register/register.component';
 import { GamesService } from './_services/games.service';
 import { GameReviewsListComponent } from './game-reviews-list/game-reviews-list.component';
 import { GameReviewsListItemComponent } from './game-reviews-list/game-reviews-list-item/game-reviews-list-item.component';
+import { ModifyGameListComponent } from './game-reviews-list/modify-game-list/modify-game-list.component';
 
 import { UserService } from './_services/user.service';
-
+import { ImagekitIoService } from './_services/imagekit-io.service';
 import { AuthService } from './_services/auth.service';
 // Before you can use HttpClient, you need to import the Angular 
 //HttpClientModule in the appmodule then inject in component where it will be used 
@@ -26,7 +26,11 @@ import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ModifyGameListComponent } from './game-reviews-list/modify-game-list/modify-game-list.component';
+import { ImagekitioAngularModule } from 'imagekitio-angular';
+
+import { PUBLICIMAGEKITKEY } from '../environments/environment';
+import { IMAGEKIT_URL_ENDPOINT } from '../environments/environment';
+import { AUTHENTICATION_ENDPOINT } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -51,12 +55,18 @@ import { ModifyGameListComponent } from './game-reviews-list/modify-game-list/mo
     FormsModule,
     MatIconModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    ImagekitioAngularModule.forRoot({
+      publicKey: PUBLICIMAGEKITKEY,
+      urlEndpoint: IMAGEKIT_URL_ENDPOINT,
+      authenticationEndpoint: AUTHENTICATION_ENDPOINT
+    })
   ],
   providers: [
     GamesService,
     AuthService,
-    UserService
+    UserService,
+    ImagekitIoService
   ],
   bootstrap: [AppComponent]
 })

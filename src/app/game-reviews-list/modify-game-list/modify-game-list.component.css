@@ -46,3 +46,9 @@ select {
     width: 100%;
     padding: .5rem;
   }
+
+/* .img-upload input[type="file" i]{
+    border: black 30px ridge;
+    border-radius: 50%;
+    background: goldenrod;
+  } */

@@ -8,6 +8,9 @@ export const environment = {
 
 export const API_URL = 'http://localhost:3000';
 
+export const PUBLICIMAGEKITKEY = 'public_oHN24sSht8TpNONGfz83KXgaC7w='
+export const IMAGEKIT_URL_ENDPOINT = 'https://ik.imagekit.io/xpiswqmgdc6'
+export const AUTHENTICATION_ENDPOINT = 'http://localhost:3000/imagekit'
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormArray } from '@angular/forms';
 import { GamesService } from 'src/app/_services/games.service';
 import { Validators } from '@angular/forms';
@@ -12,10 +12,13 @@ import { Validators } from '@angular/forms';
 // when this component in instantiated from the edit button we will use .setValue method to grab the game object data and input it in there to make it easier to edit the list item
 export class ModifyGameListComponent implements OnInit {
   
+  @ViewChild('uploader') uploader!: ElementRef<any>;
+
   constructor(private formBuilder: FormBuilder,
               private gameService: GamesService){}
 
   ngOnInit(): void {
+    console.log('this is the upload component', this.uploader);
     this.gameService.editingGame.subscribe(
       (game) => {
         this.gameForm.patchValue(game);
@@ -34,7 +37,8 @@ export class ModifyGameListComponent implements OnInit {
     author: ['', Validators.required],
     description: ['', Validators.required],
     featureDescriptions: this.formBuilder.array([['', [Validators.required, Validators.minLength(1)]]],[ Validators.required, Validators.minLength(1)]),
-    featureImages: this.formBuilder.array([['', [ Validators.required, Validators.minLength(1)]]],[ Validators.required, Validators.minLength(1)]),
+    featureImages: this.formBuilder.array(['']),
+    // featureImages: this.formBuilder.array([['', [ Validators.required, Validators.minLength(1)]]],[ Validators.required, Validators.minLength(1)]),
     genre: ['', Validators.required],
     version: ['', [Validators.required, Validators.max(31)]],
     rating: ['',[Validators.required, Validators.max(5), Validators.min(0)]],

@@ -25,7 +25,10 @@
                   <div *ngFor="let feature of featureImages.controls; let index = index"class="game-features">
                     <div formArrayName="featureImages">
                       <div>
-                        <label style="margin-right: 14px;">Image: <input type="text" [formControlName]="index" ></label>
+                        <label style="margin-right: 14px;">Image: 
+                          <!-- <input type="text" [formControlName]="index"> -->
+                          <ik-upload fileName="my-upload" [formControlName]="index" #uploader></ik-upload>
+                        </label>
                         <div>
                           <button class="btn btn-danger" (click)="removeFeature(index)">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">

@@ -38,6 +38,10 @@ label{
  width: 200px;
 }
 
+.imageButton:hover{
+    filter: brightness(150%);
+}
+
 .linktoForgot:hover {
     background-color: transparent; 
     color: white; 

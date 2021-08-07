@@ -27,6 +27,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModifyGameListComponent } from './game-reviews-list/modify-game-list/modify-game-list.component';
+import { AboutComponent } from './about/about/about.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ModifyGameListComponent } from './game-reviews-list/modify-game-list/mo
     GameReviewsListComponent,
     GameReviewsListItemComponent,
     ModifyGameListComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

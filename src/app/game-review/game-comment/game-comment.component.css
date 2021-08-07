@@ -1,0 +1,28 @@
+.imageButton {
+    width: 200px; 
+}
+
+.addCommentButton:hover {
+    color: white; 
+    background-color: #1f1f1f;
+}
+
+.likeButton:hover{
+    color: white; 
+}
+
+input.ng-invalid.ng-touched {
+    border: 1px solid red; 
+}
+
+.warningmes {
+    color: red; 
+}
+
+.commenttextArea{
+    resize: none;
+}
+
+.imageButton:hover{
+    filter: brightness(150%);
+}

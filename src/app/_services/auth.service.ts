@@ -33,7 +33,6 @@ export class AuthService {
 
   logout(){
     localStorage.removeItem(this.jwtKey);
-    console.log(this.jwtKey);
   }
 
   userAuthorized(res: string){

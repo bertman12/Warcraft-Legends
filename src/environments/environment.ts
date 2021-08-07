@@ -11,6 +11,7 @@ export const API_URL = 'http://localhost:3000';
 export const PUBLICIMAGEKITKEY = ''
 export const IMAGEKIT_URL_ENDPOINT = ''
 export const AUTHENTICATION_ENDPOINT = ''
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

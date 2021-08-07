@@ -1,7 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormArray } from '@angular/forms';
 import { GamesService } from 'src/app/_services/games.service';
 import { Validators } from '@angular/forms';
+import { ImagekitIoService } from 'src/app/_services/imagekit-io.service';
+
 
 @Component({
   selector: 'app-modify-game-list',
@@ -12,13 +14,12 @@ import { Validators } from '@angular/forms';
 // when this component in instantiated from the edit button we will use .setValue method to grab the game object data and input it in there to make it easier to edit the list item
 export class ModifyGameListComponent implements OnInit {
   
-  @ViewChild('uploader') uploader!: ElementRef<any>;
-
+  
   constructor(private formBuilder: FormBuilder,
-              private gameService: GamesService){}
+              private gameService: GamesService,
+              private imagekitService: ImagekitIoService){}
 
   ngOnInit(): void {
-    console.log('this is the upload component', this.uploader);
     this.gameService.editingGame.subscribe(
       (game) => {
         this.gameForm.patchValue(game);
@@ -66,6 +67,7 @@ export class ModifyGameListComponent implements OnInit {
   }
   
   addFeature(){
+    // this.featureImages.push(this.formBuilder.control(''));
     this.featureImages.push(this.formBuilder.control('',[Validators.required, Validators.minLength(1)]));
     this.featureDescriptions.push(this.formBuilder.control('',[Validators.required, Validators.minLength(1)]));
     this.featureImages.updateValueAndValidity();
@@ -79,7 +81,7 @@ export class ModifyGameListComponent implements OnInit {
   
   onSubmit(){
     if(this.gameService.isEditing){
-      console.log('the gaem we are editing', this.gameForm.value);
+      console.log('the game we are editing', this.gameForm.value);
       this.gameService.submitEditedGame(this.gameForm.value);
     }
     else{
@@ -94,5 +96,19 @@ export class ModifyGameListComponent implements OnInit {
     this.featureImages.clear();
   }
 
+  onImageUpload(event: any, index: number){
+    // console.log('event from image upload', event);
+    let selectedFile = event.target.files[0];
+    this.featureImages.push(this.formBuilder.control(this.imagekitService.convertImageToB64(selectedFile),[Validators.required]));
+    console.log('this the value in the form', this.gameForm.value);
+
+    // this.imagekitService.uploadMyImage(selectedFile);
+
+    console.log('this is the selected file', selectedFile);
+    console.log('This is the event on file change: ', event);
+    console.log('This is the file name: ', event.srcElement.files[0].name);
+    console.log('This is the tyoe of the file: ', typeof event.srcElement.files[0]);
+  }
 }
+
   

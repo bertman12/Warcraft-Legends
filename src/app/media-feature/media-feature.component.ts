@@ -14,6 +14,7 @@ export class MediaFeatureComponent implements OnInit {
   // configure these properties to control what is displayed in the media-feature component
   @Input() showTitle: boolean = true;
   @Input() showImage: boolean = false;
+  @Input() transformation: string = ''
   //============================================================
   @Input() featureImg: string = '';
   

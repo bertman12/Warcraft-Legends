@@ -11,31 +11,28 @@ export class MediaFeatureComponent implements OnInit {
 
   constructor(private imagekitService: ImagekitIoService) {}
 
-  transformations = this.imagekitService.transformations; 
-  // [{
-  //   w: 300,
-  //   h: 300
-  // }]
-
-  @Input() game!: Game;
+  transformation!: any; 
   
+  @Input() mediaTransformType: any ='';
+  @Input() game!: Game;
   // configure these properties to control what is displayed in the media-feature component
   @Input() showTitle: boolean = true;
   @Input() showImage: boolean = false;
   // @Input() imagekitVideo: boolean = false;
-  @Input() transformation: string = ''
   //============================================================
   @Input() featureImg: string = '';
   
   getImgSrc(){
     if(!this.featureImg){
-      return this.game.imgSrc;
+      //this is the preview image shown in the games list
+      return this.imagekitService.attachTransformQuery(this.game.imgSrc, 'previewImage');
     }
     else{
-      return this.featureImg;
+      return this.imagekitService.attachTransformQuery(this.featureImg, 'featureImage');
     }
   }
-  ngOnInit(): void {
 
+  ngOnInit(): void {
+    this.transformation = this.imagekitService.getMediaTypeTransformation(this.mediaTransformType);
   }
 }

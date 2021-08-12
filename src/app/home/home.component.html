@@ -40,7 +40,7 @@
          >
          <app-media-feature [game]="game"></app-media-feature></a>
       </div>
-      <div class="featured-background-image">
+      <div class="featured-background-image" [ngStyle]="{'background-image': getBannerImage(game) }">
         <div class="featured-game-description">
           <strong>{{ game.title }}</strong>
           <p style ="color:white">{{ game.description }}</p>

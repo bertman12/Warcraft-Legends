@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Game } from '../_models/game.model';
 import { GamesService } from '../_services/games.service';
+import { ImagekitIoService } from '../_services/imagekit-io.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,8 @@ import { GamesService } from '../_services/games.service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   constructor(private gameService: GamesService,
-              private router: ActivatedRoute){}
+              private router: ActivatedRoute,
+              private imagekitService: ImagekitIoService){}
 
   sub!: Subscription;
 
@@ -29,7 +31,10 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
       }
     );
-    // this.gameService.getGames().then((games)=> {this.localGameArr = games;});
+  }
+
+  getBannerImage(game: Game){
+    return `url(${this.imagekitService.attachTransformQuery(game.imgSrc, "bannerImage")})`;
   }
 
   staggerMedia(index: number):string {

@@ -1,9 +1,11 @@
 .form-modal{
     width:fit-content;
 }
+
 .description-area{
     resize: none;
 }
+
 .game-features{
     display: flex;
     justify-content: space-between;
@@ -12,6 +14,7 @@
     border-radius: 15px;
     padding: 5px;
 }
+
 .form-inputs-format{
     display: flex;
     justify-content: space-between;
@@ -26,6 +29,7 @@
   border-left: 5px solid #a94442; 
 }
 
+
 .alert div {
   background-color: #fed3d3;
   color: #820000;
@@ -37,18 +41,13 @@
     margin-bottom: 1rem;
   }
   
-label {
+/* label {
     display: block;
     margin-bottom: .5rem;
-  }
+  } */
   
 select {
     width: 100%;
     padding: .5rem;
   }
 
-/* .img-upload input[type="file" i]{
-    border: black 30px ridge;
-    border-radius: 50%;
-    background: goldenrod;
-  } */

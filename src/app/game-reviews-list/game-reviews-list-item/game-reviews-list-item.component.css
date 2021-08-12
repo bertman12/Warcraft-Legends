@@ -22,6 +22,7 @@
     flex-direction: column;
     justify-content: flex-end;
     margin-bottom: 15px;
+    padding:10px;
     padding-right: 5px;
 }
 .interface{
@@ -39,7 +40,7 @@
 .admin-options{
     margin: 5px;
     margin-left:0px;
-    margin-right:5px;
+    margin-right:15px;
     opacity: 0;
     transition: 0.5s opacity ease-in-out;
 }

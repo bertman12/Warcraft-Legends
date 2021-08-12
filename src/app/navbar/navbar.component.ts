@@ -23,7 +23,9 @@ export class NavbarComponent implements OnInit {
       }
     )
   }
-
+  scrolltoFeatured(){
+    window.scrollTo(900, 900);
+  }
   onSignIn(){
     this.router.navigate(['login']),{relativeTo: this.router};
   }

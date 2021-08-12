@@ -7,16 +7,15 @@ import { GameReviewComponent } from './game-review/game-review.component';
 import { GameReviewsListComponent } from './game-reviews-list/game-reviews-list.component';
 
 const routes: Routes = [
-  {path: "login", component: LoginComponent },
   {path:"", component: HomeComponent}, //home-landing-page
   {path:"game-reviews-list", component: GameReviewsListComponent}, //list of all games
   {path:"game-reviews-list/:id", component: GameReviewComponent}, // load review by id
   {path:"game-reviews-list/mod/create/:id", component: GameReviewsListComponent}, //edit review by id
   {path:"game-reviews-list/mod/edit/:id", component: GameReviewsListComponent}, //edit review by id
   {path:"game-reviews-list/mod/delete/:id", component: GameReviewsListComponent}, //delete review by id
+  {path: "login", component: LoginComponent },
   {path:"register", component: RegisterComponent},
-
-
+  
   {path:"**", redirectTo: '', pathMatch: 'full'}
 ];
 

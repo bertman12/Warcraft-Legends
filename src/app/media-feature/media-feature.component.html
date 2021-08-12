@@ -6,7 +6,10 @@
     <video *ngIf="!showImage" class = "gameplay-video" height="100%" appPlayVideo loop #localVideo>
         <source [src]="game.videoSrc ?? '' " type="video/mp4">
     </video>
-    <img *ngIf="showImage" class="previewImg" [src]="getImgSrc()" alt="img" height="100%">
+    <!-- <ik-image *ngIf="imagekitVideo" [src]="game.videoSrc ?? '' " alt="This is an alt">
+    </ik-image> -->
+    <ik-image *ngIf="showImage" class="previewImg" [src]="getImgSrc()" alt="img" [transformation]=transformations.previewImage></ik-image>
+    <!-- <img *ngIf="showImage" class="previewImg" [src]="getImgSrc()" alt="img" height="100%"> -->
 </div>
 
 

@@ -3,14 +3,13 @@
     <div class="modal-dialog d-flex justify-content-center">
       <div class="modal-content  form-modal">
         <div class="modal-header">
-          <h4 class="modal-title" id="staticBackdropLabel">Enter Game Info</h4>
+          <h4 class="modal-title" id="staticBackdropLabel">{{ this.gameService.isEditing ? 'Edit Game Info' : 'Add Game Info'  }}</h4>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="container-fluid">
             <div class="row">
-
-              <form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
+              <form [formGroup]="gameForm" (ngSubmit)="onSubmit('submitting')">
                 <div class="col-12 form-inputs-format" style="margin-bottom: 5px;">
                   <label>Title: <input type="text" formControlName="title"></label>
                   <label>Author: <input type="text" formControlName="author"></label>
@@ -25,10 +24,7 @@
                   <div *ngFor="let feature of featureImages.controls; let index = index"class="game-features">
                     <div formArrayName="featureImages">
                       <div>
-                        <label style="margin-right: 14px;">Image: 
-                          <input type="file" [formControlName]="index" (change)="onImageUpload($event, index)">
-                          <!-- <ik-upload fileName="test" [onFileInput]="handleFileInput"></ik-upload> -->
-                        </label>
+                          <input type="file" (change)="onImageUpload($event,'featureImageUpload', index)" #featureImageUpload>
                         <div>
                           <button class="btn btn-danger" (click)="removeFeature(index)">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -65,8 +61,15 @@
                     <label class="d-flex flex-column">Rating: <input type="number" formControlName="rating" ></label>
                   </div>
                   <div class="col-12 form-inputs-format">
-                    <label style="margin-right: 14px;">Video: <input type="text" formControlName="videoSrc" ></label>
-                    <label>Preview Image: <input type="text" formControlName="imgSrc"></label>
+                    <label style="margin-right: 14px;">Video: 
+                      <!-- <input type="text" formControlName="videoSrc" > -->
+                    </label>
+                    <ik-upload fileName="video" [useUniqueFileName]="false" [isPrivateFile]="false" (onSuccess)="handleUploadSuccess($event, 'videoUpload')" (onError)="handleUploadError($event)"></ik-upload>
+                    <!-- <input type="file" (change)="onImageUpload($event, 'previewImageUpload')" #previewImageUpload> -->
+                    <div>
+                      <p>Current Image: {{selectedGame ? selectedGame.imgSrc : '' }}</p> <br>
+                      <ik-upload fileName="previewimage1" [isPrivateFile]="false" (onSuccess)="handleUploadSuccess($event, 'previewImageUpload')" (onError)="handleUploadError($event)"></ik-upload>
+                    </div>
                   </div>
                   <br>
                   <button style="margin-right: 10px;" class="btn btn-primary" type="submit" [disabled]="!gameForm.valid" data-bs-dismiss="modal">Submit</button>

@@ -17,20 +17,22 @@ import { ModifyGameListComponent } from './game-reviews-list/modify-game-list/mo
 
 import { UserService } from './_services/user.service';
 import { ImagekitIoService } from './_services/imagekit-io.service';
+import { CommentService } from './_services/comment.service';
 import { AuthService } from './_services/auth.service';
-// Before you can use HttpClient, you need to import the Angular 
-//HttpClientModule in the appmodule then inject in component where it will be used 
+
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api'
 import { FormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { GameCommentComponent } from './game-review/game-comment/game-comment.component';
+// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api'
 import { ReactiveFormsModule } from '@angular/forms';
 import { ImagekitioAngularModule } from 'imagekitio-angular';
 
 import { PUBLICIMAGEKITKEY } from '../environments/environment';
 import { IMAGEKIT_URL_ENDPOINT } from '../environments/environment';
 import { AUTHENTICATION_ENDPOINT } from '../environments/environment';
+import { FooterComponent } from './footer/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { AUTHENTICATION_ENDPOINT } from '../environments/environment';
     RegisterComponent,
     GameReviewsListComponent,
     GameReviewsListItemComponent,
+    GameCommentComponent,
     ModifyGameListComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +70,8 @@ import { AUTHENTICATION_ENDPOINT } from '../environments/environment';
     GamesService,
     AuthService,
     UserService,
-    ImagekitIoService
+    ImagekitIoService,
+    CommentService
   ],
   bootstrap: [AppComponent]
 })

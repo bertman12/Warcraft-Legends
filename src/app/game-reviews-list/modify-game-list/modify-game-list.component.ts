@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormArray } from '@angular/forms';
+import { FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { GamesService } from 'src/app/_services/games.service';
 import { Validators } from '@angular/forms';
 import { ImagekitIoService } from 'src/app/_services/imagekit-io.service';
+import { Game } from 'src/app/_models/game.model';
 
 
 @Component({
@@ -14,14 +15,16 @@ import { ImagekitIoService } from 'src/app/_services/imagekit-io.service';
 // when this component in instantiated from the edit button we will use .setValue method to grab the game object data and input it in there to make it easier to edit the list item
 export class ModifyGameListComponent implements OnInit {
   
-  
   constructor(private formBuilder: FormBuilder,
-              private gameService: GamesService,
+              public gameService: GamesService,
               private imagekitService: ImagekitIoService){}
+
+  selectedGame!: any;              
 
   ngOnInit(): void {
     this.gameService.editingGame.subscribe(
       (game) => {
+        this.selectedGame = game;
         this.gameForm.patchValue(game);
         this.featureDescriptions.clear();
         this.featureImages.clear();
@@ -48,8 +51,9 @@ export class ModifyGameListComponent implements OnInit {
       day: ['', [Validators.required, Validators.max(31)]],
       year: ['', [Validators.required, Validators.max(2021)]],
     }),
-    videoSrc: ['',Validators.required],
-    imgSrc: ['',Validators.required]
+    videoSrc: [''],
+    imgSrc: ['']
+    // imgSrc: ['',Validators.required]
   })
   
   get featureDescriptions(){
@@ -67,8 +71,8 @@ export class ModifyGameListComponent implements OnInit {
   }
   
   addFeature(){
-    // this.featureImages.push(this.formBuilder.control(''));
-    this.featureImages.push(this.formBuilder.control('',[Validators.required, Validators.minLength(1)]));
+    this.featureImages.push(this.formBuilder.control(''));
+    // this.featureImages.push(this.formBuilder.control('',[Validators.required, Validators.minLength(1)]));
     this.featureDescriptions.push(this.formBuilder.control('',[Validators.required, Validators.minLength(1)]));
     this.featureImages.updateValueAndValidity();
     this.featureDescriptions.updateValueAndValidity();
@@ -79,14 +83,10 @@ export class ModifyGameListComponent implements OnInit {
     this.featureDescriptions.removeAt(index);
   }
   
-  onSubmit(){
-    if(this.gameService.isEditing){
-      console.log('the game we are editing', this.gameForm.value);
-      this.gameService.submitEditedGame(this.gameForm.value);
-    }
-    else{
-      this.gameService.createGame(this.gameForm.value);
-      console.log('The game i am creating!...', this.gameForm.value);
+  onSubmit(phrase:string){
+    if(phrase = 'submitting'){
+      console.log('SUBMITTING GAME');
+      this.imagekitService.uploadMyImageRecursive(this.gameForm.value, 0);
     }
   }
   
@@ -94,21 +94,34 @@ export class ModifyGameListComponent implements OnInit {
     this.gameForm.reset();
     this.featureDescriptions.clear();
     this.featureImages.clear();
+    this.selectedGame = null;
   }
 
-  onImageUpload(event: any, index: number){
-    // console.log('event from image upload', event);
+  onImageUpload(event: any, uploader:string, index?: any, ){
     let selectedFile = event.target.files[0];
-    this.featureImages.push(this.formBuilder.control(this.imagekitService.convertImageToB64(selectedFile),[Validators.required]));
-    console.log('this the value in the form', this.gameForm.value);
-
-    // this.imagekitService.uploadMyImage(selectedFile);
-
-    console.log('this is the selected file', selectedFile);
-    console.log('This is the event on file change: ', event);
-    console.log('This is the file name: ', event.srcElement.files[0].name);
-    console.log('This is the tyoe of the file: ', typeof event.srcElement.files[0]);
+    console.log(event);
+    if(uploader === 'featureImageUpload'){
+      this.featureImages.at(index).setValue(selectedFile);
+      console.log(`${uploader} image selected...`, selectedFile);
+    }
   }
+
+  handleUploadSuccess(res:any, uploader:string){
+    console.log('File upload success with response: ', res);
+    if(uploader === 'previewImageUpload'){
+      let previewImage = this.gameForm.get('imgSrc') as FormControl;
+      previewImage.setValue(res.url);
+    }
+    else if(uploader === 'videoUpload'){
+      let videoUpload = this.gameForm.get('videoSrc') as FormControl;
+      videoUpload.setValue(res.url);
+    }
+  }
+
+  handleUploadError(res:any){
+    console.log('File upload error with response: ', res);
+  }
+
 }
 
   

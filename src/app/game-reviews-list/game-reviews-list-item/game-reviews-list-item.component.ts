@@ -28,8 +28,10 @@ export class GameReviewsListItemComponent implements OnInit {
   }
   
   onDelete(game: Game){
-    confirm('Are you sure you want to delete game?');
-    this.gameService.deleteGame(game.id);
+    let response = confirm('Are you sure you want to delete game?');
+    if(response === true){
+      this.gameService.deleteGame(game.id);
+    }
   }
 }
 

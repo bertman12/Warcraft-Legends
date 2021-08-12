@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { getMatIconFailedToSanitizeUrlError } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { GamesService } from '../_services/games.service';
 import { UserService } from '../_services/user.service';
@@ -13,19 +12,17 @@ import { AuthService } from '../_services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-  currentUser !: User ; 
+  currentUser : User = {} ; 
   userExist: boolean = false; 
 
   constructor(private router: Router, private userService: UserService, private auth: AuthService) { }
 
   ngOnInit(): void { 
-    this.userService.userLoggedIn.subscribe( 
-      loggedInUser => {
-        this.userExist = true; 
-        console.log(loggedInUser);
-        this.currentUser = loggedInUser; 
+    this.userService.currentUser.subscribe( (user: User) => {
+        this.currentUser = user; 
       }
-    )}
+    )
+  }
 
   onSignIn(){
     this.router.navigate(['login']),{relativeTo: this.router};
@@ -35,8 +32,9 @@ export class NavbarComponent implements OnInit {
     this.currentUser = {};
     this.userExist = false; 
     console.log(this.currentUser);
-    this.auth.logout(); 
-  }
+    this.auth.logout();     
+    this.userService.logout(); 
+  }  
     
 
 }

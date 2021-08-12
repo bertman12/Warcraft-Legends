@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from 'src/app/_models/game.model';
+import { User } from 'src/app/_models/userInterface';
 import { GamesService } from 'src/app/_services/games.service';
 import { UserService } from 'src/app/_services/user.service';
 
@@ -13,10 +14,14 @@ export class GameReviewsListItemComponent implements OnInit {
               private userService: UserService) { }
   
   localGamesArr:Game[] = [];
-  
+  currentUser!: User;
   ngOnInit(){
-  let currentUser = this.userService.getUser({email: 'admin@admin.com'});
-    console.log('THIS IS THE USER',currentUser);
+    this.userService.currentUser.subscribe((user: User) =>
+      {
+        this.currentUser = user; 
+      });
+  // let currentUser = this.userService.getUser({email: 'admin@admin.com'});
+  //   console.log('THIS IS THE USER',currentUser);
     this.gameService.getGames();
     this.gameService.gameListModified.subscribe((games)=> {
       this.localGamesArr = games;

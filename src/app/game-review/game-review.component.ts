@@ -10,15 +10,9 @@ import { GamesService } from '../_services/games.service';
 
 export class GameReviewComponent implements OnInit {
 
-<<<<<<< HEAD
-  constructor(private route: ActivatedRoute, private gameService: GamesService){}
-
-  game:any = {};
-=======
   constructor(private route: ActivatedRoute, 
               private gameService: GamesService){}
   game!: any;
->>>>>>> main
     
   ngOnInit(): void {
     this.gameService.getSelectedGame(this.route.snapshot.params['id']).then((selectedGame)=>{

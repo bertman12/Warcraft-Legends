@@ -26,6 +26,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { GameCommentComponent } from './game-review/game-comment/game-comment.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api'
 import { ModifyGameListComponent } from './game-reviews-list/modify-game-list/modify-game-list.component';
+import { AboutComponent } from './about/about/about.component';
 import { FooterComponent } from './footer/footer/footer.component';
 
 @NgModule({
@@ -42,6 +43,7 @@ import { FooterComponent } from './footer/footer/footer.component';
     GameReviewsListItemComponent,
     GameCommentComponent,
     ModifyGameListComponent,
+    AboutComponent,
     FooterComponent
   ],
   imports: [

@@ -16,7 +16,7 @@ const routes: Routes = [
   {path:"game-reviews-list/mod/edit/:id", component: GameReviewsListComponent}, //edit review by id
   {path:"game-reviews-list/mod/delete/:id", component: GameReviewsListComponent}, //delete review by id
   {path:"register", component: RegisterComponent},
-  {path:"about", component: AboutComponent}
+  {path:"about", component: AboutComponent},
 
 
   {path:"**", redirectTo: '', pathMatch: 'full'}

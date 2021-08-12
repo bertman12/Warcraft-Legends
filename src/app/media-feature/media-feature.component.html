@@ -4,7 +4,7 @@
     </div>
     <div class="shadow-effect" ></div>      
     <video *ngIf="!showImage" class = "gameplay-video" height="100%" appPlayVideo loop #localVideo>
-        <source [src]="game.videoSrc ?? '' " type="video/mp4">
+        <source [src]="game?.videoSrc ?? '' " type="video/mp4">
     </video>
     <img *ngIf="showImage" class="previewImg" [src]="getImgSrc()" alt="img" height="100%">
 </div>

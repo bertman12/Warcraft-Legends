@@ -20,15 +20,27 @@
     justify-content: space-between;
 }
 
+.form-input{
+  display: flex;
+  flex-direction: column;
+}
+
 
 .ng-valid[required], .ng-valid.required  {
   border-left: 5px solid #42A948; 
 }
 
-.ng-invalid:not(form)  {
-  border-left: 5px solid #a94442; 
-}
+.ng-invalid:not(form, div)  {
+  /* border-left: 5px solid #a94442;  */
+  border-left: 5px ridge #ff0400; 
 
+}
+#file-upload-button{
+  color: green;
+}
+/* .ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; 
+} */
 
 .alert div {
   background-color: #fed3d3;

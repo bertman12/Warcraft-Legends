@@ -10,22 +10,28 @@
           <div class="container-fluid">
             <div class="row">
               <form [formGroup]="gameForm" (ngSubmit)="onSubmit('submitting')">
-                <div class="col-12 form-inputs-format" style="margin-bottom: 5px;">
-                  <label>Title: <input type="text" formControlName="title"></label>
-                  <label>Author: <input type="text" formControlName="author"></label>
-                </div>
-                <div class="col-5">
-                  <label>Description:  
-                  <textarea class="description-area" type="text" rows="6" cols="50"
-                  formControlName="description" ></textarea></label>
+                <div style="display: flex; justify-content: space-between;">
+                  <div class="" style="margin-bottom: 5px;display:flex; flex-direction: column;">
+                    <label>Title: </label><input type="text" formControlName="title">
+                    <label>Author: </label><input type="text" formControlName="author">
+                  </div>
+                  <div style="display: flex;flex-direction: column;justify-content: center;">
+                    <label>Description: </label>
+                    <textarea class="description-area" type="text" rows="6" cols="50"
+                    formControlName="description" ></textarea>
+                  </div>
                 </div>
                   <hr>
-                  <h5>Features</h5>
+                  <h5>Gameplay Features</h5>
                   <div *ngFor="let feature of featureImages.controls; let index = index"class="game-features">
-                    <div formArrayName="featureImages">
+                    <div formArrayName="featureImages" style="display: flex;flex-direction: column;justify-content: space-between;margin-top: 5px">
                       <div>
-                          <input type="file" (change)="onImageUpload($event,'featureImageUpload', index)" #featureImageUpload>
-                        <div>
+                        <div class="form-input">
+                          <label style="margin-bottom:5px;">Feature Image:</label>
+                          <input type="file" id="feautureImageInput" (change)="onImageUpload($event,'featureImageUpload', index)" #featureImageUpload>
+                          <!-- <label for="feautureImageInput" style="padding:5px;cursor:pointer;background:#2a9fd6;color:white;border-radius: 10px;">Choose an Image...</label> -->
+                        </div>
+                        <div style="margin: 10px 0px 5px 0px">
                           <button class="btn btn-danger" (click)="removeFeature(index)">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                               <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -36,38 +42,50 @@
                       </div>
                     </div>
                     <div formArrayName="featureDescriptions">
-                      <div>
-                        <label>Description:<textarea class="description-area" type="text" rows="3" cols="25"
-                        [formControlName]="index"></textarea></label>
+                      <div style="display: flex;flex-direction: column;margin: 5px;">
+                        <label>Description:</label><textarea class="description-area" type="text" rows="3" cols="35"
+                        [formControlName]="index"></textarea>
                       </div>
                     </div>
                   </div>
                   <button class="btn btn-warning" type="button" (click)="addFeature()">Add a Feature image and description.</button>
                   <hr>
-                  <div class="col-12 d-flex form-inputs-format">
+                  <!-- <div class="col-12 d-flex form-inputs-format">
                     <label>Genre: <input type="text" formControlName="genre" ></label>
                     <label>Version: <input type="number" formControlName="version" ></label>
-                  </div>
-                  <div formGroupName="publishDate">
-                    <div class="col-12 form-inputs-format">
-                      <label>Month: <input type="text" formControlName="month"></label>
-                      <label>Day: <input type="number" formControlName="day"></label>
+                  </div> -->
+                  <div style="display: flex;margin: 15px 15px 15px 0px">
+                    <div formGroupName="publishDate" style="outline: 3px ridge rgb(131, 131, 131);padding:15px;">
+                      <div class="form-input">
+                        <strong>Version Date</strong><label>Month: </label><input type="text" formControlName="month">
+                      </div>
+                      <div class="form-input">
+                        <label>Day: </label><input type="number" formControlName="day">
+                      </div>
+                      <div class="form-input">
+                        <label>Year: </label><input type="number" formControlName="year" >
+                      </div>
                     </div>
-                    <div class="form-inputs-format">
-                      <label class="d-flex flex-column">Year: <input type="number" formControlName="year" ></label>
+                    <div style="margin-left: 20px;outline: 3px ridge rgb(131, 131, 131);padding:15px;">
+                      <div class="form-input">
+                        <br><label>Genre: </label><input type="text" formControlName="genre" >
+                      </div>
+                      <div class="form-input">
+                        <label>Version: </label><input type="number" formControlName="version" >
+                      </div>
+                      <div class="form-input">
+                        <label>Rating: </label><input type="number" formControlName="rating" >
+                      </div>
                     </div>
                   </div>
-                  <div class="form-inputs-format">
-                    <label class="d-flex flex-column">Rating: <input type="number" formControlName="rating" ></label>
-                  </div>
-                  <div class="col-12 form-inputs-format">
-                    <label style="margin-right: 14px;">Video: 
-                      <!-- <input type="text" formControlName="videoSrc" > -->
-                    </label>
-                    <ik-upload fileName="video" [useUniqueFileName]="false" [isPrivateFile]="false" (onSuccess)="handleUploadSuccess($event, 'videoUpload')" (onError)="handleUploadError($event)"></ik-upload>
-                    <!-- <input type="file" (change)="onImageUpload($event, 'previewImageUpload')" #previewImageUpload> -->
-                    <div>
-                      <p>Current Image: {{selectedGame ? selectedGame.imgSrc : '' }}</p> <br>
+                  <div>
+                    <div class="form-input" style="margin-bottom:10px;">
+                      <label>Gameplay Footage: </label>
+                      <ik-upload id="videoUpload" fileName="video" [useUniqueFileName]="false" [isPrivateFile]="false" (onSuccess)="handleUploadSuccess($event, 'videoUpload')" (onError)="handleUploadError($event)" #videoUpload></ik-upload>
+                    </div>
+                    <div class="form-input">
+                      <!-- <p>Current Image: {{selectedGame ? selectedGame.imgSrc : '' }}</p> <br> -->
+                      <label>Preview Image: </label>
                       <ik-upload fileName="previewimage1" [isPrivateFile]="false" (onSuccess)="handleUploadSuccess($event, 'previewImageUpload')" (onError)="handleUploadError($event)"></ik-upload>
                     </div>
                   </div>

@@ -32,6 +32,9 @@ import { ImagekitioAngularModule } from 'imagekitio-angular';
 import { PUBLICIMAGEKITKEY } from '../environments/environment';
 import { IMAGEKIT_URL_ENDPOINT } from '../environments/environment';
 import { AUTHENTICATION_ENDPOINT } from '../environments/environment';
+// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api'
+// import { ModifyGameListComponent } from './game-reviews-list/modify-game-list/modify-game-list.component';
+import { AboutComponent } from './about/about/about.component';
 import { FooterComponent } from './footer/footer/footer.component';
 
 @NgModule({
@@ -48,6 +51,7 @@ import { FooterComponent } from './footer/footer/footer.component';
     GameReviewsListItemComponent,
     GameCommentComponent,
     ModifyGameListComponent,
+    AboutComponent,
     FooterComponent
   ],
   imports: [

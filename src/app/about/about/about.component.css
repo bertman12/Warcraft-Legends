@@ -1,0 +1,17 @@
+.logo{
+    width: 10%;
+    border-radius: 100%;
+}
+
+.creatorBox{
+    width: 80%;
+    padding: 0; 
+    margin: 20px; 
+}
+
+.blockText{
+    margin-left: auto;
+    margin-right: auto;
+    width:70%;
+    font-size: x-large;
+}

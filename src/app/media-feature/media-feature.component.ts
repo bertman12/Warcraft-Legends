@@ -1,5 +1,7 @@
 import {  Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Game } from '../_models/game.model';
+import { GamesService } from '../_services/games.service';
 import { ImagekitIoService } from '../_services/imagekit-io.service';
 
 @Component({
@@ -9,7 +11,9 @@ import { ImagekitIoService } from '../_services/imagekit-io.service';
 })
 export class MediaFeatureComponent implements OnInit {
 
-  constructor(private imagekitService: ImagekitIoService) {}
+  constructor(private imagekitService: ImagekitIoService,
+              private route: ActivatedRoute,
+              private gameService:GamesService) {}
 
   transformation!: any; 
   
@@ -23,6 +27,9 @@ export class MediaFeatureComponent implements OnInit {
   @Input() featureImg: string = '';
   
   getImgSrc(){
+    // if(type == "video"){
+    //   return this.imagekitService.attachTransformQuery(this.game.imgSrc, 'video');
+    // }
     if(!this.featureImg){
       //this is the preview image shown in the games list
       return this.imagekitService.attachTransformQuery(this.game.imgSrc, 'previewImage');
@@ -34,5 +41,9 @@ export class MediaFeatureComponent implements OnInit {
 
   ngOnInit(): void {
     this.transformation = this.imagekitService.getMediaTypeTransformation(this.mediaTransformType);
+    // this.gameService.getSelectedGame(this.route.snapshot.params['id']).then(
+    //   (selectedGame) => {
+    //   this.game = selectedGame;
+    // });
   }
 }

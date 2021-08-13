@@ -35,12 +35,12 @@ export class ImagekitIoService {
   }
 
   transformationQueries:any = {
-    thumbnail: "thumbnail",
+    thumbnail: "tr:w-1000,h-1000",
     previewImage: "tr:w-1000,h-1000",
     bannerImage: "tr:w-780,h-300,cm-extract,fo-center",
     featureImage: "tr:w-1000,h-1000",
-    video: "video",
-    bannerVideo: "bannerVideo",
+    video: "tr:w-1000,h-1000",
+    bannerVideo: "tr:w-1000,h-1000",
   }
 
   getMediaTypeTransformation(type: string){
@@ -64,7 +64,8 @@ export class ImagekitIoService {
         return this.transformations.bannerVideo;
         break;
       default:
-        return console.log('No media type selected!');
+        // return console.log('No media type selected!');
+        return
         break;
     }
   }

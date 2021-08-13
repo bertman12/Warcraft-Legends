@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { GameReviewComponent } from './game-review/game-review.component';
 import { GameReviewsListComponent } from './game-reviews-list/game-reviews-list.component';
+import { AboutComponent } from './about/about/about.component';
 
 const routes: Routes = [
   {path:"", component: HomeComponent}, //home-landing-page
@@ -15,7 +16,9 @@ const routes: Routes = [
   {path:"game-reviews-list/mod/delete/:id", component: GameReviewsListComponent}, //delete review by id
   {path: "login", component: LoginComponent },
   {path:"register", component: RegisterComponent},
-  
+  {path:"about", component: AboutComponent},
+
+
   {path:"**", redirectTo: '', pathMatch: 'full'}
 ];
 

@@ -79,8 +79,11 @@ export class ModifyGameListComponent implements OnInit {
   }
 
   removeFeature(index:number){
-    this.featureImages.removeAt(index);
-    this.featureDescriptions.removeAt(index);
+    let response = confirm('Are you sure you want to delete gameplay feature?');
+    if(response === true){
+      this.featureImages.removeAt(index);
+      this.featureDescriptions.removeAt(index);
+    }
   }
   
   onSubmit(phrase:string){
@@ -120,6 +123,7 @@ export class ModifyGameListComponent implements OnInit {
 
   handleUploadError(res:any){
     console.log('File upload error with response: ', res);
+    alert('File size must be under 25MB');
   }
 
 }

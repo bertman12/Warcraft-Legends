@@ -79,7 +79,7 @@ export class GamesService implements OnInit{
     });
   }
 
-   getSelectedGame(id: number){
+   getSelectedGame(id: number):Promise<any>{
     console.log('We are getting this game by id...', id);
     return this.http.get(`${API_URL}/game-reviews-list/${id}`).toPromise();
   }

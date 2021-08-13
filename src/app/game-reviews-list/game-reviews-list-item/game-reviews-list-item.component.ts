@@ -28,6 +28,14 @@ export class GameReviewsListItemComponent implements OnInit {
     });
   }
 
+  getStarsArray(index: number){
+    const locArr = [];
+    for(let x = 0; x < this.localGamesArr[index].rating; x++){
+      locArr.push(0);
+    }
+    return locArr;
+  }
+
   onEdit(game: Game){
     this.gameService.editGame(game);
   }

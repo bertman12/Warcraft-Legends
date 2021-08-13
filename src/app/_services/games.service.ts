@@ -44,11 +44,8 @@ export class GamesService implements OnInit{
   }
 
   async createGame(Game: Game) {
-    // Game.videoSrc = "../../assets/Action 7-3-2021 3-09-01 PM.mp4";
     this.isEditing = false;
-    // Game.featureImages = [...this.urls];
-    // Game.featureImages = this.urls;
-    console.log('these are the feature images in the game service.. ', Game.featureImages);
+    // console.log('these are the feature images in the game service.. ', Game.featureImages);
     await this.http.post<Game>(`${API_URL}/game-reviews-list/mod/create`, Game, {headers: {"Authorization": `Bearer ${this.temp_jwt}`, "Content-Type": "application/json"}})
     .toPromise().then((res)=>{
       this.getGames();

@@ -37,7 +37,7 @@
     
 }
 .home-description{
-    font-family: "monospace";
+    /* font-family: "monospace"; */
 }
 .header-title{
     font-family: 'Suez One', serif;
@@ -85,7 +85,7 @@
     margin-left: 30px;
     padding: 15px;
     color:goldenrod;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.856);
     border: 3px rgb(95, 95, 95) ridge;
     border-radius: 10px;
     overflow: hidden;

@@ -3,7 +3,7 @@
     <div class="modal-dialog d-flex justify-content-center">
       <div class="modal-content  form-modal">
         <div class="modal-header">
-          <h4 class="modal-title" id="staticBackdropLabel">{{ this.gameService.isEditing ? 'Edit Game Info' : 'Add Game Info'}}</h4>
+          <h4 class="modal-title" id="staticBackdropLabel">{{ this.gameService.isEditing === true ? 'Edit Game Info' : 'Add Game Info'}}</h4>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -24,9 +24,9 @@
                   <hr>
                   <h5>Gameplay Features</h5>
                   <div *ngFor="let feature of featureImages.controls; let index = index"class="game-features">
-                    <div formArrayName="featureImages" style="display: flex;flex-direction: column;justify-content: space-between;margin-top: 5px">
+                    <div style="display: flex;flex-direction: column;justify-content: space-between;margin-top: 5px">
                       <div>
-                        <div class="form-input">
+                        <div class="form-input" formArrayName="featureImages">
                           <label style="margin-bottom:5px;">Feature Image:</label>
                           <input type="file" id="feautureImageInput" (change)="onImageUpload($event,'featureImageUpload', index)" #featureImageUpload>
                           <!-- <label for="feautureImageInput" style="padding:5px;cursor:pointer;background:#2a9fd6;color:white;border-radius: 10px;">Choose an Image...</label> -->
@@ -81,7 +81,7 @@
                   <div>
                     <div class="form-input" style="margin-bottom:10px;">
                       <label>Gameplay Footage: </label>
-                      <ik-upload id="videoUpload" fileName="video" [useUniqueFileName]="false" [isPrivateFile]="false" (onSuccess)="handleUploadSuccess($event, 'videoUpload')" (onError)="handleUploadError($event)" #videoUpload></ik-upload>
+                      <ik-upload fileName="video1" [isPrivateFile]="false" (onSuccess)="handleUploadSuccess($event, 'videoUpload')" (onError)="handleUploadError($event)"></ik-upload>
                     </div>
                     <div class="form-input">
                       <!-- <p>Current Image: {{selectedGame ? selectedGame.imgSrc : '' }}</p> <br> -->

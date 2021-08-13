@@ -13,9 +13,20 @@
 .game-description-wrapper{
     display: flex;
     justify-content: center;
+    background-color: rgb(26, 26, 26);
+    border: 3px rgb(95, 95, 95) ridge;
+    border-radius: 10px;
+    color:white;
+    font-size: large;
 }
+
 .game-description{
     width: 60ch;
+}
+
+.gold-text{
+    color:goldenrod;
+
 }
 
 /* THESE SHOULD BE IN THE FEATURE ITEM COMPONENT */

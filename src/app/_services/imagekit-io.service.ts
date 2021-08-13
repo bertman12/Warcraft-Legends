@@ -34,15 +34,6 @@ export class ImagekitIoService {
       h: 300}],
   }
 
-  transformationQueries:any = {
-    thumbnail: "tr:w-1000,h-1000",
-    previewImage: "tr:w-1000,h-1000",
-    bannerImage: "tr:w-780,h-300,cm-extract,fo-center",
-    featureImage: "tr:w-1000,h-1000",
-    video: "tr:w-1000,h-1000",
-    bannerVideo: "tr:w-1000,h-1000",
-  }
-
   getMediaTypeTransformation(type: string){
     switch (type) {
       case 'thumbnail':
@@ -70,6 +61,16 @@ export class ImagekitIoService {
     }
   }
 
+  //used to format images and videos based on purpose
+  transformationQueries:any = {
+    thumbnail: "tr:w-1000,h-1000",
+    previewImage: "tr:w-1000,h-1000",
+    bannerImage: "tr:w-780,h-300,cm-extract,fo-center",
+    featureImage: "tr:w-500,h-500",
+    video: "tr:w-1000,h-1000",
+    bannerVideo: "tr:w-1000,h-1000",
+  }
+
   attachTransformQuery(imageUrl: string, transformAlias:string){
     let locArr = imageUrl.split('/');
     let segementFound: boolean = false;
@@ -86,9 +87,9 @@ export class ImagekitIoService {
     let updatedGameForm = gameForm; 
     let selectedFile = updatedGameForm.featureImages[requestsComplete];
     const reader = new FileReader();
-
+    console.log('At Request #...', requestsComplete);
     if (requestsComplete !== gameForm.featureImages.length){
-      if(typeof gameForm.featureImages[requestsComplete] != 'string'){ //we check to see if the element at gameForm.featureImages[requestsComplete] is a string. If it is then the user did not choose a replacement file so the element still has the old image url
+      if(typeof gameForm.featureImages[requestsComplete] !== 'string'){ //we check to see if the element at gameForm.featureImages[requestsComplete] is a string. If it is then the user did not choose a replacement file so the element still has the old image url
         reader.readAsDataURL(selectedFile);     //this converts the image into a base64 type
         reader.onload = async () => {
           await this.http.post(`${API_URL}/imagekit/upload`, {
@@ -108,8 +109,9 @@ export class ImagekitIoService {
         return
       }
     }
-    else if(requestsComplete === gameForm.featureImages.length){
-      if(this.gameService.isEditing){
+    else if(requestsComplete === updatedGameForm.featureImages.length){
+      console.log('updated form is ', updatedGameForm);
+      if(this.gameService.isEditing == true){
         return this.gameService.submitEditedGame(updatedGameForm);
       }
       else{

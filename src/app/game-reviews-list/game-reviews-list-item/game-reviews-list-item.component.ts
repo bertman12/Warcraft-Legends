@@ -30,7 +30,7 @@ export class GameReviewsListItemComponent implements OnInit {
 
   getStarsArray(index: number){
     const locArr = [];
-    for(let x = 0; x < this.localGamesArr[index].rating; x++){
+    for(let x = 0; x < Math.floor(this.localGamesArr[index].rating); x++){
       locArr.push(0);
     }
     return locArr;

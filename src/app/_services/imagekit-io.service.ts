@@ -88,6 +88,10 @@ export class ImagekitIoService {
     let selectedFile = updatedGameForm.featureImages[requestsComplete];
     const reader = new FileReader();
     console.log('At Request #...', requestsComplete);
+    //array promises[promises...] 
+    // let promises = [make a promise for each image]
+    // await Promise.All(promises)
+    // Now do the stuff (you can uses promises[index] to get the return value)
     if (requestsComplete !== gameForm.featureImages.length){
       if(typeof gameForm.featureImages[requestsComplete] !== 'string'){ //we check to see if the element at gameForm.featureImages[requestsComplete] is a string. If it is then the user did not choose a replacement file so the element still has the old image url
         reader.readAsDataURL(selectedFile);     //this converts the image into a base64 type

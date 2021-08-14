@@ -5,6 +5,7 @@
     margin-bottom: 20px;
     padding:0px;
 }
+
 .header-text{
     display: flex;
     justify-content: center;
@@ -14,10 +15,12 @@
     width:35%;
     margin-top: 10px;
 }
+
 .review-items-container{
     display: flex;
     flex-flow: wrap;
 }
+
 .review-item{
     margin-top: 10px;
     margin-bottom: 10px;

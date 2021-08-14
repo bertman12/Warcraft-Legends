@@ -14,38 +14,26 @@ export class GamesService implements OnInit{
   isEditing: boolean = false;
 
   // private gamesUrl = 'api/gameListDB/'; WAS USED FOR THE ANGULAR IN MEMORY WEB API
+
+  //this constant is used for testing only
   private temp_jwt = 
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsInVzZXJuYW1lIjoiYmVubnkiLCJuYW1lIjoiYmVubnkiLCJlbWFpbCI6ImJlbm55QGJlbm55LmNvbSIsImFnZSI6NjksImxvY2F0aW9uIjo2OTY5NjksImlhdCI6MTYyNzQ1NDgzMH0.P40BsHrPynA9ZsBdwp974tBFeBMYvG6laJnuAwbaylM"
   ;
   
-  public readonly imageKitURL: string = "https://ik.imagekit.io/xpiswqmgdc6/";
   constructor(private http: HttpClient) { }
 
   ngOnInit(){
   }
 
-  
-  // addUrl(url: string){
-  //   for(let x in this.urls){
-  //     this.urls.shift();
-  //   }
-  //   this.urls.push(url);
-  //   console.log('this is the urls array in the game service', this.urls);
-  // }
-
-
   async getGames(){
-    // console.log('getGames() has been called!');
     await this.http.get<Game[]>(`${API_URL}/game-reviews-list`).toPromise().then(
       (games) => {
-        // console.log('I got the game reviews', games);
         this.gameListModified.next(games);
       });
   }
 
   async createGame(Game: Game) {
     this.isEditing = false;
-    // console.log('these are the feature images in the game service.. ', Game.featureImages);
     await this.http.post<Game>(`${API_URL}/game-reviews-list/mod/create`, Game, {headers: {"Authorization": `Bearer ${this.temp_jwt}`, "Content-Type": "application/json"}})
     .toPromise().then((res)=>{
       this.getGames();
@@ -54,7 +42,8 @@ export class GamesService implements OnInit{
       console.error(err);
     });
   }
-
+  
+  //called when user starts editing a review
   editGame(Game: Game){
     this.isEditing = true;
     this.editingGame.next(Game);
@@ -69,7 +58,6 @@ export class GamesService implements OnInit{
   }
 
   deleteGame(id: number){
-    console.log('HERE IS THE ID',id);
     this.http.delete(`${API_URL}/game-reviews-list/mod/delete/${id}`, {headers: {"Authorization": `Bearer ${this.temp_jwt}`, "Content-Type": "application/json"}})
     .toPromise().then((res)=> {
       this.getGames();
@@ -77,7 +65,6 @@ export class GamesService implements OnInit{
   }
 
    getSelectedGame(id: number):Promise<any>{
-    console.log('We are getting this game by id...', id);
     return this.http.get(`${API_URL}/game-reviews-list/${id}`).toPromise();
   }
 }

@@ -9,13 +9,13 @@
         <div class="modal-body">
           <div class="container-fluid">
             <div class="row">
-              <form [formGroup]="gameForm" (ngSubmit)="onSubmit('submitting')">
+              <form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
                 <div style="display: flex; justify-content: space-between;">
-                  <div class="" style="margin-bottom: 5px;display:flex; flex-direction: column;">
+                  <div class="form-input" style="margin-bottom:5px;">
                     <label>Title: </label><input type="text" formControlName="title">
                     <label>Author: </label><input type="text" formControlName="author">
                   </div>
-                  <div style="display: flex;flex-direction: column;justify-content: center;">
+                  <div class="form-input" style="justify-content:center;">
                     <label>Description: </label>
                     <textarea class="description-area" type="text" rows="6" cols="50"
                     formControlName="description" ></textarea>
@@ -23,13 +23,12 @@
                 </div>
                   <hr>
                   <h5>Gameplay Features</h5>
-                  <div *ngFor="let feature of featureImages.controls; let index = index"class="game-features">
-                    <div style="display: flex;flex-direction: column;justify-content: space-between;margin-top: 5px">
+                  <div *ngFor="let feature of featureImages.controls; let index = index" class="game-features">
+                    <div class="form-input" style="justify-content:space-between; margin-top:5px">
                       <div>
                         <div class="form-input" formArrayName="featureImages">
                           <label style="margin-bottom:5px;">Feature Image:</label>
                           <input type="file" id="feautureImageInput" (change)="onImageUpload($event,'featureImageUpload', index)" #featureImageUpload>
-                          <!-- <label for="feautureImageInput" style="padding:5px;cursor:pointer;background:#2a9fd6;color:white;border-radius: 10px;">Choose an Image...</label> -->
                         </div>
                         <div style="margin: 10px 0px 5px 0px">
                           <button class="btn btn-danger" (click)="removeFeature(index)">
@@ -42,19 +41,15 @@
                       </div>
                     </div>
                     <div formArrayName="featureDescriptions">
-                      <div style="display: flex;flex-direction: column;margin: 5px;">
+                      <div class="form-input" style="margin:5px;">
                         <label>Description:</label><textarea class="description-area" type="text" rows="3" cols="35"
                         [formControlName]="index"></textarea>
                       </div>
                     </div>
                   </div>
-                  <button class="btn btn-warning" type="button" (click)="addFeature()">Add a Feature image and description.</button>
+                  <button class="btn btn-warning" type="button" (click)="addFeature()">Add a feature image and description.</button>
                   <hr>
-                  <!-- <div class="col-12 d-flex form-inputs-format">
-                    <label>Genre: <input type="text" formControlName="genre" ></label>
-                    <label>Version: <input type="number" formControlName="version" ></label>
-                  </div> -->
-                  <div style="display: flex;margin: 15px 15px 15px 0px">
+                  <div style="display:flex; margin: 15px 15px 15px 0px">
                     <div formGroupName="publishDate" style="outline: 3px ridge rgb(131, 131, 131);padding:15px;">
                       <div class="form-input">
                         <strong>Version Date</strong><label>Month: </label><input type="text" formControlName="month">
@@ -66,7 +61,7 @@
                         <label>Year: </label><input type="number" formControlName="year" >
                       </div>
                     </div>
-                    <div style="margin-left: 20px;outline: 3px ridge rgb(131, 131, 131);padding:15px;">
+                    <div style="margin-left:20px; outline:3px ridge rgb(131, 131, 131); padding:15px;">
                       <div class="form-input">
                         <br><label>Genre: </label><input type="text" formControlName="genre" >
                       </div>

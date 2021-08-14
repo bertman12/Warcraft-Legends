@@ -20,15 +20,13 @@ export class GameReviewsListItemComponent implements OnInit {
       {
         this.currentUser = user; 
       });
-  // let currentUser = this.userService.getUser({email: 'admin@admin.com'});
-  //   console.log('THIS IS THE USER',currentUser);
     this.gameService.getGames();
     this.gameService.gameListModified.subscribe((games)=> {
       this.localGamesArr = games;
     });
   }
 
-  getStarsArray(index: number){
+  getStarsArray(index: number):number[] {
     const locArr = [];
     for(let x = 0; x < Math.floor(this.localGamesArr[index].rating); x++){
       locArr.push(0);

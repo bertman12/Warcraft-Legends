@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API_URL } from '../../environments/environment'; 
 import { GamesService } from './games.service';
+import { IMAGEKIT_ID } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class ImagekitIoService {
   constructor(private http: HttpClient,
               private gameService: GamesService) { }
 
-            
+  //used for property binding with the imagekit premade component    
   transformations = {
     thumbnail: [{
       w: 300,
@@ -34,7 +35,7 @@ export class ImagekitIoService {
       h: 300}],
   }
 
-  getMediaTypeTransformation(type: string){
+  getMediaTypeTransformation(type: string):{} {
     switch (type) {
       case 'thumbnail':
         return this.transformations.thumbnail;
@@ -56,14 +57,14 @@ export class ImagekitIoService {
         break;
       default:
         // return console.log('No media type selected!');
-        return
+        return {}
         break;
     }
   }
 
   //used to format images and videos based on purpose
   transformationQueries:any = {
-    thumbnail: "tr:w-1000,h-1000",
+    thumbnail: "tr:w-200,h-200",
     previewImage: "tr:w-1000,h-1000",
     bannerImage: "tr:w-780,h-300,cm-extract,fo-center",
     featureImage: "tr:w-500,h-500",
@@ -71,14 +72,14 @@ export class ImagekitIoService {
     bannerVideo: "tr:w-1000,h-1000",
   }
 
-  attachTransformQuery(imageUrl: string, transformAlias:string){
+  //runs on video play repeatedly
+  attachTransformQuery(imageUrl: string, transformAlias:string):string{
     let locArr = imageUrl.split('/');
     let segementFound: boolean = false;
     locArr.forEach((segment, index) =>{
-      if(segment == 'xpiswqmgdc6' && !segementFound){
+      if(segment == IMAGEKIT_ID && !segementFound){
       locArr.splice(index + 1,0,this.transformationQueries[transformAlias]);
     }});
-    // console.log('Optimize me!!!!!! This is the new source string',locArr.join('/'));
     return locArr.join('/');
   }
  
@@ -87,7 +88,6 @@ export class ImagekitIoService {
     let updatedGameForm = gameForm; 
     let selectedFile = updatedGameForm.featureImages[requestsComplete];
     const reader = new FileReader();
-    console.log('At Request #...', requestsComplete);
     //array promises[promises...] 
     // let promises = [make a promise for each image]
     // await Promise.All(promises)
@@ -114,7 +114,6 @@ export class ImagekitIoService {
       }
     }
     else if(requestsComplete === updatedGameForm.featureImages.length){
-      console.log('updated form is ', updatedGameForm);
       if(this.gameService.isEditing == true){
         return this.gameService.submitEditedGame(updatedGameForm);
       }
@@ -122,6 +121,6 @@ export class ImagekitIoService {
         return this.gameService.createGame(updatedGameForm);
       }
     }
-    return console.log('exiting an recursive iteration');
+    return 
   }
 }

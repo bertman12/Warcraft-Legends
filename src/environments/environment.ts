@@ -8,9 +8,14 @@ export const environment = {
 
 export const API_URL = 'http://localhost:3000';
 
-export const PUBLICIMAGEKITKEY = ''
-export const IMAGEKIT_URL_ENDPOINT = ''
-export const AUTHENTICATION_ENDPOINT = ''
+
+
+export const PUBLICIMAGEKITKEY = '';
+export const IMAGEKIT_URL_ENDPOINT = '';
+export const AUTHENTICATION_ENDPOINT = '';
+export const IMAGEKIT_ID = '';
+
+
 
 /*
  * For easier debugging in development mode, you can import the following file

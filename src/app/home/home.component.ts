@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
 
-  getBannerImage(game: Game){
+  getBannerImage(game: Game):string {
     return `url(${this.imagekitService.attachTransformQuery(game.imgSrc, "bannerImage")})`;
   }
 
@@ -48,6 +48,5 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){
     this.sub.unsubscribe();
-    console.log('home component destroyed');
   }
 }

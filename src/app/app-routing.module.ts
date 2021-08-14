@@ -11,17 +11,17 @@ const routes: Routes = [
   {path:"", component: HomeComponent}, //home-landing-page
   {path:"game-reviews-list", component: GameReviewsListComponent}, //list of all games
   {path:"game-reviews-list/:id", component: GameReviewComponent}, // load review by id
-  {path:"game-reviews-list/mod/create/:id", component: GameReviewsListComponent}, //edit review by id
+  {path:"game-reviews-list/mod/create", component: GameReviewsListComponent}, //create review
+  // {path:"game-reviews-list/mod/create/:id", component: GameReviewsListComponent}, //create review
   {path:"game-reviews-list/mod/edit/:id", component: GameReviewsListComponent}, //edit review by id
   {path:"game-reviews-list/mod/delete/:id", component: GameReviewsListComponent}, //delete review by id
   {path: "login", component: LoginComponent },
   {path:"register", component: RegisterComponent},
   {path:"about", component: AboutComponent},
 
-
+  //this must be the last route or errors ensue
   {path:"**", redirectTo: '', pathMatch: 'full'}
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

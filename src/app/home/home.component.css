@@ -36,9 +36,6 @@
     margin: 20px;
     
 }
-/* .home-description{
-    /* font-family: "monospace"; */
-/* }  */
 .header-title{
     font-family: 'Suez One', serif;
 }
@@ -72,7 +69,6 @@
     background-position: center;
     background-size: 100% 93%;
     width:100%;
-    /* background-image: url("../../assets/Warcraft-III-generic-image-3-1-ratio.png"); */
     background-repeat: no-repeat;
     box-shadow: inset 0px 0px 20px 30px rgba(0,0,0,1);
     transform: scale(1.02);

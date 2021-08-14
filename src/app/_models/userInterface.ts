@@ -10,4 +10,4 @@ export interface User{
     location ?: number ;
     role ?: number; 
 }
-// admin-level: 0 = user, 1 = moderator, 2 = admin
+// role: 0 = user, 1 = moderator, 2 = admin

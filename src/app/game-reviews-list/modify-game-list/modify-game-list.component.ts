@@ -22,7 +22,6 @@ export class ModifyGameListComponent implements OnInit {
               private imagekitService: ImagekitIoService){}
 
   selectedGame!: any;              
-  // videoRequestCompleted:boolean = true;
   ngOnInit(): void {
     this.gameService.editingGame.subscribe(
       (game) => {
@@ -30,6 +29,7 @@ export class ModifyGameListComponent implements OnInit {
         this.gameForm.patchValue(game);
         this.featureDescriptions.clear();
         this.featureImages.clear();
+        //add the feature descriptions and image form controls from the game currently being edited
         for(let x = 0; x < game.featureDescriptions.length; x++){
           this.featureDescriptions.push(this.formBuilder.control(game.featureDescriptions[x]));
           this.featureImages.push(this.formBuilder.control(game.featureImages[x]));
@@ -44,9 +44,8 @@ export class ModifyGameListComponent implements OnInit {
     description: ['', Validators.required],
     featureDescriptions: this.formBuilder.array([['', [Validators.required, Validators.minLength(1)]]],[ Validators.required, Validators.minLength(1)]),
     featureImages: this.formBuilder.array(['']),
-    // featureImages: this.formBuilder.array([['', [ Validators.required, Validators.minLength(1)]]],[ Validators.required, Validators.minLength(1)]),
     genre: ['', Validators.required],
-    version: ['', [Validators.required, Validators.max(31)]],
+    version: ['', [Validators.required]],
     rating: ['',[Validators.required, Validators.max(5), Validators.min(0)]],
     publishDate: this.formBuilder.group({
       month: ['', Validators.required],
@@ -57,10 +56,10 @@ export class ModifyGameListComponent implements OnInit {
     imgSrc: ['']
   })
   
-  get featureDescriptions(){
+  get featureDescriptions():FormArray {
     return this.gameForm.get('featureDescriptions') as FormArray;
   }
-  get featureImages(){
+  get featureImages():FormArray {
     return this.gameForm.get('featureImages') as FormArray;
   }
   
@@ -68,12 +67,10 @@ export class ModifyGameListComponent implements OnInit {
     this.gameForm.reset();
     this.featureDescriptions.clear();
     this.featureImages.clear();
-    // this.gameService.isEditing = false;
   }
   
   addFeature(){
     this.featureImages.push(this.formBuilder.control(''));
-    // this.featureImages.push(this.formBuilder.control('',[Validators.required, Validators.minLength(1)]));
     this.featureDescriptions.push(this.formBuilder.control('',[Validators.required, Validators.minLength(1)]));
     this.featureImages.updateValueAndValidity();
     this.featureDescriptions.updateValueAndValidity();
@@ -87,12 +84,8 @@ export class ModifyGameListComponent implements OnInit {
     }
   }
   
-  onSubmit(phrase:string){
-    if(phrase = 'submitting'){
-      console.log('SUBMITTING GAME');
-      console.log('This is the game form before imagekit service', this.gameForm.value);
-      this.imagekitService.uploadMyImageRecursive(this.gameForm.value, 0);
-    }
+  onSubmit(){
+    this.imagekitService.uploadMyImageRecursive(this.gameForm.value, 0);
   }
   
   onClearForm(){
@@ -102,23 +95,23 @@ export class ModifyGameListComponent implements OnInit {
     this.selectedGame = null;
   }
 
+  //used to upload feature images
   onImageUpload(event: any, uploader:string, index?: any, ){
     let selectedFile = event.target.files[0];
-    console.log(event);
     if(uploader === 'featureImageUpload'){
       this.featureImages.at(index).setValue(selectedFile);
       console.log(`${uploader} image selected...`, selectedFile);
     }
   }
 
+  //the event input from the html tag is the api response from imagekit.io
+  //get media url from repsponse for preview image and gameplay video
   handleUploadSuccess(res:any, uploader:string){
     console.log('File upload success with response: ', res);
     if(uploader === 'videoUpload'){
       let videoUpload = this.gameForm.get('videoSrc') as FormControl;
       videoUpload.setValue(res.url);
       console.log('This is the response from the video upload',res.url);
-      console.log('This is the game form from the video upload',this.gameForm.value);
-      // this.videoRequestCompleted = true;
     }
     if(uploader === 'previewImageUpload'){
       let previewImage = this.gameForm.get('imgSrc') as FormControl;

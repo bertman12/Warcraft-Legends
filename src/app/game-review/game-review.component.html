@@ -5,19 +5,22 @@
         </div>
         <div class="col d-flex justify-content-center">
             <div class="video-wrapper warcraft-border">
-                <app-media-feature [game] = "game" [showTitle] = "false" [showImage]="false"></app-media-feature>
+                <!-- <app-media-feature [game]="game" [showTitle]="false" [showImage]="false" [imagekitVideo]="true"></app-media-feature> -->
+                <app-media-feature [game]="game"></app-media-feature>
             </div>
         </div>
     </div>
     <div class="row d-flex justify-content-center">
-        <div class="col-12 game-description-wrapper">
-            <p class="game-description">
-                {{ game?.description ?? '' }}                       <br><br>
-                Date created: {{ game?.publishDate?.month ?? ''}} {{ game?.publishDate?.day ?? ''}} {{ game?.publishDate?.year ?? ''}}    <br>
-                Author: {{ game?.author ?? ''}}                     <br>
-                Genre: {{ game?.genre ?? ''}}                       <br>
-                Version: {{ game?.version ?? ''}}                   <br>
-                Rating: {{ game?.rating ?? ''}}/5</p>
+        <div class="col-12" style="display: flex;justify-content: center;">
+            <div class="col-5 game-description-wrapper" style="padding:10px;margin: 10px;">
+                <p class="game-description">
+                    <span class="suez-font">{{ game?.description ?? '' }}</span>                 <br><br>
+                    <strong class="gold-text">Date created</strong>: {{ game?.publishDate?.month ?? ''}} {{ game?.publishDate?.day ?? ''}} {{ game?.publishDate?.year ?? ''}}    <br>
+                    <strong class="gold-text">Author</strong>: {{ game?.author ?? ''}}                     <br>
+                    <strong class="gold-text">Genre</strong>: {{ game?.genre ?? ''}}                       <br>
+                    <strong class="gold-text">Version</strong>: {{ game?.version ?? ''}}                   <br>
+                    <strong class="gold-text">Rating</strong>: {{ game?.rating ?? ''}}/5</p>
+            </div>
         </div>
         <hr>
         <div class="col-10 gameplay-features">
@@ -25,11 +28,14 @@
                 <!-- FEATURE ITEM DIV BELONGS IN ITS OWN COMPONENT -->
                 <div class="feature-item" *ngFor="let x of game.featureDescriptions;let index = index">
                     <!-- This src path needs to come from the media component otherwise the path will be different with respect to this components directory -->
-                    <div class="feature-img">
+                    <div class="feature-img col-6">
                         <!-- [featureImg]="game.featureDescriptions[index] will show each feature image from the array of the game object because of our ngFor directive -->
                         <app-media-feature [showImage]="true"[showTitle]="false" [featureImg]="game.featureImages[index]"></app-media-feature>
                     </div>
-                    <p>{{ game.featureDescriptions[index] }}</p>
+                    <div>
+
+                        <p>{{ game.featureDescriptions[index] }}</p>
+                    </div>
                 </div>
             <!-- <hr>
             <div class="d-flex justify-content-center">

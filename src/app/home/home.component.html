@@ -3,11 +3,19 @@
     <div class="col-8 header-column">     
       <h1 class = "suez-font">Warcraft Legends</h1>
       <img class = "header-logo" src="../../assets/WARCRAFT 3-logo-rounded-v3.png" alt="site logo" height = 250px width = 250px>
-      <h4 class = "home-description">Warcraft Legends is a dedicated community site that hosts high quality reviews to showcase the excellent work of the warcraft community.
+      <h5 class = "home-description suez-font">
+        Warcraft Legends is a dedicated community site that hosts high quality reviews to showcase the excellent work of the warcraft community.
         Warcraft 3 is an iconic Real Time Strategy game that has been around since 2003. Blizzard released the assets for the game on launch and gave
         the community a game engine environment to work with. Thanks to these resources and the creativity of content creators from the community, we have
         enjoyed unique custom community made games for 18 years. The ideas of these creators live on and have contributed to booming million-dollar gaming genres
-        like the MOBA genre. If you have any custom games you'd like to see reviewed on here, send me an email.</h4>
+        like the MOBA genre. If you have any custom games you'd like to see reviewed on here, send me an email.
+<!--         
+        Warcraft Legends is a dedicated community site that hosts high quality reviews to showcase the excellent work of the warcraft community.
+        Warcraft 3 is an iconic Real Time Strategy game that has been around since 2003. Blizzard released the assets for the game on launch and gave
+        the community a game engine environment to work with. Thanks to these resources and the creativity of content creators from the community, we have
+        enjoyed unique custom community made games for 18 years. The ideas of these creators live on and have contributed to booming million-dollar gaming genres
+        like the MOBA genre. If you have any custom games you'd like to see reviewed on here, send me an email. -->
+      </h5>
     </div>
   </div>
 
@@ -15,7 +23,7 @@
   <div class="col d-flex justify-content-center ">
     <div class="card h-75 ">
       <div class="card-body warcraft-border feature-text-box">
-        <h4 class="card-title custom-font2 "id="featured">FEATURED CONTENT</h4>
+        <h4 class="card-title custom-font2 "id="featured">FEATURED REVIEWS</h4>
       </div>
     </div>
   </div>
@@ -29,9 +37,10 @@
       <div class="video-wrapper">
         <a [routerLink]="['/game-reviews-list', game.id]"
          routerLinkActive="active"
-         ><app-media-feature [game]="game"></app-media-feature></a>
+         >
+         <app-media-feature [game]="game"></app-media-feature></a>
       </div>
-      <div class="featured-background-image">
+      <div class="featured-background-image" [ngStyle]="{'background-image': getBannerImage(game) }">
         <div class="featured-game-description">
           <strong>{{ game.title }}</strong>
           <p style ="color:white">{{ game.description }}</p>

@@ -12,7 +12,7 @@ export class ImagekitIoService {
   
   constructor(private http: HttpClient,
               private gameService: GamesService) { }
-
+    
   //used for property binding with the imagekit premade component    
   transformations = {
     thumbnail: [{
@@ -61,7 +61,8 @@ export class ImagekitIoService {
         break;
     }
   }
-
+  
+  //https://docs.imagekit.io/features/image-transformations#3-deliver-responsive-and-art-directed-images
   //used to format images and videos based on purpose
   transformationQueries:any = {
     thumbnail: "tr:w-200,h-200",

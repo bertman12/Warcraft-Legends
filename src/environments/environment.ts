@@ -10,6 +10,7 @@ export const API_URL = 'http://localhost:3000';
 
 
 
+
 export const PUBLICIMAGEKITKEY = '';
 export const IMAGEKIT_URL_ENDPOINT = '';
 export const AUTHENTICATION_ENDPOINT = '';
